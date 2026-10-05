@@ -1,6 +1,8 @@
 # §2.4 — Enable End-User Responsibility
 
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+>
+> **How to read this file:** the expectation paragraphs restate the framework, with its section. The **Engineering effect** and **Evidence** paragraphs are this skill's interpretation — treat them as `[Practice]`, not as IMDA requirements.
 
 Dimension 4 places part of trustworthy deployment on end users, and makes it the organisation's job to equip them: **transparency** for everyone, plus **education** for people who integrate agents into their work.
 
@@ -30,7 +32,7 @@ Dimension 4 places part of trustworthy deployment on end users, and makes it the
 
 **Engineering effect:** these are UI and content requirements. Each one needs a place in the interface or the conversation, not just in a help-centre page.
 
-**Evidence:** screenshots or copy for the agent disclosure, the capability statement ("can / cannot do"), the data notice, and the escalation path — and a test that the disclosure renders on every channel the agent runs on (web, app, Slack, Teams, voice). See [layer 09](../../../layers/09-end-user-transparency.md).
+**Evidence:** screenshots or copy for the agent disclosure, the capability statement ("can / cannot do"), the data notice, and the escalation path — and `[Practice]` a test that the disclosure renders on every channel the agent runs on (web, app, Slack, Teams, voice). See [layer 09](../../../layers/09-end-user-transparency.md).
 
 ## §2.4.3 — Users who integrate agents into their work
 
@@ -40,6 +42,6 @@ Dimension 4 places part of trustworthy deployment on end users, and makes it the
 - **Effective oversight** — common failure modes (hallucinations, loops after errors); ongoing support and refreshers; **feedback loops** so overrides and wrong actions are reported and used to improve the agent.
 - **Tradecraft and business continuity** (new in v1.5) — as agents take over entry-level tasks, skills can degrade; users may no longer be able to perform critical processes manually when agents fail or are unavailable. Identify each job's core capabilities and give enough training and exposure to retain them.
 
-**Engineering effect:** two things land on the build. First, an in-product way to report a bad action or override, wired to somewhere that gets triaged. Second, a **manual fallback path** for any business-critical process the agent performs — documented and periodically exercised — because "turn the agent off" is only a safe intervention if the work can continue without it.
+**Engineering effect:** two things land on the build. First, an in-product way to report a bad action or override, wired to somewhere that gets triaged. Second, `[Practice]` a **manual fallback path** for any business-critical process the agent performs — documented and periodically exercised — because "turn the agent off" is only a safe intervention if the work can continue without it.
 
 **Evidence:** the feedback / override reporting path and its triage owner; the documented manual fallback for each critical process; onboarding material that covers restricted uses and failure modes.

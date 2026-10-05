@@ -14,7 +14,7 @@ The controls that sit around the model at design time and run time. Framework ba
 | 2 | **Structural / rule-based** — enforced by the system | Tool-layer allowlist; read-only scope; schema validation; transaction ceiling; workflow ordering in code | Deterministic; consistent for all users |
 | 3 | **Human approval** — enforced gate | Tool call blocks until an approver signs | Strong if oversight stays effective ([layer 06](06-human-oversight.md)) |
 | 4 | **Model-based** — classifiers, judges | Harmful-content filter; LLM judge on output faithfulness | Probabilistic; right where rules can't express the risk |
-| 5 | **Prompt-layer** — instructions | "Do not email external domains" | Weakest; can be bypassed or "forgotten"; inconsistently defined across users `[MGF §2.3.1]` |
+| 5 | **Prompt-layer** — instructions | "Do not email external domains" | Weakest; may be bypassed or "forgotten" (OpenClaw case, `[MGF §2]`); inconsistently defined across users `[MGF §2.3.1]` |
 
 **Review rule:** for every risk rated medium or high in [layer 02](02-use-case-and-risk.md), the primary control should be rank 1–3. A rank 4–5 control on its own is acceptable only where the framework allows it — risks hard to express in rules — and should be layered with monitoring or human review `[MGF §2.1.2]`.
 

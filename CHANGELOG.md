@@ -27,5 +27,5 @@ First release. Written against the **Model AI Governance Framework for Agentic A
 
 ### Added — tooling
 
-- [`scripts/ai-governance-check-changed-files.py`](scripts/ai-governance-check-changed-files.py): deterministic changed-file tripwire for pre-commit and CI, with tests. Flags agent code, tool and MCP definitions, prompts, approval and guardrail logic, evals, and agent-framework keywords; validates `.ai-governance.json`.
+- [`scripts/ai-governance-check-changed-files.py`](scripts/ai-governance-check-changed-files.py): deterministic changed-file tripwire for pre-commit and CI, with tests. Scans only added lines; flags agent and orchestration code, MCP config, prompts, approval and guardrail logic, evals, agent-framework and oversight keywords, and model identifiers (a model swap is a change-review trigger); skips lockfiles and licences; validates `.ai-governance.json`; in block mode, a `AI-Governance-Reviewed: yes` commit trailer lifts the block.
 - Release workflow and `scripts/release_notes.py`, carried over from the sibling skill.

@@ -1,6 +1,8 @@
 # §2.3 — Implement Technical Controls and Processes
 
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+>
+> **How to read this file:** the expectation paragraphs restate the framework, with its section. The **Engineering effect** and **Evidence** paragraphs are this skill's interpretation — treat them as `[Practice]`, not as IMDA requirements.
 
 Dimension 3 is where most engineering work sits. The framework structures it across the lifecycle: controls during design and development, testing before deployment, gradual rollout with monitoring when deploying, and change management throughout `[MGF §2.3]`.
 

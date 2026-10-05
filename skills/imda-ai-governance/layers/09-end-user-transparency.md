@@ -24,7 +24,7 @@ Keep it generated from, or reviewed against, the actual tool list and approval m
 
 ## Tell users what happens to their data
 
-`[MGF §2.4.2]`: be clear how user data is collected, stored and used by the agent, in line with privacy policies; obtain explicit consent where necessary. `[Practice]`: say whether conversations are retained, whether the agent has long-term memory of the user and how to clear it, which third parties (model providers, tools) receive data, and whether data trains models. This is also where PDPA notice and consent obligations land — they are law, and the framework defers to them.
+`[MGF §2.4.2]`: be clear how user data is collected, stored and used by the agent, in line with privacy policies; obtain explicit consent where necessary. `[Practice]`: say whether conversations are retained, whether the agent has long-term memory of the user and how to clear it, which third parties (model providers, tools) receive data, and whether data trains models. This is also where PDPA notice and consent obligations land — they are law, and apply whatever the framework says.
 
 ## Name a human to escalate to
 

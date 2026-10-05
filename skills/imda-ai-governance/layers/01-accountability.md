@@ -16,7 +16,7 @@ The non-technical scaffolding an engineer needs to know exists, because the rest
 | **Approver(s)** | Decisions at the human checkpoints | Named role or queue, with required expertise |
 | **Escalation contact** | What end users contact when the agent misbehaves | Support / operations, reachable |
 
-An agent where any of these is "TBD" at launch has an accountability gap the framework would flag.
+An agent where any of these is "TBD" at launch has not allocated responsibility in the way `[MGF §2.2.1]` describes.
 
 ## Use-case approval and residual-risk acceptance
 

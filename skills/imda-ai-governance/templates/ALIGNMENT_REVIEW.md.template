@@ -17,6 +17,7 @@ Conventions:
 |---|---|
 | **Reviewed** | {{DATE}} by {{REVIEWER}} |
 | **Framework** | Model AI Governance Framework for Agentic AI v1.5 (IMDA, 20 May 2026, updated 5 June 2026) |
+| **Skill version** | imda-ai-governance {{SKILL_VERSION}} (framework notes last verified {{DATE}}) |
 | **Material reviewed** | {{LIST of docs, diagrams, repos / paths, configs, with versions or commits}} |
 | **Not reviewed** | {{e.g. contracts, runtime config, eval results}} |
 
@@ -71,3 +72,11 @@ Conventions:
 ## Open questions for the team
 
 - {{Things the material didn't answer that would change a finding.}}
+
+## Appendix — item-by-item results
+
+<!-- One row per item in checklists/design-review.md step 3. The scorecard counts come from this table. -->
+
+| # | Item | Reference | Status | Evidence |
+|---|---|---|---|---|
+| 1.1 | {{checklist item}} | `[MGF §{{x.y}}]` | {{Aligned / Partly / Not aligned / N/A / Cannot determine}} | {{file:line, config, quote}} |

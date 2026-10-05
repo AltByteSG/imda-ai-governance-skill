@@ -26,6 +26,10 @@ The project transmits no data, so shares none. If you host a copy elsewhere, tha
 
 The project is hosted on GitHub at <https://github.com/AltByteSG/imda-ai-governance-skill>. GitHub collects standard request and account data under [GitHub's Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement); the maintainers don't receive it.
 
+## Children
+
+This project is technical reference material aimed at adult software engineers. It is not directed at children, and because nothing is collected, no data about children could be collected even inadvertently.
+
 ## Changes to this policy
 
 Any change to the data-collection posture will be recorded here and in [`CHANGELOG.md`](CHANGELOG.md). The position is: **no data collection, by default or otherwise**.

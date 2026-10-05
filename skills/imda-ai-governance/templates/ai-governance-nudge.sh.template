@@ -36,7 +36,19 @@
 #          }
 #        }
 
-f="${TOOL_INPUT_file_path:-}"
+# Claude Code passes the hook input as JSON on stdin; the edited path is
+# tool_input.file_path. Parsed with python3 where available, else a sed fallback
+# good enough for ordinary paths.
+input=$(cat)
+if command -v python3 >/dev/null 2>&1; then
+  f=$(printf '%s' "$input" | python3 -c 'import json,sys
+try:
+    print(json.load(sys.stdin).get("tool_input", {}).get("file_path", ""))
+except Exception:
+    pass' 2>/dev/null)
+else
+  f=$(printf '%s' "$input" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n 1)
+fi
 [ -z "$f" ] && exit 0
 
 nudge() {

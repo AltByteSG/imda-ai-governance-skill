@@ -20,6 +20,12 @@ Everything goes through this repository's GitHub issues and pull requests.
 - `governance-concern` issues are triaged ahead of typo and formatting reports.
 - We aim to respond to high-priority reports within **5 business days** and publish a correction within **30 days** of confirming the issue. These are targets, not commitments.
 
+## What we ask of reporters
+
+- **For high-priority content issues, please don't escalate publicly before opening an issue and giving maintainers a reasonable chance to fix it.**
+- **Cite authoritative sources.** "Section 2.2.2 says X but the file says Y" is actionable in minutes.
+- **Be specific.** Filename, line number, and the exact framework wording.
+
 ## What this repository is **not**
 
 - **Not a vulnerability disclosure programme** for any product or agent that uses this skill. Contact that product's vendor.

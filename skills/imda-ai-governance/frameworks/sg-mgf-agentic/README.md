@@ -23,7 +23,7 @@ Teams that aligned to v1.0 should re-check these areas, because v1.5 added expec
 - **Systemic and multi-agent risks** `[MGF §1.2.3]` — speed and volume, cascading effects, agent sprawl, miscoordination, conflict, collusion, emergent behaviour.
 - **New risk factors** `[MGF §2.1.1]` — third-party provision of the agent, and overall system complexity.
 - **Value chain split** `[MGF §2.2.1]` — platform providers are now separate from system providers / app developers.
-- **Automation-bias metrics** `[MGF §2.2.2]` — human override rate, review response time, outlier reviewers.
+- **Automation-bias metrics** `[MGF §2.2.2]` — human override rate and review response time (the section also covers outlier reviewers and reviewer training).
 - **Choosing controls** `[MGF §2.3.1]` — structural / rule-based vs model-based or prompt-layer, and runtime controls.
 - **Change management** `[MGF §2.3, §2.3.3]` — defined change triggers and risk-categorised review.
 - **Tradecraft and business continuity** `[MGF §2.4.3]` — skills erosion as a continuity risk.

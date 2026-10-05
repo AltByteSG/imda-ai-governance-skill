@@ -24,7 +24,7 @@ The framework defers to these for depth. This skill references them but does not
 |---|---|---|
 | Draft Addendum on Securing Agentic AI | Cyber Security Agency of Singapore (CSA) | Threat modelling and taint tracing for agentic systems; security control catalogue |
 | Agentic Risk & Capability Framework | GovTech Singapore | Capability-based risk and control catalogue |
-| Starter Kit for Testing of LLM-based Applications for Safety and Reliability | IMDA / AI Verify Foundation | Baseline LLM testing practice that agent testing extends |
+| Starter Kit for Testing of LLM-based Applications for Safety and Reliability | IMDA (named in the framework) | Baseline LLM testing practice that agent testing extends |
 | Guide to Cyber Threat Modelling | CSA | Threat modelling method referenced for risk assessment |
 | OpenClaw responsible-deployment case study (May 2026) | IMDA | Worked application of the four dimensions to an open-source agent platform |
 

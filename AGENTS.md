@@ -10,7 +10,7 @@ The skill content lives under [`skills/imda-ai-governance/`](skills/imda-ai-gove
 
 If you are an agent and the user is designing, reviewing or changing anything that builds or deploys an AI agent — agent architecture or design docs, tool / MCP / API integrations, agent identity and permissions, human-approval flows, guardrails, evals and pre-deployment tests, monitoring and logging, rollout and change management, third-party agent platforms, or end-user disclosure for agents — follow the steps below.
 
-Two conventions run through the content: **`[MGF §x.y]`** marks what the framework itself says, with its section; **`[Practice]`** marks an engineering pattern the skill recommends to meet it, which is not an IMDA requirement. Keep that distinction in anything you write for the user.
+Two conventions run through the layer files, checklists and templates (framework notes restate the framework and say where they add interpretation): **`[MGF §x.y]`** marks what the framework itself says, with its section; **`[Practice]`** marks an engineering pattern the skill recommends to meet it, which is not an IMDA requirement. Keep that distinction in anything you write for the user.
 
 ## Step 1 — Establish scope and the project's governance config
 
@@ -34,7 +34,7 @@ Then suggest creating `.ai-governance.json`:
 }
 ```
 
-If the project cannot take that file, record the same facts in the project's `AGENTS.md`, `CLAUDE.md` or equivalent.
+`riskTier` is one of `unassessed`, `low`, `medium`, `high` (see [layer 02](skills/imda-ai-governance/layers/02-use-case-and-risk.md#tiering)). `agentRegistry` is the folder holding one [`AGENT_CARD.md`](skills/imda-ai-governance/templates/AGENT_CARD.md.template) per agent. If the project cannot take that file, record the same facts in the project's `AGENTS.md`, `CLAUDE.md` or equivalent.
 
 | Code | Framework | Status |
 |---|---|---|
@@ -85,7 +85,7 @@ Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions
 |---|---|---|
 | **Bound by design, not by prompt** | If an agent must not do something, make it impossible at the tool, permission or workflow layer. | `[MGF §2.1.2, §2.3.1]` |
 | **Risk = impact × likelihood, per agent** | Impact: domain, sensitive data, external access, write scope, irreversibility. Likelihood: autonomy, complexity, untrusted inputs, third-party opacity, system complexity. | `[MGF §2.1.1]` |
-| **Least privilege, scoped and non-transferable** | Minimum tools and data; time- or session-bound; never more than the delegating human. | `[MGF §2.1.2]` |
+| **Least privilege, scoped and non-transferable** | Minimum tools and data; time- or session-bound; as a rule of thumb, no more than the delegating human. | `[MGF §2.1.2]` |
 | **Every agent has an identity and an owner** | Unique, verifiable, tied to an accountable owner, capacity recorded, centrally registered. | `[MGF §2.1.2]` |
 | **Humans approve the irreversible and the high-stakes** | Checkpoints for high-stakes, irreversible, atypical and user-defined actions; digestible requests; deny by default when approvals fail. | `[MGF §2.2.2]` |
 | **Oversight decays — measure it** | Track override rates and review times. | `[MGF §2.2.2]` |
@@ -101,7 +101,13 @@ Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions
 3. Walk `skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/01–04` and confirm each applicable expectation with evidence, not intent.
 4. Record the outcome in the agent's `AGENT_CARD.md`, the PR description, or an alignment review.
 
-Agents that touch personal data also carry PDPA (or other data-protection) obligations, which are law. If the `personal-data-protection` skill is available, run it alongside this one.
+When reviewing, **report against what exists, not what the author meant**. A design doc that says "the agent will only read" while the tool grants write scope is a finding. A guardrail that lives only in the system prompt, protecting an irreversible action, is a finding. "We'll add monitoring later" for an agent heading to production is a finding.
+
+## Interactions with other obligations
+
+- **Personal data.** Agents that touch personal data also carry PDPA (or other data-protection) obligations, which are law, not guidance. The MGF points to the organisation's data privacy policies and explicit consent where needed `[MGF §2.4.2]`; it does not replace them. If the `personal-data-protection` skill is installed, run it alongside this one.
+- **Cybersecurity.** The MGF defers to CSA's *Draft Addendum on Securing Agentic AI* and GovTech's *Agentic Risk & Capability Framework* for control catalogues `[MGF §2.3.1]`. This skill does not reproduce them.
+- **Sector rules.** Financial services, healthcare and public-sector deployments typically have binding rules on outsourcing, model risk and technology risk that sit above this framework.
 
 ## Differences from the Claude Code version
 

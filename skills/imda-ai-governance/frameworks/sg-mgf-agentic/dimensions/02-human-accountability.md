@@ -1,6 +1,8 @@
 # §2.2 — Make Humans Meaningfully Accountable
 
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+>
+> **How to read this file:** the expectation paragraphs restate the framework, with its section. The **Engineering effect** and **Evidence** paragraphs are this skill's interpretation — treat them as `[Practice]`, not as IMDA requirements.
 
 The framework's position is that **deploying organisations and the humans overseeing agents remain accountable for the agents' actions**. Dimension 2 is about making that accountability real: clear owners across the value chain, and human oversight designed so that it still works after the hundredth approval.
 
@@ -10,7 +12,7 @@ The framework's position is that **deploying organisations and the humans overse
 
 **Expectation:** the simplified value chain is model developers, tooling providers (e.g. MCP, APIs), platform providers, system providers / app developers, deployers and end users. Organisations may hold several roles at once — building and deploying your own agent makes you system provider *and* deployer. (The platform / system-provider split is new in v1.5.)
 
-**Engineering effect:** the role determines which expectations land on your team. A system provider owns design, testing and controls; a deployer owns use-case approval, oversight, monitoring and user communication; most product teams are both.
+**Engineering effect:** `[Practice]` the framework does not split duties by role, but in practice the role decides which expectations land on your team: building the agent puts design, testing and controls with you; deploying it puts use-case approval, oversight, monitoring and user communication with you. Most product teams do both.
 
 **Evidence:** the role(s) recorded in `.ai-governance.json` or the agent card.
 
@@ -83,4 +85,4 @@ The framework's three-part model: define checkpoints → train and audit approve
 
 **Expectation:** automated real-time monitoring to escalate anomalies: alerts on logged events (attempted unauthorised access, repeated failed tool calls), anomaly detection on trajectories, agents monitoring agents, and **denying action by default when approval infrastructure fails** — when supervisors are unreachable, or when the agent attempts a new action with no approval policy.
 
-**Evidence:** the behaviour of the approval path when the approver service is down or times out (it must block, not proceed); the handling of tools or actions not in the approval policy (deny, not allow).
+**Evidence:** alert rules on logged events; and, for the deny-by-default measure, the behaviour of the approval path when the approver service is down or times out (`[Practice]` it should block, not proceed) and the handling of tools or actions not in the approval policy (deny, not allow).

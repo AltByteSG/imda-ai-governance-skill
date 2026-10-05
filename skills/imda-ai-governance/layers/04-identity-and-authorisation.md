@@ -35,9 +35,9 @@ Who the agent is, whom it acts for, and what it is allowed to touch — enforced
 - **Escalation is a flow, not a bigger default.** If a task needs elevated permission, the agent requests it and a human (or policy engine) grants a time-boxed elevation — logged.
 - **Enforce at the resource.** The database, API or MCP server checks the scope. A tool wrapper that "promises" not to call a write endpoint, with a credential that could, is a prompt-grade control.
 
-## Never more than the delegating human
+## No more than the delegating human
 
-`[MGF §2.1.2]`: a user should not be able to give an agent permissions greater than their own, and delegations should be recorded.
+`[MGF §2.1.2]`, as a rule of thumb: a user should not be able to give an agent permissions greater than their own, and delegations should be recorded.
 
 `[Practice]`:
 

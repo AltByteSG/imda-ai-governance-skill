@@ -23,6 +23,10 @@ VALID_FRAMEWORKS = {"sg-mgf-agentic"}
 VALID_TIERS = {"unassessed", "low", "medium", "high"}
 GIT_TIMEOUT_SECONDS = 30
 
+# Path rules name folders that are agent-specific on their own. Generic names
+# (tools/, actions/, plugins/, policies/, benchmarks/) are deliberately absent:
+# they match build tooling, CI actions, Redux, IAM and docs far more often than
+# agents. Agent code in such folders is still caught by the content scan.
 PATH_RULES = [
     (
         re.compile(r"(^|/)(\.mcp\.json|mcp\.json|mcp[_-]?servers?|mcp)(/|\.|$)", re.I),
@@ -30,34 +34,25 @@ PATH_RULES = [
         "MCP server configuration or integration",
     ),
     (
-        re.compile(r"(^|/)(agents?|sub[_-]?agents?|orchestrat\w*|crews?|swarms?)(/|\.|$)", re.I),
+        re.compile(r"(^|/)(agents?|sub[_-]?agents?|agent[_-]?tools|orchestrat\w*|crews?|swarms?)"
+                   r"(/|\.|$)", re.I),
         "03-architecture-and-bounding",
         "agent or orchestration code",
     ),
     (
-        re.compile(r"(^|/)(tools|toolkits?|actions|skills|plugins)(/|\.|$)", re.I),
-        "05-technical-controls",
-        "agent tool or action definitions",
-    ),
-    (
-        re.compile(r"(^|/)(prompts?|system[_-]?prompts?|instructions)(/|\.|$)", re.I),
+        re.compile(r"(^|/)(prompts?|system[_-]?prompts?)(/|\.|$)", re.I),
         "08-monitoring-and-operations",
         "agent instructions (a change-review trigger)",
     ),
     (
-        re.compile(r"(^|/)(guardrails?|policies|policy|approvals?|hitl)(/|\.|$)", re.I),
+        re.compile(r"(^|/)(guardrails?|approvals?|hitl)(/|\.|$)", re.I),
         "06-human-oversight",
-        "guardrail, policy, or approval logic",
+        "guardrail or approval logic",
     ),
     (
-        re.compile(r"(^|/)(evals?|evaluations?|red[_-]?team\w*|benchmarks?)(/|\.|$)", re.I),
+        re.compile(r"(^|/)(evals?|red[_-]?team\w*)(/|\.|$)", re.I),
         "07-testing-and-evaluation",
         "agent evaluation or red-team suite",
-    ),
-    (
-        re.compile(r"(^|/)(memory|memories|vector[_-]?store|embeddings?)(/|\.|$)", re.I),
-        "03-architecture-and-bounding",
-        "agent memory or retrieval store",
     ),
 ]
 
@@ -68,29 +63,53 @@ CONTENT_RULES = [
             # Agent frameworks and SDKs. Matched as words after identifier
             # splitting, so `from langgraph.graph import` and `LangGraph` both hit.
             r"langgraph|langchain|crewai|autogen|semantic kernel|llama ?index|"
+            r"pydantic ai|google adk|smolagents|from agents import|"
             r"agents sdk|agent sdk|claude agent sdk|openai agents|strands agents|"
             r"bedrock agent\w*|vertex ai agent\w*|agentcore|"
-            # Protocols. The camelCase split turns `A2A` into `A2 A`, hence the
-            # optional space.
-            r"mcp server|model context protocol|mcp client|a2 ?a|agent2 ?agent|"
+            # Protocols. The camelCase split turns `Agent2Agent` into
+            # `Agent2 Agent`, hence the optional space.
+            r"mcp server|model context protocol|mcp client|agent2 ?agent|"
             r"agentic commerce|"
             # Tool-use surface.
-            r"tool use|tool call\w*|function call\w*|tool choice|bind tools|"
-            r"computer use|browser use|"
+            r"tool use|tool calls?|tool choice|bind tools|computer use|browser use|"
             # Autonomy and loop control.
-            r"max iterations|max steps|max turns|recursion limit|"
-            r"system prompt|"
+            r"max iterations|max steps|max turns|recursion limit|system prompt|"
             # Oversight and guardrails.
             r"human in the loop|hitl|requires approval|approval required|"
             r"interrupt before|interrupt after|guardrails?|kill switch|"
-            # Identity and delegation.
-            r"on behalf of|agent id|agent identity|token exchange"
+            # Identity.
+            r"agent id|agent identity"
             r")\b",
             re.I,
         ),
         "agentic-AI keyword",
-    )
+    ),
+    (
+        # Model identifiers. A one-line model swap is a material change under
+        # MGF §2.3.3, so it must trip the check even with nothing else around it.
+        # After identifier splitting `claude-sonnet-4-5` reads `claude sonnet 4 5`
+        # and `gemini-2.5-pro` reads `gemini 2 5 pro`.
+        re.compile(
+            r"\b(claude (opus|sonnet|haiku|fable|instant|\d)|gpt \d\w*|o[134] (mini|pro)|"
+            r"gemini \d|gemini (pro|flash|ultra)|llama \d|mistral (large|medium|small)|"
+            r"command r\w*|deepseek (v|r)\d)\b",
+            re.I,
+        ),
+        "model identifier (a model change is a change-review trigger)",
+    ),
 ]
+
+# Generated or legal files whose content says nothing about agent behaviour but
+# routinely contains matching byte sequences (base64 hashes in lockfiles, "on
+# behalf of" in licences).
+SKIP_FILES = re.compile(
+    r"(^|/)(package-lock\.json|npm-shrinkwrap\.json|yarn\.lock|pnpm-lock\.yaml|"
+    r"poetry\.lock|uv\.lock|Pipfile\.lock|Cargo\.lock|Gemfile\.lock|go\.sum|composer\.lock|"
+    r"LICEN[CS]E[^/]*|COPYING[^/]*|NOTICE[^/]*)$",
+    re.I,
+)
+
+DEFAULT_ACK_TRAILER = "AI-Governance-Reviewed: yes"
 
 # `_` is a word character and `-` sits flush against one, so `\bsystem prompt\b`
 # would never match `system_prompt`, `systemPrompt`, or `system-prompt`. Splitting
@@ -134,17 +153,52 @@ def repo_root() -> Path:
     return Path(run_git(["rev-parse", "--show-toplevel"]).strip())
 
 
-def changed_files(args: argparse.Namespace) -> list[Path]:
+def diff_args(args: argparse.Namespace) -> list[str]:
     if args.base or args.head:
         if not (args.base and args.head):
             raise SystemExit("--base and --head must be supplied together")
-        output = run_git(["diff", "--name-only", f"{args.base}...{args.head}"])
-    elif args.staged:
-        output = run_git(["diff", "--cached", "--name-only"])
-    else:
-        output = run_git(["diff", "--name-only"])
+        return [f"{args.base}...{args.head}"]
+    if args.staged:
+        return ["--cached"]
+    return []
 
-    return [Path(line) for line in output.splitlines() if line.strip()]
+
+def added_lines_by_file(args: argparse.Namespace) -> dict[Path, str]:
+    """Map each changed path to the text of its added lines only.
+
+    Scanning whole files meant that once a file mentioned "guardrails", every
+    later edit to it was flagged. Reading the zero-context diff limits the content
+    scan to what this change introduced, and for --staged it reads the staged
+    version rather than the working tree. Deleted files map to empty text.
+    """
+    output = run_git(["diff", "-U0", "--no-color", "--no-ext-diff", *diff_args(args)])
+    files: dict[Path, list[str]] = {}
+    current: list[str] | None = None
+    for line in output.splitlines():
+        if line.startswith("diff --git "):
+            current = None
+        elif line.startswith("+++ "):
+            target = line[4:]
+            if target == "/dev/null":
+                current = None
+            else:
+                path = Path(target[2:] if target.startswith("b/") else target)
+                current = files.setdefault(path, [])
+        elif line.startswith("--- a/"):
+            # Keep deletions visible to the path rules even with no added text.
+            files.setdefault(Path(line[6:]), [])
+        elif current is not None and line.startswith("+"):
+            current.append(line[1:])
+    return {path: "\n".join(lines) for path, lines in files.items()}
+
+
+def acknowledged(args: argparse.Namespace, trailer: str) -> bool:
+    """True if any commit in base...head carries the review acknowledgement trailer."""
+    if not (args.base and args.head):
+        return False
+    log = run_git(["log", "--format=%B", f"{args.base}..{args.head}"])
+    wanted = trailer.lower()
+    return any(line.strip().lower() == wanted for line in log.splitlines())
 
 
 def load_config(root: Path, config_path: str) -> dict:
@@ -202,24 +256,18 @@ def tier_from(config: dict) -> str:
     return tier
 
 
-def read_text(path: Path) -> str:
-    try:
-        return path.read_text(encoding="utf-8", errors="ignore")
-    except OSError:
-        return ""
-
-
-def classify(root: Path, rel_path: Path) -> list[tuple[str, str]]:
+def classify(rel_path: Path, added_text: str) -> list[tuple[str, str]]:
     rel = rel_path.as_posix()
-    findings: list[tuple[str, str]] = []
+    if SKIP_FILES.search(rel):
+        return []
 
+    findings: list[tuple[str, str]] = []
     for pattern, layer, reason in PATH_RULES:
         if pattern.search(rel):
             findings.append((layer, reason))
 
-    full_path = root / rel_path
-    if full_path.is_file() and full_path.stat().st_size <= 500_000:
-        text = split_identifiers(read_text(full_path))
+    if added_text and len(added_text) <= 500_000:
+        text = split_identifiers(added_text)
         for pattern, reason in CONTENT_RULES:
             if pattern.search(text):
                 findings.append(("content-scan", reason))
@@ -240,6 +288,12 @@ def main() -> int:
         choices=sorted(VALID_POLICIES),
         help="Override .ai-governance.json reviewPolicy.",
     )
+    parser.add_argument(
+        "--ack-trailer",
+        default=DEFAULT_ACK_TRAILER,
+        help="Commit trailer in base...head that acknowledges a governance review "
+             f"and lifts a block (default: {DEFAULT_ACK_TRAILER!r}).",
+    )
     args = parser.parse_args()
 
     root = repo_root()
@@ -249,8 +303,8 @@ def main() -> int:
     policy = policy_from(args, config)
 
     flagged = []
-    for rel_path in changed_files(args):
-        findings = classify(root, rel_path)
+    for rel_path, added_text in added_lines_by_file(args).items():
+        findings = classify(rel_path, added_text)
         if findings:
             flagged.append((rel_path, findings))
 
@@ -277,7 +331,11 @@ def main() -> int:
         print("[ai-gov-check] Risk tier is unassessed; run checklists/new-agent.md section 1.")
 
     if policy == "block-on-sensitive-change":
+        if acknowledged(args, args.ack_trailer):
+            print(f"[ai-gov-check] Review acknowledged by commit trailer {args.ack_trailer!r}.")
+            return 0
         print("[ai-gov-check] Blocking because reviewPolicy is block-on-sensitive-change.")
+        print(f"[ai-gov-check] After the review, add the trailer {args.ack_trailer!r} to a commit.")
         return 1
 
     return 0

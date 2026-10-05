@@ -12,10 +12,12 @@ description: Engineering reference for aligning agentic AI systems with Singapor
 > **The Model AI Governance Framework (MGF) for Agentic AI is voluntary guidance.** It describes emerging good practice; most of it is phrased as what organisations *"should consider"*. This skill does not turn it into law, and alignment with it does not discharge obligations under statutes that *do* bind you (the PDPA, sector rules such as MAS notices, contract terms). Always (a) verify any section reference or quotation against the official IMDA publication, and (b) involve your organisation's risk, security, legal and compliance owners before treating a design as approved.
 >
 > **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md](../../DISCLAIMER.md), including [§ Copyright in source materials](../../DISCLAIMER.md#copyright-in-source-materials).
+>
+> By using this skill you accept the full disclaimer in [DISCLAIMER.md](../../DISCLAIMER.md), including the "use at your own risk" terms and the maintainers' zero liability for any decision taken in reliance on this content.
 
 This skill helps engineers make sure that what they design and build — architecture, agent design, permissions, approval flows, tests, monitoring, rollout plans, user-facing disclosures, internal guidelines — lines up with IMDA's MGF for Agentic AI. It is organised by **where in the system the expectation lands**, not by framework section number, so an engineer can work from the thing in front of them (a tool definition, an approval dialog, a deploy plan) rather than from the PDF.
 
-Two conventions run through every file:
+Two conventions run through the layer files, checklists and templates (framework notes in `frameworks/` restate the framework, and say where they add interpretation):
 
 - **`[MGF §x.y]`** marks something the framework itself says, with the section it comes from. That is the alignment bar.
 - **`[Practice]`** marks an engineering pattern this skill recommends to *meet* that bar. It is not an IMDA requirement and can be substituted by anything that achieves the same outcome.
@@ -91,7 +93,7 @@ These recur across the framework and settle most design arguments. Each links to
 |---|---|---|
 | **Bound by design, not by prompt** | If an agent must not do something, make it impossible at the tool, permission or workflow layer. A system-prompt instruction is the weakest control available and is not sufficient on its own for higher-risk actions. | `[MGF §2.1.2, §2.3.1]` |
 | **Risk = impact × likelihood, assessed per agent** | Impact grows with domain criticality, sensitive-data access, external access, write scope and irreversibility. Likelihood grows with autonomy, task complexity, untrusted inputs, third-party opacity and system complexity. | `[MGF §2.1.1]` |
-| **Least privilege, scoped and non-transferable** | Minimum tools and data for the task; authorisations time- or session-bound; an agent never holds more than the human who delegated to it. | `[MGF §2.1.2]` |
+| **Least privilege, scoped and non-transferable** | Minimum tools and data for the task; authorisations time- or session-bound; as a rule of thumb, an agent holds no more than the human who delegated to it. | `[MGF §2.1.2]` |
 | **Every agent has an identity and an owner** | Unique, verifiable identity; tied to a human, team or supervising agent; capacity recorded; issued from a central registry to stop sprawl. | `[MGF §2.1.2]` |
 | **Humans approve the irreversible and the high-stakes** | Define checkpoints for high-stakes, irreversible, atypical and user-defined actions; make approval requests short and clear; deny by default when approval infrastructure fails. | `[MGF §2.2.2]` |
 | **Oversight decays — measure it** | Track override rates and review times; low override rates and fast approvals can signal rubber-stamping. | `[MGF §2.2.2]` |

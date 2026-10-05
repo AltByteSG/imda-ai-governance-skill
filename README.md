@@ -44,7 +44,7 @@ A team's design doc describes a support agent with tools to read orders, read th
 
 ### 2. Internal coding-assistant rollout with MCP
 
-A platform team wants to roll an agentic coding assistant out to 400 engineers with a dozen community MCP servers enabled. The skill steers them to the framework's gradual-rollout pattern `[MGF §2.3.3]`: a pilot with trained users, built-in tools only and low-risk repos; an MCP allowlist behind a gateway with pinned versions and logged traffic `[MGF §2.3.1]`; approval defaults tiered by action (read free, edits per session, shell and network gated) `[MGF §2.2.2]`; and oversight metrics so they can tell when approvals have become rubber stamps.
+A platform team wants to roll an agentic coding assistant out to 400 engineers with a dozen community MCP servers enabled. The skill steers them to the framework's gradual-rollout pattern `[MGF §2.3.3]`: a pilot with trained users, built-in tools only and low-risk repos; an MCP allowlist behind a gateway with pinned versions and logged traffic `[MGF §2.3.1]`; checkpoints for higher-stakes actions `[MGF §2.2.2]`, with approval defaults tiered by action as in the framework's Tencent case study (read free, edits per session, shell and network gated); and oversight metrics so they can tell when approvals have become rubber stamps.
 
 ### 3. Swapping the model under a production agent
 
@@ -114,7 +114,7 @@ Save as `.ai-governance.json` in the consuming project (see [`.ai-governance.exa
 
 ### Guardrail: pre-commit / CI changed-file check
 
-Use the skill as the reasoning layer and [`scripts/ai-governance-check-changed-files.py`](scripts/ai-governance-check-changed-files.py) as a deterministic tripwire. The script does not judge alignment; it only flags changes that probably touch an agent — agent and orchestration code, tool definitions, MCP config, prompts, approval and guardrail logic, evals, agent-framework imports — so someone runs the change-review checklist.
+Use the skill as the reasoning layer and [`scripts/ai-governance-check-changed-files.py`](scripts/ai-governance-check-changed-files.py) as a deterministic tripwire. The script does not judge alignment; it only flags changes that probably touch an agent — agent and orchestration code, MCP config, prompts, approval and guardrail logic, evals, agent-framework imports, tool-use and oversight keywords, and model identifiers — so someone runs the change-review checklist. It scans only the lines a change adds, and skips lockfiles and licences.
 
 Copy the script into the consuming project, then wire it into pre-commit:
 
@@ -127,6 +127,13 @@ repos:
         entry: python3 scripts/ai-governance-check-changed-files.py --staged
         language: system
         pass_filenames: false
+```
+
+Install the hook:
+
+```bash
+pip install pre-commit
+pre-commit install
 ```
 
 Or CI, against the pull-request diff:
@@ -160,7 +167,7 @@ Suggested flow:
 1. Engineer edits an agent.
 2. Pre-commit warns that agent-related files changed.
 3. Engineer asks their coding agent to run the change review with this skill and records the category on the agent card.
-4. CI blocks unreviewed agent changes unless the team's agreed acknowledgement is present (e.g. a PR label or an `AI-Governance-Reviewed: yes` trailer).
+4. In `block-on-sensitive-change` mode with `--base`/`--head`, CI blocks agent changes until a commit in the range carries the trailer `AI-Governance-Reviewed: yes` (change it with `--ack-trailer`).
 
 ## Versioning
 

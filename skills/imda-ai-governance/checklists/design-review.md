@@ -21,11 +21,13 @@ Before judging anything, write down (from the material, marking anything inferre
 - [ ] Value-chain role(s) of the organisation `[MGF §2.2.1]`.
 - [ ] Risk tier — from the material if assessed; otherwise your provisional tier using [layer 02](../layers/02-use-case-and-risk.md#tiering), clearly marked provisional.
 
+Record the skill version and the framework version you reviewed against.
+
 If the material doesn't let you fill these in, that is the first finding: the design doesn't describe the agent well enough to govern it.
 
 ### 3. Walk the four dimensions
 
-For each item below, record **Aligned / Partly aligned / Not aligned / Not applicable / Cannot determine**, with evidence (file and line, config key, diagram element, quote from the doc). Calibrate expectations to the tier: a low-tier internal summariser does not need what a high-tier payment agent needs.
+For each item below, record **Aligned / Partly aligned / Not aligned / Not applicable / Cannot determine**, with evidence, in the item table of the review template (file and line, config key, diagram element, quote from the doc). Calibrate expectations to the tier: a low-tier internal summariser does not need what a high-tier payment agent needs.
 
 **Dimension 1 — Assess and bound** ([dimension notes](../frameworks/sg-mgf-agentic/dimensions/01-assess-and-bound.md))
 
@@ -36,40 +38,44 @@ For each item below, record **Aligned / Partly aligned / Not aligned / Not appli
 - [ ] Blast radius bounded: sandboxing, limits, kill switch `[MGF §2.1.2]`.
 - [ ] Limits are deterministic where risk is high; non-deterministic limits have compensating monitoring or approval `[MGF §2.1.2]`.
 - [ ] Unique, accounted-for, centrally registered agent identity; capacity recorded `[MGF §2.1.2]`.
-- [ ] Scoped, time-bound, non-transferable authorisation; bounded by the delegating human `[MGF §2.1.2]`.
+- [ ] Scoped, time-bound, non-transferable authorisation with explicit escalation paths; as a rule of thumb no greater than the delegating human's; delegations recorded `[MGF §2.1.2]`.
 - [ ] Residual risk named and accepted by someone with authority `[MGF §2.1.2]`.
 
 **Dimension 2 — Human accountability** ([dimension notes](../frameworks/sg-mgf-agentic/dimensions/02-human-accountability.md))
 
-- [ ] Named owners for use case, build, risk review, approvals, escalation `[MGF §2.2.1]`.
+- [ ] Responsibilities allocated within the organisation across the agent lifecycle `[MGF §2.2.1]`; `[Practice]` concretely, named owners for use case, build, risk review, approvals and user escalation.
+- [ ] Internal capability to track agentic developments and adapt governance (adaptive governance) `[MGF §2.2.1]`.
 - [ ] Vendor and tool-host obligations covered by contract; opacity addressed or use case scoped down `[MGF §2.2.1]`.
 - [ ] Approval checkpoints defined for high-stakes, irreversible, atypical and user-defined actions `[MGF §2.2.2]`.
-- [ ] Approvals enforced at system level, bound to the action, logged.
+- [ ] Approvals enforced through system-level controls rather than prompt-layer guardrails (OpenClaw case, `[MGF §2]`); `[Practice]` bound to the exact action and logged.
 - [ ] Approval requests are digestible and state the risk; high-risk approvals need justification `[MGF §2.2.2]`.
 - [ ] Oversight effectiveness measured (override rate, response time, outliers) `[MGF §2.2.2]`.
 - [ ] Approvers have the needed expertise and training `[MGF §2.2.2]`.
-- [ ] Fails closed when approval infrastructure is unavailable or an action has no policy `[MGF §2.2.2]`.
+- [ ] Automated monitoring complements human oversight (alerts on logged events, anomaly detection), including denying action by default when approval infrastructure fails or an action has no approval policy `[MGF §2.2.2]`.
 
 **Dimension 3 — Technical controls and processes** ([dimension notes](../frameworks/sg-mgf-agentic/dimensions/03-technical-controls.md))
 
-- [ ] Controls inventory with control types; structural controls on higher-risk actions `[MGF §2.3.1]`.
+- [ ] Structural / rule-based controls on higher-risk actions; model-based controls where rules can't express the risk `[MGF §2.3.1]`; `[Practice]` recorded in a controls inventory with control types.
 - [ ] Planning, tool, protocol / MCP and multi-agent controls appropriate to the design `[MGF §2.3.1]`.
-- [ ] Runtime controls: rate limits, budgets, input / output validation `[MGF §2.3.1]`.
-- [ ] Test plan covers task execution, policy compliance, tool calling, robustness; whole workflows; multi-agent level; realistic environment; repeated runs `[MGF §2.3.2]`.
+- [ ] Runtime controls such as rate limits on tool use and input validation `[MGF §2.3.1]`; `[Practice]` per-run budgets.
+- [ ] Test plan covers task execution, policy compliance, tool calling, robustness; whole workflows; multi-agent level; realistic environment; repeated runs across varied datasets `[MGF §2.3.2]`.
+- [ ] Evaluation method suited to each part (deterministic for structured tool calls, LLM or human for reasoning) while still evaluating trajectories holistically `[MGF §2.3.2]`.
+- [ ] Tests or monitoring cover biased or unfair actions where the agent's actions affect people `[MGF §1.2.2]`.
+- [ ] Regular red teaming and threat modelling by the cybersecurity function `[MGF §2.2.1]`; threat model regularly updated `[MGF §2.1.1]`.
 - [ ] Gradual rollout plan by users, tools and systems `[MGF §2.3.3]`.
-- [ ] Logging across interaction, tool and reasoning layers; tamper-evident `[MGF §2.3.3]`.
+- [ ] Logging and monitoring across user-agent, agent-tool and reasoning layers; integrated with observability platforms; problematic trajectories cannot be deleted `[MGF §2.3.3]`.
 - [ ] Alert catalogue with an intervention per alert `[MGF §2.3.3]`.
-- [ ] Post-deployment testing and feedback loops `[MGF §2.3.3]`.
+- [ ] Audits at regular intervals; human review to catch emergent behaviour; post-deployment testing; feedback loops `[MGF §2.3.3]`.
 - [ ] Change triggers and risk-categorised change review; behaviour-shaping artefacts version-controlled `[MGF §2.3, §2.3.3]`.
 
 **Dimension 4 — End-user responsibility** ([dimension notes](../frameworks/sg-mgf-agentic/dimensions/04-end-user-responsibility.md))
 
-- [ ] Agent disclosed at the point of interaction on every surface `[MGF §2.4.2]`.
+- [ ] Agent disclosed in the UI at the point of interaction `[MGF §2.4.2]`; `[Practice]` on every surface the agent runs on.
 - [ ] Capability statement: can / cannot / needs approval `[MGF §2.4.2]`.
 - [ ] Data use explained; consent where needed `[MGF §2.4.2]`.
 - [ ] Human escalation contact `[MGF §2.4.2]`.
 - [ ] User-settable limits where appropriate `[MGF §2.4.2]`.
-- [ ] For internal users: training, feedback path, manual fallback for critical processes `[MGF §2.4.3]`.
+- [ ] For internal users: training on use cases, instructing agents, range of actions and failure modes; feedback path; training and work exposure so users keep core skills when agents take over tasks `[MGF §2.4.3]`; `[Practice]` a documented manual fallback for critical processes.
 
 **Systemic and multi-agent** (if more than one agent) ([foundations](../frameworks/sg-mgf-agentic/dimensions/00-foundations.md#123--systemic-and-multi-agent-risks-new-in-v15))
 

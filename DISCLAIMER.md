@@ -51,7 +51,7 @@ If you find content that is out of date or inconsistent with the framework, plea
 
 ## Contributors
 
-Contributors warrant only that they authored what they submit and have the right to license it under the project's MIT licence. They make no warranty as to accuracy, completeness or fitness for purpose. Neither the maintainers nor any individual contributor accepts liability arising from contributed content.
+Contributors warrant only what [CONTRIBUTING.md](CONTRIBUTING.md#contributor-warranties-and-liability) sets out: authorship or the right to license under MIT, non-infringement, and good-faith reflection of the framework at the time of contribution. They make no warranty as to accuracy, completeness or fitness for purpose. Neither the maintainers nor any individual contributor accepts liability arising from contributed content.
 
 ## Copyright in source materials
 

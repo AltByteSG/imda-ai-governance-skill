@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -53,15 +55,30 @@ def test_identifier_spellings_are_detected():
     for name in ("system_prompt", "systemPrompt", "system-prompt",
                  "max_iterations", "maxIterations", "recursion_limit",
                  "human_in_the_loop", "humanInTheLoop", "requires_approval",
-                 "tool_calls", "toolCalls", "function_call", "computer_use",
-                 "interrupt_before", "kill_switch", "on_behalf_of", "agentId"):
+                 "tool_calls", "toolCalls", "computer_use",
+                 "interrupt_before", "kill_switch", "agentId"):
         assert _matches(name), name
 
 
 def test_protocol_terms_are_detected():
     for text in ("register the MCP server", "mcp_server", "Model Context Protocol",
-                 "an A2A handoff", "Agent2Agent"):
+                 "Agent2Agent"):
         assert _matches(text), text
+
+
+def test_newer_agent_sdks_are_detected():
+    for line in ("from agents import Agent, Runner",
+                 "from pydantic_ai import Agent",
+                 "from google.adk.agents import LlmAgent",
+                 "import smolagents"):
+        assert _matches(line), line
+
+
+def test_model_identifiers_are_detected():
+    # A one-line model swap is a material change (MGF 2.3.3) and must be flagged.
+    for line in ('MODEL_NAME = "claude-sonnet-4-5"', 'model="gpt-4o"',
+                 'model: "gemini-2.5-pro"', "o3-mini", "claude-opus-5"):
+        assert _content_reasons(line), line
 
 
 def test_ordinary_code_is_not_flagged():
@@ -71,20 +88,29 @@ def test_ordinary_code_is_not_flagged():
                  "def calculate_total(items): return sum(items)",
                  "build tooling for the docs site",
                  "cache_policy = 'no-store'",
-                 "functional programming"):
-        assert not _matches(text), text
+                 "functional programming",
+                 "# this function calls the payment API",
+                 "performed on behalf of the licensor",
+                 "OAuth token exchange endpoint",
+                 "sha512-a2A9xQ==",
+                 "model_name = 'Invoice'"):
+        assert not _content_reasons(text), text
 
 
 # --- path rules -------------------------------------------------------------
 
+def _content_reasons(text: str) -> list[str]:
+    return [reason for layer, reason in gov.classify(Path("src/x.py"), text)
+            if layer == "content-scan"]
+
+
 def _path_layers(rel: str) -> list[str]:
-    with tempfile.TemporaryDirectory() as tmp:
-        return [layer for layer, _ in gov.classify(Path(tmp), Path(rel))]
+    return [layer for layer, _ in gov.classify(Path(rel), "")]
 
 
 def test_agent_paths_are_classified():
     assert "03-architecture-and-bounding" in _path_layers("src/agents/billing.py")
-    assert "05-technical-controls" in _path_layers("src/tools/refund.ts")
+    assert "03-architecture-and-bounding" in _path_layers("src/agent_tools/refund.ts")
     assert "05-technical-controls" in _path_layers(".mcp.json")
     assert "06-human-oversight" in _path_layers("app/approvals/queue.py")
     assert "07-testing-and-evaluation" in _path_layers("evals/policy_compliance.yaml")
@@ -93,15 +119,81 @@ def test_agent_paths_are_classified():
 
 def test_unrelated_paths_are_not_classified():
     for rel in ("src/billing/invoice.py", "README.md", "web/styles/main.css",
-                "src/user_agent_parser.py"):
+                "src/user_agent_parser.py", ".github/actions/setup/action.yml",
+                "src/store/actions/cart.ts", "tools/build.sh", "webpack/plugins/x.js",
+                "infra/iam/policies/read.json", "docs/privacy/policy.md",
+                "benchmarks/latency.py"):
         assert _path_layers(rel) == [], rel
 
 
-def test_content_scan_reads_file():
+def test_lockfiles_and_licences_are_skipped():
+    for rel in ("package-lock.json", "web/yarn.lock", "uv.lock", "LICENSE", "LICENSE.md"):
+        assert gov.classify(Path(rel), "langgraph guardrails claude-sonnet-4-5") == [], rel
+
+
+def test_content_scan_uses_added_text():
+    findings = gov.classify(Path("svc.py"), "graph.interrupt_before = ['pay']")
+    assert ("content-scan", "agentic-AI keyword") in findings
+
+
+# --- diff parsing and acknowledgement --------------------------------------
+
+def _git(cwd: Path, *args: str) -> str:
+    return subprocess.run(["git", *args], cwd=cwd, check=True, capture_output=True,
+                          text=True).stdout
+
+
+def _repo(tmp: Path) -> None:
+    _git(tmp, "init", "-q")
+    _git(tmp, "config", "user.email", "t@example.com")
+    _git(tmp, "config", "user.name", "t")
+    (tmp / "svc.py").write_text("# uses guardrails\nprint(1)\n")
+    _git(tmp, "add", ".")
+    _git(tmp, "commit", "-qm", "init")
+
+
+class _Args:
+    base = None
+    head = None
+    staged = True
+
+
+def test_only_added_lines_are_scanned():
+    # The file already mentions guardrails; an unrelated edit must not be flagged.
     with tempfile.TemporaryDirectory() as tmp:
         root = Path(tmp)
-        (root / "svc.py").write_text("graph = StateGraph(); graph.interrupt_before = ['pay']")
-        assert ("content-scan", "agentic-AI keyword") in gov.classify(root, Path("svc.py"))
+        _repo(root)
+        (root / "svc.py").write_text("# uses guardrails\nprint(2)\n")
+        _git(root, "add", ".")
+        cwd = os.getcwd()
+        os.chdir(root)
+        try:
+            added = gov.added_lines_by_file(_Args)
+        finally:
+            os.chdir(cwd)
+        assert added == {Path("svc.py"): "print(2)"}, added
+        assert gov.classify(Path("svc.py"), added[Path("svc.py")]) == []
+
+
+def test_ack_trailer_lifts_block():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        _repo(root)
+        base = _git(root, "rev-parse", "HEAD").strip()
+        (root / "svc.py").write_text("model = 'gpt-4o'\n")
+        _git(root, "commit", "-qam", "Swap model\n\nAI-Governance-Reviewed: yes")
+
+        class Args:
+            pass
+
+        Args.base, Args.head, Args.staged = base, "HEAD", False
+        cwd = os.getcwd()
+        os.chdir(root)
+        try:
+            assert gov.acknowledged(Args, gov.DEFAULT_ACK_TRAILER)
+            assert not gov.acknowledged(Args, "Something-Else: yes")
+        finally:
+            os.chdir(cwd)
 
 
 # --- config -----------------------------------------------------------------
