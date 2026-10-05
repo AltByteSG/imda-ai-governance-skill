@@ -19,6 +19,7 @@ __pycache__/
 .venv/
 venv/
 .pytest_cache/
+.ruff_cache/
 
 # Local environment / secrets
 .env
