@@ -49,3 +49,5 @@ Ask specifically: **which control should have stopped this, and why didn't it?**
 - [ ] Update threat model, alert catalogue and approval matrix.
 - [ ] Tell affected users what happened and how to reach a human ([layer 09](../layers/09-end-user-transparency.md)).
 - [ ] Record the incident on the agent card with a link to the write-up.
+- [ ] Check it against your threshold for **external** reporting (regulator, sector body, affected partners) `[MGF-GenAI Incident Reporting, p.17–18]`, and against any statutory notification duty (for example a PDPA data-breach notification), which is law, not guidance.
+- [ ] If the incident came from an outside report, credit and update the reporter, and publish the fix within your disclosure window ([layer 08](../layers/08-monitoring-and-operations.md)).

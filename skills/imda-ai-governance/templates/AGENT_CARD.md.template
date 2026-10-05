@@ -23,6 +23,10 @@ SETUP
 | **Risk tier** | {{low / medium / high}} — assessed {{DATE}} |
 | **Last reviewed** | {{DATE}} |
 | **Framework** | MGF for Agentic AI v1.5 (`sg-mgf-agentic`) |
+| **System card** | {{link to SYSTEM_CARD.md — model, data, evaluations, limits (`sg-mgf-genai` supplement)}} |
+
+<!-- System-level disclosure (data used, evaluations, risks and limits, intended use) lives in the
+     system's SYSTEM_CARD.md (templates/SYSTEM_CARD.md.template); link it here rather than repeating it. -->
 
 ## 1. Purpose and scope `[MGF §2.1.1]`
 

@@ -1,12 +1,12 @@
 # imda-ai-governance-skill
 
-> ⚠ **Engineering reference material — not legal or regulatory advice.** This skill helps engineers align agentic AI systems with Singapore IMDA's *Model AI Governance Framework for Agentic AI*. It is **not** authoritative guidance, **not** an audit or certification, and **not affiliated with or endorsed by IMDA**. The framework itself is voluntary. Always verify against the official IMDA publication and involve your risk, security and compliance owners. See [DISCLAIMER.md](DISCLAIMER.md).
+> ⚠ **Engineering reference material — not legal or regulatory advice.** This skill helps engineers align agentic AI systems with Singapore IMDA's *Model AI Governance Framework for Agentic AI*, with IMDA's *Model AI Governance Framework for Generative AI* as a supplement. It is **not** authoritative guidance, **not** an audit or certification, and **not affiliated with or endorsed by IMDA**. The framework itself is voluntary. Always verify against the official IMDA publication and involve your risk, security and compliance owners. See [DISCLAIMER.md](DISCLAIMER.md).
 >
 > **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, layered patterns, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md § Copyright in source materials](DISCLAIMER.md#copyright-in-source-materials).
 
 An agentic-AI governance reference for engineers — packaged as both a [Claude Code skill](https://docs.claude.com/en/docs/claude-code/skills) and a Codex plugin, with `AGENTS.md` routing for Cursor and Copilot — organised by where in the system each expectation lands rather than by framework section number.
 
-**Status:** Model AI Governance Framework for Agentic AI **v1.5** (IMDA, published 20 May 2026, updated 5 June 2026) populated. Repo ships dual plugin manifests — [`.claude-plugin/`](.claude-plugin/) (Claude Code / Cowork via `/plugin install`) and [`.codex-plugin/`](.codex-plugin/) (Codex) — plus [`AGENTS.md`](AGENTS.md) routing for Cursor / Copilot.
+**Status:** Model AI Governance Framework for Agentic AI **v1.5** (IMDA, published 20 May 2026, updated 5 June 2026) populated as the primary framework. Model AI Governance Framework for Generative AI (IMDA / AI Verify Foundation, 2024) populated as a supplement covering the model, data and generated-content layer under an agent, and generative features that take no actions. Repo ships dual plugin manifests — [`.claude-plugin/`](.claude-plugin/) (Claude Code / Cowork via `/plugin install`) and [`.codex-plugin/`](.codex-plugin/) (Codex) — plus [`AGENTS.md`](AGENTS.md) routing for Cursor / Copilot.
 
 **Audience:** engineers, architects and tech leads building or deploying AI agents — agentic features, coding assistants, workflow automation, customer-facing agents, multi-agent systems, computer-use agents — who need their design, architecture, internal guidelines and implementation to line up with the framework. Tech-agnostic: works whatever the model provider, agent framework (LangGraph, CrewAI, an agent SDK, your own loop), cloud or language.
 
@@ -15,7 +15,7 @@ An agentic-AI governance reference for engineers — packaged as both a [Claude 
 | Framework | Publisher | Status |
 |---|---|---|
 | Model AI Governance Framework for Agentic AI, v1.5 | IMDA (Singapore) | ✅ Populated |
-| Model AI Governance Framework for Generative AI (2024) | IMDA / AI Verify Foundation | Not populated |
+| Model AI Governance Framework for Generative AI (2024) | IMDA / AI Verify Foundation | ✅ Populated as a supplement |
 | Model AI Governance Framework, 2nd Edition (2020) | IMDA / PDPC | Not populated |
 
 **Not in scope:** binding law. Alignment with this voluntary framework does not discharge obligations under the PDPA, sector rules (e.g. MAS), or contracts. For personal data, pair this skill with a data-protection reference such as [`personal-data-protection-skill`](https://github.com/AltByteSG/personal-data-protection-skill). Other jurisdictions' AI rules (EU AI Act, etc.) are out of scope.
@@ -24,12 +24,12 @@ An agentic-AI governance reference for engineers — packaged as both a [Claude 
 
 The framework is written for organisations. Engineers need answers like *"I'm giving this agent a refund tool — what has to be true before it ships?"* or *"Is this architecture doc aligned?"*, not a four-dimension overview. This skill bridges the two:
 
-- **Layered guidance** by where in the system the expectation lands — accountability, risk, architecture and bounds, identity, controls, human oversight, testing, operations, user transparency.
+- **Layered guidance** by where in the system the expectation lands — accountability, risk, architecture and bounds, identity, controls, human oversight, testing, operations, user transparency, data and grounding.
 - **Framework notes** per dimension, each expectation paired with the **evidence** a reviewer should ask to see.
-- **Entry-point checklists** for alignment reviews, new agents, new tools and MCP servers, third-party agents, the release gate, change review and incidents.
-- **Templates**: a per-agent **Agent Card** and an **Alignment Review** report.
+- **Entry-point checklists** for alignment reviews, new agents, new tools and MCP servers, third-party agents, the release gate, change review and incidents — plus generative features without tools, and new datasets or RAG corpora.
+- **Templates**: a per-agent **Agent Card**, a per-system **System Card** (the generative-AI framework's disclosure "food label"), and an **Alignment Review** report.
 - **A section map** for citing `[MGF §x.y]` in PR descriptions and design reviews.
-- A strict separation between what the framework says (`[MGF §x.y]`) and what the skill recommends (`[Practice]`), so reviews don't overstate the framework.
+- A strict separation between what the frameworks say (`[MGF §x.y]` for agentic, `[MGF-GenAI <dimension>, p.N]` for generative) and what the skill recommends (`[Practice]`), so reviews don't overstate either framework.
 
 ## Use cases
 
@@ -79,7 +79,7 @@ For agentic AI governance (IMDA MGF for Agentic AI), follow
 ### Pin a specific upstream version
 
 ```bash
-cd <clone-path> && git checkout v0.2.0
+cd <clone-path> && git checkout v0.3.0
 ```
 
 ## Adapt to your project
@@ -87,6 +87,7 @@ cd <clone-path> && git checkout v0.2.0
 Templates ship in [`skills/imda-ai-governance/templates/`](skills/imda-ai-governance/templates/). Setup instructions are in each file's header.
 
 - **[`AGENT_CARD.md.template`](skills/imda-ai-governance/templates/AGENT_CARD.md.template)** — *any agent.* One per agent, kept in the folder named by `agentRegistry`. Holds ownership, components, action-space and autonomy, tools and permissions, risk assessment, controls inventory, residual-risk acceptance, approval matrix, test results, operations and change history — the evidence the framework expects.
+- **[`SYSTEM_CARD.md.template`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template)** — *any generative system.* One per system: data used, evaluations, mitigations, risks and limits, intended use, user-data protection. Agent cards link to it.
 - **[`ALIGNMENT_REVIEW.md.template`](skills/imda-ai-governance/templates/ALIGNMENT_REVIEW.md.template)** — *any agent.* The output shape for a design or architecture review.
 - **[`ai-governance-nudge.sh.template`](skills/imda-ai-governance/templates/ai-governance-nudge.sh.template)** — **Claude Code only.** A `PostToolUse` hook that nudges Claude into the skill when it edits agent code, tools, prompts, policies, MCP config or evals.
 
@@ -97,7 +98,7 @@ Save as `.ai-governance.json` in the consuming project (see [`.ai-governance.exa
 ```json
 {
   "aiGovernance": {
-    "frameworks": ["sg-mgf-agentic"],
+    "frameworks": ["sg-mgf-agentic", "sg-mgf-genai"],
     "role": ["system-provider", "deployer"],
     "riskTier": "medium",
     "agentRegistry": "docs/agents/",
@@ -106,7 +107,7 @@ Save as `.ai-governance.json` in the consuming project (see [`.ai-governance.exa
 }
 ```
 
-- `frameworks` — `sg-mgf-agentic`. Unknown codes are rejected by the checker so a typo can't silently yield zero coverage.
+- `frameworks` — primary first: `sg-mgf-agentic` for agents, with `sg-mgf-genai` as the supplement; `sg-mgf-genai` alone for generative features that take no actions. Unknown codes are rejected by the checker so a typo can't silently yield zero coverage.
 - `role` — your value-chain role(s): `model-developer`, `tooling-provider`, `platform-provider`, `system-provider`, `deployer`. Read by the agent, not the script.
 - `riskTier` — `unassessed`, `low`, `medium`, `high`. For multi-agent systems, the highest tier; per-agent tiers live in agent cards.
 - `agentRegistry` — where agent cards live.
@@ -171,7 +172,7 @@ Suggested flow:
 
 ## Versioning
 
-Releases are tagged; see [CHANGELOG.md](CHANGELOG.md). [`frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) records which framework version the content reflects and when it was last verified. IMDA describes the framework as a living document; when it publishes a new version, the skill is updated and a new minor version released.
+Releases are tagged; see [CHANGELOG.md](CHANGELOG.md). [`frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) and [`frameworks/sg-mgf-genai/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md) record which framework version the content reflects and when it was last verified. IMDA describes the framework as a living document; when it publishes a new version, the skill is updated and a new minor version released.
 
 ## Sources
 
@@ -181,6 +182,12 @@ Releases are tagged; see [CHANGELOG.md](CHANGELOG.md). [`frameworks/sg-mgf-agent
 - **Version reflected:** 1.5, published 20 May 2026, updated 5 June 2026
 - **Feedback and case-study submissions:** [go.gov.sg/mgfagentic-feedback](https://go.gov.sg/mgfagentic-feedback)
 - **Referenced companion material:** CSA *Draft Addendum on Securing Agentic AI*; GovTech *Agentic Risk & Capability Framework*; IMDA *Starter Kit for Testing of LLM-based Applications for Safety and Reliability*; IMDA OpenClaw case study (May 2026)
+
+### Singapore — Model AI Governance Framework for Generative AI
+
+- **Publisher:** IMDA and the AI Verify Foundation — announced in IMDA's [factsheet of 30 May 2024](https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/gen-ai-and-digital-foss-ai-governance-playbook); [PDF](https://aiverifyfoundation.sg/wp-content/uploads/2026/06/Model-AI-Governance-Framework-for-Generative-AI-19-June-2024.pdf) hosted by the AI Verify Foundation
+- **Version reflected:** the final 2024 framework (nine dimensions). It has no section numbers, so the skill cites it by dimension and page.
+- **Role in this skill:** supplement to the agentic framework
 
 ## Disclaimer
 

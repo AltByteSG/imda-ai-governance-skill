@@ -8,6 +8,39 @@ Each release records the framework version reflected in the content. When IMDA p
 
 — No unreleased changes.
 
+## [0.3.0] — 2026-10-05
+
+Adds IMDA's **Model AI Governance Framework for Generative AI** (IMDA / AI Verify Foundation, final version announced 30 May 2024) as a **supplement** to the agentic framework, and applies the fixes from the first end-to-end test of the skill. The agentic framework (v1.5) remains the primary bar and its content is unchanged.
+
+### Added — generative-AI supplement (`sg-mgf-genai`)
+
+- [`frameworks/sg-mgf-genai/`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md): framework notes for all nine dimensions and a reverse-lookup map. Each expectation is written as what lands on the build and the evidence a reviewer should ask for. Recommendations aimed at policymakers or the wider ecosystem are noted in one line with any engineering hook. The framework has no section numbers, so it is cited as `[MGF-GenAI <dimension>, p.N]`. Page references come from an extracted copy of the PDF and are due a spot-check against the original.
+- [`layers/10-data-and-grounding.md`](skills/imda-ai-governance/layers/10-data-and-grounding.md): training, fine-tuning, RAG and evaluation data — provenance and licence, personal data, quality, deletion reaching every index, poisoning.
+- Additions to layers 01 (model-provider terms and shared responsibility), 02 (model-level threats), 05 (GenAI baseline safety, model supply chain), 07 (benchmarks, evaluation dimensions, external assurance), 08 (outside vulnerability reporting, external incident thresholds, forensic retention, compute tracking) and 09 (labelling and provenance of generated content).
+- [`templates/SYSTEM_CARD.md.template`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template): the framework's disclosure "food label", for teams deploying models they may not have trained. Agent cards link to it.
+- Checklists [`new-genai-feature.md`](skills/imda-ai-governance/checklists/new-genai-feature.md) (generative features that take no actions; redirects to `new-agent.md` if the feature is agentic) and [`new-dataset-or-corpus.md`](skills/imda-ai-governance/checklists/new-dataset-or-corpus.md).
+- Design review gains a short generative-AI supplement (items G.0–G.9) and a scorecard row. For generative systems that take no actions, the supplement plus the `new-genai-feature.md` items (cited as NG n.n) are the bar, with generative-specific High triggers in the severity rubric. Pre-deployment, change-review, third-party and incident checklists gain the matching items.
+- `.ai-governance.json` accepts `sg-mgf-genai`. Agents list it after `sg-mgf-agentic`; generative features without actions list it alone.
+
+### Changed — from the end-to-end test
+
+A blind review of a sample agent with 13 seeded gaps found all 13 with correct references; a control review of a well-built version found no High issues but was too long. Fixes:
+
+- **Reviews without the author present.** Step 1 now says to infer role and tier, mark them provisional, and carry on, instead of stopping to ask. The clash between "run `new-agent.md` first" and design-review's provisional tier is resolved: designing runs `new-agent.md`; reviewing sets a provisional tier.
+- **Skill version is stated in SKILL.md and AGENTS.md**, so reviews can record it. The release check now fails if either disagrees with the manifests.
+- **Severity rubric.** Missing pre-deployment testing or logging on a medium- or high-tier system, and approvals that fail open, are now High. A "conditional" severity covers gaps that depend on material the reviewer couldn't see. Doc-versus-code mismatches are scored by the worse of the two.
+- **Numbered checklist items** in design review (1.1–4.6, S.1–S.5, G.0–G.9), used by the review template's findings and appendix.
+- **Citations fixed.** System-level approval enforcement now cites `[MGF §2.3.1]`; the bias item cites `[MGF §1.2.2, §2.3.2]`; conflicting objectives cites `[MGF §1.2.3]`. A new item S.5 covers speed and volume for every agent, not only multi-agent systems.
+- **Shorter reviews.** Merge findings that share a root cause; more than five Low findings collapse into one "Minor gaps" list.
+- **Disagreeing with an assessed tier.** Keep the team's tier, state yours beside it with the reason, and raise it as a finding.
+
+### Changed — changed-file tripwire
+
+- Detects agent loops hand-rolled on model SDKs (`anthropic`, `openai` imports, `messages.create`, `chat.completions`, `responses.create`, function calling). The test missed these when no model identifier was in the diff.
+- Detects approval logic by identifier (`require_human_approval`, `auto_approve`, `approval_timeout`, human review queues).
+- New path rule and keywords for training, fine-tuning, RAG and vector-store data, output and content filters, watermarking and C2PA.
+- The Claude Code nudge hook covers the same data paths.
+
 ## [0.2.0] — 2026-10-05
 
 Framework content is unchanged from 0.1.0 and still reflects the **Model AI Governance Framework for Agentic AI, version 1.5**.

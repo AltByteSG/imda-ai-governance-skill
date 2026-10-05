@@ -8,6 +8,7 @@ Use for any change to a deployed agent. In complex agent systems small modificat
 
 - [ ] **Technical** — model or model version (including a provider-side change), prompt / instructions, tool added / removed / re-scoped, MCP server added or updated, memory design, orchestration framework or SDK upgrade, new agent in the system.
 - [ ] **Environmental** — new user population or channel, new domain, new data source, changed business context.
+- [ ] **Data** — new or refreshed fine-tuning set, RAG corpus re-ingested or new source added to the index, evaluation set changed ([`new-dataset-or-corpus.md`](new-dataset-or-corpus.md)).
 - [ ] **Performance** — anomalous behaviour, eval regression, incident, oversight-metric drift.
 - [ ] **Regulatory** — new law or guidance, a new version of the MGF.
 

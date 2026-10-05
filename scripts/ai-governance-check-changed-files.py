@@ -19,7 +19,7 @@ from pathlib import Path
 
 DEFAULT_CONFIG = ".ai-governance.json"
 VALID_POLICIES = {"warn", "block-on-sensitive-change"}
-VALID_FRAMEWORKS = {"sg-mgf-agentic"}
+VALID_FRAMEWORKS = {"sg-mgf-agentic", "sg-mgf-genai"}
 VALID_TIERS = {"unassessed", "low", "medium", "high"}
 GIT_TIMEOUT_SECONDS = 30
 
@@ -54,6 +54,14 @@ PATH_RULES = [
         "07-testing-and-evaluation",
         "agent evaluation or red-team suite",
     ),
+    (
+        # Data the model is tuned, grounded or evaluated on. `data/` alone is far
+        # too generic; these names are specific to ML and retrieval pipelines.
+        re.compile(r"(^|/)(datasets?|fine[_-]?tun\w*|training[_-]?data|rag|retriev\w*|"
+                   r"embeddings?|vector[_-]?(store|db|index)\w*|corpus|corpora)(/|\.|$)", re.I),
+        "10-data-and-grounding",
+        "training, fine-tuning, RAG or evaluation data (generative-AI supplement)",
+    ),
 ]
 
 CONTENT_RULES = [
@@ -65,6 +73,12 @@ CONTENT_RULES = [
             r"langgraph|langchain|crewai|autogen|semantic kernel|llama ?index|"
             r"pydantic ai|google adk|smolagents|from agents import|"
             r"agents sdk|agent sdk|claude agent sdk|openai agents|strands agents|"
+            # Direct model SDK calls. An agent loop is often hand-rolled on these,
+            # with no framework import to catch. After splitting,
+            # `client.messages.create` reads `client messages create`.
+            r"import anthropic|from anthropic import|import openai|from openai import|"
+            r"messages create|chat completions|responses create|"
+            r"function call(ing)?|"
             r"bedrock agent\w*|vertex ai agent\w*|agentcore|"
             # Protocols. The camelCase split turns `Agent2Agent` into
             # `Agent2 Agent`, hence the optional space.
@@ -75,7 +89,8 @@ CONTENT_RULES = [
             # Autonomy and loop control.
             r"max iterations|max steps|max turns|recursion limit|system prompt|"
             # Oversight and guardrails.
-            r"human in the loop|hitl|requires approval|approval required|"
+            r"human in the loop|hitl|human (approval|review)|requires? (human )?approval|"
+            r"auto approve|approval (required|policy|threshold|timeout|gate)|"
             r"interrupt before|interrupt after|guardrails?|kill switch|"
             # Identity.
             r"agent id|agent identity"
@@ -96,6 +111,16 @@ CONTENT_RULES = [
             re.I,
         ),
         "model identifier (a model change is a change-review trigger)",
+    ),
+    (
+        # Generative-AI supplement: grounding data, safety filters and provenance.
+        re.compile(
+            r"\b(vector (store|db|database|index)|similarity search|text splitter|"
+            r"embeddings? (model|api)|create embeddings?|fine tun(e|ed|ing)|"
+            r"safety filter|output filter|content filter|watermark\w*|c2pa|content credentials)\b",
+            re.I,
+        ),
+        "generative-AI keyword (data, grounding, filters or provenance)",
     ),
 ]
 

@@ -1,5 +1,7 @@
 # AGENTS.md — IMDA AI Governance Skill (Agentic AI)
 
+**Skill version:** 0.3.0 · **Primary framework:** MGF for Agentic AI v1.5 · **Supplement:** MGF for Generative AI (2024)
+
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](DISCLAIMER.md). Not affiliated with or endorsed by IMDA. The Model AI Governance Framework for Agentic AI is voluntary guidance; verify against the official IMDA publication and involve your risk and compliance owners.
 >
 > **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md § Copyright in source materials](DISCLAIMER.md#copyright-in-source-materials).
@@ -8,24 +10,24 @@ This file is the **Codex CLI / Cursor / Copilot-friendly entry point** to the sa
 
 The skill content lives under [`skills/imda-ai-governance/`](skills/imda-ai-governance/) — required by the Claude Code plugin format. All internal links in this file point into that subdirectory.
 
-If you are an agent and the user is designing, reviewing or changing anything that builds or deploys an AI agent — agent architecture or design docs, tool / MCP / API integrations, agent identity and permissions, human-approval flows, guardrails, evals and pre-deployment tests, monitoring and logging, rollout and change management, third-party agent platforms, or end-user disclosure for agents — follow the steps below.
+If you are an agent and the user is designing, reviewing or changing anything that builds or deploys an AI agent — agent architecture or design docs, tool / MCP / API integrations, agent identity and permissions, human-approval flows, guardrails, evals and pre-deployment tests, monitoring and logging, rollout and change management, third-party agent platforms, or end-user disclosure for agents — follow the steps below. The same steps cover generative features that take no actions, using the generative-AI supplement as the bar.
 
-Two conventions run through the layer files, checklists and templates (framework notes restate the framework and say where they add interpretation): **`[MGF §x.y]`** marks what the framework itself says, with its section; **`[Practice]`** marks an engineering pattern the skill recommends to meet it, which is not an IMDA requirement. Keep that distinction in anything you write for the user.
+Two conventions run through the layer files, checklists and templates (framework notes restate the framework and say where they add interpretation): **`[MGF §x.y]`** marks what the agentic framework itself says, with its section; **`[MGF-GenAI <dimension>, p.N]`** marks what the generative-AI framework (the supplement, cited by dimension and page) says; **`[Practice]`** marks an engineering pattern the skill recommends to meet it, which is not an IMDA requirement. Keep that distinction in anything you write for the user.
 
 ## Step 1 — Establish scope and the project's governance config
 
-**On first use in a project, check for `.ai-governance.json` at the project root.** If present, load the listed frameworks' `skills/imda-ai-governance/frameworks/<code>/README.md`, and read `riskTier` and `agentRegistry` first. If absent, establish with the user:
+**On first use in a project, check for `.ai-governance.json` at the project root.** If present, load the listed frameworks' `skills/imda-ai-governance/frameworks/<code>/README.md`, and read `riskTier` and `agentRegistry` first. If absent, establish with the user — or, with nobody to ask, infer from the material, mark it **provisional**, list your questions as open questions, and carry on:
 
-1. **Is this agentic?** Systems that plan and take actions over multiple steps towards a goal, built on SLM / LLM / MLLM models `[MGF §1.1]`. A chat completion with no tools is mostly out of scope.
+1. **Is this agentic?** Systems that plan and take actions over multiple steps towards a goal, built on SLM / LLM / MLLM models `[MGF §1.1]`. A generative feature with no tools or actions is out of the agentic framework's scope: use the generative-AI supplement, starting from [`checklists/new-genai-feature.md`](skills/imda-ai-governance/checklists/new-genai-feature.md).
 2. **The organisation's value-chain role(s):** model developer, tooling provider, platform provider, system provider / app developer, deployer `[MGF §2.2.1]`.
-3. **The agent's risk tier.** If unassessed, run [`checklists/new-agent.md`](skills/imda-ai-governance/checklists/new-agent.md) section 1 first.
+3. **The agent's risk tier.** If unassessed: when designing, run [`checklists/new-agent.md`](skills/imda-ai-governance/checklists/new-agent.md) section 1 first; when reviewing, set a provisional tier as [`checklists/design-review.md`](skills/imda-ai-governance/checklists/design-review.md) step 2 describes.
 
 Then suggest creating `.ai-governance.json`:
 
 ```json
 {
   "aiGovernance": {
-    "frameworks": ["sg-mgf-agentic"],
+    "frameworks": ["sg-mgf-agentic", "sg-mgf-genai"],
     "role": ["system-provider", "deployer"],
     "riskTier": "unassessed",
     "agentRegistry": "docs/agents/",
@@ -34,12 +36,12 @@ Then suggest creating `.ai-governance.json`:
 }
 ```
 
-`riskTier` is one of `unassessed`, `low`, `medium`, `high` (see [layer 02](skills/imda-ai-governance/layers/02-use-case-and-risk.md#tiering)). `agentRegistry` is the folder holding one [`AGENT_CARD.md`](skills/imda-ai-governance/templates/AGENT_CARD.md.template) per agent. If the project cannot take that file, record the same facts in the project's `AGENTS.md`, `CLAUDE.md` or equivalent.
+`frameworks` lists the primary framework first: `["sg-mgf-agentic", "sg-mgf-genai"]` for agents, `["sg-mgf-genai"]` for generative features that take no actions. `riskTier` is one of `unassessed`, `low`, `medium`, `high` (see [layer 02](skills/imda-ai-governance/layers/02-use-case-and-risk.md#tiering)). `agentRegistry` is the folder holding one [`AGENT_CARD.md`](skills/imda-ai-governance/templates/AGENT_CARD.md.template) per agent. If the project cannot take that file, record the same facts in the project's `AGENTS.md`, `CLAUDE.md` or equivalent.
 
 | Code | Framework | Status |
 |---|---|---|
 | `sg-mgf-agentic` | Model AI Governance Framework for Agentic AI, v1.5 (IMDA, 20 May 2026, updated 5 June 2026) | ✅ populated |
-| `sg-mgf-genai` | Model AI Governance Framework for Generative AI (2024) | not populated |
+| `sg-mgf-genai` | Model AI Governance Framework for Generative AI (IMDA / AI Verify Foundation, 2024) — supplement | ✅ populated |
 | `sg-mgf-2020` | Model AI Governance Framework, 2nd Edition (2020) | not populated |
 
 See [`skills/imda-ai-governance/frameworks/_index.md`](skills/imda-ai-governance/frameworks/_index.md).
@@ -62,6 +64,8 @@ See [`skills/imda-ai-governance/frameworks/_index.md`](skills/imda-ai-governance
 | Release gate | [`checklists/pre-deployment.md`](skills/imda-ai-governance/checklists/pre-deployment.md) |
 | Changing a deployed agent | [`checklists/change-review.md`](skills/imda-ai-governance/checklists/change-review.md) |
 | Agent incident | [`checklists/agent-incident.md`](skills/imda-ai-governance/checklists/agent-incident.md) |
+| Generative feature that takes no actions | [`checklists/new-genai-feature.md`](skills/imda-ai-governance/checklists/new-genai-feature.md) |
+| New fine-tuning set, RAG corpus or index, or eval dataset | [`checklists/new-dataset-or-corpus.md`](skills/imda-ai-governance/checklists/new-dataset-or-corpus.md) |
 
 **You want depth on a specific layer:**
 
@@ -75,9 +79,10 @@ See [`skills/imda-ai-governance/frameworks/_index.md`](skills/imda-ai-governance
 | [06 Human oversight](skills/imda-ai-governance/layers/06-human-oversight.md) | Approval checkpoints, approval UX, automation bias, fail-closed approvals |
 | [07 Testing and evaluation](skills/imda-ai-governance/layers/07-testing-and-evaluation.md) | Task, policy, tool-call and robustness tests; workflow and multi-agent tests; repeated runs |
 | [08 Monitoring and operations](skills/imda-ai-governance/layers/08-monitoring-and-operations.md) | Logging, alerts, interventions, immutable trails, gradual rollout, change management, incidents |
-| [09 End-user transparency](skills/imda-ai-governance/layers/09-end-user-transparency.md) | Agent disclosure, capability statements, escalation, training, tradecraft retention |
+| [09 End-user transparency](skills/imda-ai-governance/layers/09-end-user-transparency.md) | Agent disclosure, capability statements, escalation, training, tradecraft retention, labelling generated content |
+| [10 Data and grounding](skills/imda-ai-governance/layers/10-data-and-grounding.md) | Training, fine-tuning, RAG and eval data: provenance, licence, personal data, quality, poisoning, documentation |
 
-Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions/`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/); reverse lookup in [`framework-map.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/framework-map.md).
+Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions/`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/); reverse lookup in [`framework-map.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/framework-map.md). The generative-AI supplement is in [`frameworks/sg-mgf-genai/`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md); system-level disclosure goes in a [`SYSTEM_CARD.md`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template).
 
 ## Load-bearing principles
 
@@ -93,12 +98,13 @@ Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions
 | **Roll out gradually, monitor continuously** | Stage by users, tools, systems; trace every step; alert with defined interventions; keep failure trails. | `[MGF §2.3.3]` |
 | **Changes get risk-categorised review** | Model, tool, autonomy, domain and regulatory changes are triggers. | `[MGF §2.3.3]` |
 | **Tell users what the agent is and can do** | Disclose at the point of interaction; capabilities; data use; human escalation. | `[MGF §2.4]` |
+| **Know what's under the agent** *(supplement)* | Pinned model from a reputable source; documented training, RAG and eval data; disclosure of evaluations and limits; an outside reporting channel; labelled generated content. | `[MGF-GenAI]` |
 
 ## How to use the layer ↔ framework split
 
 1. Establish scope, role and risk tier.
 2. Walk the relevant `skills/imda-ai-governance/layers/` to plan or critique the implementation.
-3. Walk `skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/01–04` and confirm each applicable expectation with evidence, not intent.
+3. Walk `skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/01–04` (and the generative-AI supplement for the model and data layer) and confirm each applicable expectation with evidence, not intent.
 4. Record the outcome in the agent's `AGENT_CARD.md`, the PR description, or an alignment review.
 
 When reviewing, **report against what exists, not what the author meant**. A design doc that says "the agent will only read" while the tool grants write scope is a finding. A guardrail that lives only in the system prompt, protecting an irreversible action, is a finding. "We'll add monitoring later" for an agent heading to production is a finding.
@@ -107,6 +113,7 @@ When reviewing, **report against what exists, not what the author meant**. A des
 
 - **Personal data.** Agents that touch personal data also carry PDPA (or other data-protection) obligations, which are law, not guidance. The MGF points to the organisation's data privacy policies and explicit consent where needed `[MGF §2.4.2]`; it does not replace them. If the `personal-data-protection` skill is installed, run it alongside this one.
 - **Cybersecurity.** The MGF defers to CSA's *Draft Addendum on Securing Agentic AI* and GovTech's *Agentic Risk & Capability Framework* for control catalogues `[MGF §2.3.1]`. This skill does not reproduce them.
+- **Copyright and licences.** Training, fine-tuning and RAG content can carry copyright and licence terms; the generative-AI framework flags this but leaves it to law `[MGF-GenAI Data, p.11]`. Involve legal.
 - **Sector rules.** Financial services, healthcare and public-sector deployments typically have binding rules on outsourcing, model risk and technology risk that sit above this framework.
 
 ## Differences from the Claude Code version
@@ -115,4 +122,4 @@ The content (`layers/`, `frameworks/`, `checklists/`, `templates/`) is identical
 
 ## Framework version + verification dates
 
-[`frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) records the framework version reflected and when it was last verified. The framework is a living document; check IMDA for a newer version before citing a section number. See [CHANGELOG.md](CHANGELOG.md) and pin to a tag if you need stability.
+[`frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) and [`frameworks/sg-mgf-genai/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md) record the framework version reflected and when it was last verified. The framework is a living document; check IMDA for a newer version before citing a section number. See [CHANGELOG.md](CHANGELOG.md) and pin to a tag if you need stability.

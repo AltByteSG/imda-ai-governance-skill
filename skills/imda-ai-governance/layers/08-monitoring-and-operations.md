@@ -88,3 +88,22 @@ Every alert has an owner and an on-call path. Low-priority alerts can batch for 
 ## Incidents
 
 `[Practice]` An agent incident is any action outside intended scope, any harm from the five types in `[MGF §1.2.2]`, or any control failure, even if caught. Run [`checklists/agent-incident.md`](../checklists/agent-incident.md). If personal data was involved, statutory breach-notification clocks (e.g. PDPA) may apply in parallel and are **not** optional.
+
+## Vulnerability and safety reporting channel
+
+The GenAI framework treats vulnerability reporting as proactive security — including channels for reporting safety issues in AI systems, and bug bounties for white-hat researchers `[MGF-GenAI Incident Reporting, p.17]`. `[Practice]`:
+
+- **Publish a channel** that accepts AI-specific reports — jailbreaks, harmful or biased outputs, prompt-injection paths, data leakage — not only classic security bugs. Link it from `SECURITY.md` / `security.txt` and from the product's "report a problem" path ([layer 09](09-end-user-transparency.md#name-a-human-to-escalate-to)).
+- **State a disclosure window.** The framework cites roughly 90 days to patch, publish and credit `[MGF-GenAI Incident Reporting, p.17]`. Triage reports into the incident process and the test suite.
+
+## Severity thresholds for external reporting
+
+The framework expects "severe AI incidents" to be defined by materiality thresholds and reported proportionately, harmonised with existing regimes `[MGF-GenAI Incident Reporting, p.17–18]`. `[Practice]` Write the thresholds **before** an incident: which severities go to whom (regulator, sector body, customers, model provider), within what time, and who decides. Statutory clocks (e.g. PDPA breach notification, sector rules) take precedence. Add them to [`checklists/agent-incident.md`](../checklists/agent-incident.md)'s triage step for your organisation.
+
+## Forensic retention
+
+The framework calls for digital forensics tools for generative AI `[MGF-GenAI Security, p.22]`. `[Practice]` For any output that may need investigating, keep enough to reproduce it: model id and version, system prompt and template version, retrieved chunk ids and index build, filter decisions, sampling parameters, and the output. Retain incident-linked records with the tamper-evident trail above.
+
+## Compute and energy per feature
+
+The framework asks for the carbon footprint of generative AI training and inference to be tracked `[MGF-GenAI AI for Public Good, p.30]`. `[Practice]` (optional): record tokens, GPU-hours or provider-reported energy per feature alongside cost; use it when choosing between models, and prefer the smallest model that passes the evals. Report it in the system card's infrastructure section.

@@ -68,3 +68,17 @@ Use the framework's five harm types `[MGF §1.2.2]` — erroneous, unauthorised,
 ## Multi-agent systems
 
 For systems of agents, add the `[MGF §1.2.3]` risks to the register explicitly: cascading errors between steps, conflicting objectives between agents, sensitive data spreading through shared context, sprawl, and emergent behaviour. Each needs an owner and a control.
+
+## Model-level threats
+
+Agent threat modelling above focuses on tools and taint. The model and its data have their own attack surface, which the GenAI framework names: prompt attacks, data poisoning, model inversion and extraction, and malicious code within models `[MGF-GenAI Security, p.22]`. `[Practice]` Add a row for each that applies to your threat model:
+
+| Threat | Applies when | Typical control |
+|---|---|---|
+| **Data / RAG poisoning** | Anyone outside the team can influence fine-tuning data or the retrieval corpus | Curated sources, ingestion scanning, trust-separated indexes ([layer 10](10-data-and-grounding.md#poisoning-of-rag-and-fine-tuning-data)) |
+| **Model extraction** | You expose a fine-tuned or proprietary model to many users | Rate limits and quotas per identity; monitor for systematic querying |
+| **Model inversion / training-data leakage** | The model was fine-tuned on personal or confidential data | Don't fine-tune on it ([layer 10](10-data-and-grounding.md#personal-data-in-datasets-and-indexes)); output filters; memorisation tests |
+| **Malicious code in downloaded models** | You load third-party weights, tokenisers or model code | Safe serialisation formats, scanning, pinned checksums ([layer 05](05-technical-controls.md#model-supply-chain)) |
+| **Prompt attacks / jailbreaks** | Any user-facing model | Input and output filters ([layer 05](05-technical-controls.md#genai-baseline-safety)); red teaming ([layer 07](07-testing-and-evaluation.md#red-teaming)) |
+
+The framework points to **MITRE ATLAS** as a threat-modelling reference for AI systems `[MGF-GenAI Security, p.22]`. `[Practice]` Use its tactics and techniques as a prompt list when reviewing the threat model, rather than as a compliance matrix. Framework notes: [`frameworks/sg-mgf-genai/dimensions/06-security.md`](../frameworks/sg-mgf-genai/dimensions/06-security.md).

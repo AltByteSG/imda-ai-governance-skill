@@ -60,3 +60,17 @@ The Workday case study attaches to each recommendation the reasoning, data consi
 - For each business-critical process the agent performs, keep a **documented manual procedure** and an owner.
 - **Exercise it** periodically — the kill switch in [layer 08](08-monitoring-and-operations.md) is only safe if work can continue without the agent.
 - Identify the core capabilities of affected roles and keep people doing enough of the work to retain them, especially new staff.
+
+## Labelling and provenance of generated content
+
+Disclosing *the agent* (above) is not the same as labelling *what it produces*. The GenAI framework recommends digital watermarking and cryptographic provenance in appropriate contexts, simplified provenance details for end users, and standardising which edits get labelled `[MGF-GenAI Content Provenance, p.23–25]`. `[Practice]`, scaled to where content goes:
+
+- **Simple visible labels** on generated content shown to or sent to people — "AI-generated", "drafted with AI, reviewed by …" — at the point the content appears, not only in a policy page.
+- **Cryptographic provenance for published media.** Attach a signed manifest (C2PA-style content credentials) to generated images, audio and video at creation, recording the generator and the edits; sign with a key held by the service, not the model.
+- **Watermarking** where the model or provider supports it, for media likely to be redistributed without metadata. Treat it as a probabilistic signal, not proof.
+- **Preserve provenance through edits.** Pipelines that resize, transcode or edit generated media must carry the manifest forward and append the edit, not strip it. Test this.
+- **Decide what counts as AI-edited** for your product (e.g. a background fill vs a fully generated image) and label consistently.
+
+## Don't encourage users to anthropomorphise
+
+The framework names educating end users on safe chatbot use, "sensitising them against anthropomorphising AI" `[MGF-GenAI AI for Public Good, p.29]`. `[Practice]` Avoid human names, faces and claims of feelings for assistants; say plainly in onboarding and help text that the system can be wrong and has no understanding of the user's situation; and route emotionally sensitive conversations to human help where the use case makes them likely. Framework notes: [`frameworks/sg-mgf-genai/dimensions/07-content-provenance.md`](../frameworks/sg-mgf-genai/dimensions/07-content-provenance.md).

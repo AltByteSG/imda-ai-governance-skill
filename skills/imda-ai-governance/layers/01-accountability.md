@@ -53,3 +53,20 @@ Run [`checklists/third-party-agent.md`](../checklists/third-party-agent.md) for 
 ## Internal usage policy for agent users
 
 For agents your own staff use (coding assistants, internal automation), `[MGF §2.2.1]` and `[MGF §2.4.3]` expect usage policies, training, and timely reporting of issues. `[Practice]` The policy should name restricted uses (e.g. no confidential data in a given tool), the approval behaviours users must not bypass, and where to report a bad agent action. See [layer 09](09-end-user-transparency.md).
+
+## Model-provider terms and shared responsibility
+
+The GenAI framework adds a model-level view: allocate responsibility by the "control that each stakeholder has", borrowing the cloud industry's shared-responsibility model, and account for whether the model is closed-source, open-source or open-weights `[MGF-GenAI Accountability, p.7]`. `[Practice]` Write the split down per model, in the [`SYSTEM_CARD.md`](../templates/SYSTEM_CARD.md.template):
+
+| Concern | Closed model via API | Open-weights you host | Fine-tuned by you (either) |
+|---|---|---|---|
+| Base-model training data, pre-training safety | Provider | Provider (as published); you verify | Provider for the base; **you** for your fine-tune data |
+| Weights integrity and supply chain | Provider | **You** ([layer 05](05-technical-controls.md#model-supply-chain)) | **You** |
+| Input / output filters, grounding | Shared — provider's filters plus yours | **You** | **You** |
+| Hosting security, uptime, data retention | Provider (per contract) | **You** | Whoever hosts |
+| Evaluation in your use case | **You** | **You** | **You**, re-run after each fine-tune |
+
+- **Reputable sources only.** Deployers downloading models should "download models from reputable platforms" `[MGF-GenAI Accountability, p.8]`. `[Practice]` Keep an allowlist of model sources and publishers; anything else goes through security review.
+- **Ask the vendor about safety nets.** The framework names indemnity and insurance as supplementary protection `[MGF-GenAI Accountability, p.8]`. `[Practice]` Questions for the contract: Is there IP indemnity for outputs, and what voids it (fine-tuning, disabled filters, prompts you supply)? Does it cover claims arising from harmful or inaccurate outputs? Who handles which incident, and on what notice? Does your own insurance cover AI-output liability? Record the answers, including "none".
+
+Framework notes: [`frameworks/sg-mgf-genai/dimensions/01-accountability.md`](../frameworks/sg-mgf-genai/dimensions/01-accountability.md).

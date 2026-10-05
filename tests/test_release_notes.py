@@ -95,6 +95,24 @@ def test_manifest_ref_rejects_unknown_ref():
     _expect_exit(lambda: rn.check_manifests(ROOT, "0.4.0", ref="v99.99.99"), "bad ref")
 
 
+def test_doc_version_mismatch_fails():
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        for rel in rn.VERSIONED_DOCS:
+            (root / rel).parent.mkdir(parents=True, exist_ok=True)
+            (root / rel).write_text("# x\n\n**Skill version:** 9.9.9 · stuff\n", encoding="utf-8")
+        rn.check_docs(root, "9.9.9")
+        _expect_exit(lambda: rn.check_docs(root, "1.0.0"), "doc version mismatch")
+
+
+def test_docs_agree_with_manifest_for_current_version():
+    import json
+    version = json.loads(
+        (ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))["version"]
+    rn.check_docs(ROOT, version)          # must not raise
+
+
 if __name__ == "__main__":
     passed = 0
     for name, fn in sorted(globals().items()):
@@ -103,3 +121,4 @@ if __name__ == "__main__":
             passed += 1
             print(f"  PASS {name}")
     print(f"\n{passed} passed")
+

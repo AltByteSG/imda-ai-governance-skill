@@ -23,6 +23,9 @@ from pathlib import Path
 
 REPO = "AltByteSG/imda-ai-governance-skill"
 MANIFESTS = (".claude-plugin/plugin.json", ".codex-plugin/plugin.json")
+# Docs that state the version to the agent reading them (reviews record it).
+VERSIONED_DOCS = ("skills/imda-ai-governance/SKILL.md", "AGENTS.md")
+DOC_VERSION = re.compile(r"^\*\*Skill version:\*\* (\S+)", re.M)
 SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
 
 
@@ -54,6 +57,25 @@ def check_manifests(root: Path, version: str, ref: str | None = None) -> None:
             fail(
                 f"{where} declares version {declared!r}, but {version!r} is being "
                 f"released. The tag must not disagree with what the plugin reports."
+            )
+
+
+def check_docs(root: Path, version: str, ref: str | None = None) -> None:
+    for rel in VERSIONED_DOCS:
+        if ref:
+            text = read_at_ref(ref, rel)
+        else:
+            path = root / rel
+            if not path.exists():
+                fail(f"{rel} not found")
+            text = path.read_text(encoding="utf-8")
+        match = DOC_VERSION.search(text)
+        declared = match.group(1) if match else None
+        if declared != version:
+            where = f"{rel} at {ref}" if ref else rel
+            fail(
+                f"{where} states skill version {declared!r}, but {version!r} is being "
+                f"released. Reviews record this line, so it must match the tag."
             )
 
 
@@ -94,6 +116,7 @@ def main() -> int:
 
     root = Path(__file__).resolve().parent.parent
     check_manifests(root, version, args.manifest_ref)
+    check_docs(root, version, args.manifest_ref)
     notes = extract_notes((root / "CHANGELOG.md").read_text(encoding="utf-8"), version)
 
     if args.check_only:

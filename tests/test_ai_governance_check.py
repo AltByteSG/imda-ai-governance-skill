@@ -97,6 +97,42 @@ def test_ordinary_code_is_not_flagged():
         assert not _content_reasons(text), text
 
 
+def test_direct_sdk_tool_use_is_detected():
+    for text in ("from anthropic import Anthropic",
+                 "resp = client.messages.create(tools=tools, messages=msgs)",
+                 "client.chat.completions.create(model=m, functions=fns)",
+                 "openai_client.responses.create(input=x)",
+                 "enable function_calling for the planner"):
+        assert _content_reasons(text), text
+
+
+def test_approval_logic_is_detected():
+    for text in ("require_human_approval(order)",
+                 "if amount > LIMIT and not requires_approval(action):",
+                 "AUTO_APPROVE = True",
+                 "approval_timeout_s = 600",
+                 "queue = HumanReviewQueue()"):
+        assert _content_reasons(text), text
+
+
+def test_genai_keywords_are_detected():
+    for text in ("store = VectorStore.from_documents(docs)",
+                 "splitter = RecursiveTextSplitter(chunk_size=500)",
+                 "job = client.fine_tuning.jobs.create(training_file=f)",
+                 "apply_output_filter(reply)",
+                 "embed_c2pa_manifest(image)"):
+        assert gov.classify(Path("src/x.py"), text), text
+
+
+def test_genai_words_in_ordinary_code_are_not_flagged():
+    for text in ("embedding a video in the page",
+                 "the reviewer approved the PR",
+                 "approve_invoice(invoice_id)",
+                 "fine print in the contract",
+                 "filter(lambda x: x > 0, items)"):
+        assert not gov.classify(Path("src/x.py"), text), text
+
+
 # --- path rules -------------------------------------------------------------
 
 def _content_reasons(text: str) -> list[str]:
@@ -115,6 +151,9 @@ def test_agent_paths_are_classified():
     assert "06-human-oversight" in _path_layers("app/approvals/queue.py")
     assert "07-testing-and-evaluation" in _path_layers("evals/policy_compliance.yaml")
     assert "08-monitoring-and-operations" in _path_layers("prompts/support.md")
+    assert "10-data-and-grounding" in _path_layers("rag/ingest.py")
+    assert "10-data-and-grounding" in _path_layers("data/fine_tuning/train.jsonl")
+    assert "10-data-and-grounding" in _path_layers("src/vector_store/index.py")
 
 
 def test_unrelated_paths_are_not_classified():

@@ -1,7 +1,7 @@
 {
   "name": "imda-ai-governance",
-  "version": "0.2.0",
-  "description": "Agentic AI governance guidance for engineers designing, reviewing or changing AI agents — aligned with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5).",
+  "version": "0.3.0",
+  "description": "Agentic AI governance guidance for engineers designing, reviewing or changing AI agents — aligned with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5), with IMDA's Model AI Governance Framework for Generative AI (2024) as a supplement.",
   "author": {
     "name": "AltByte",
     "url": "https://github.com/AltByteSG"
@@ -12,6 +12,7 @@
   "keywords": [
     "ai-governance",
     "agentic-ai",
+    "generative-ai",
     "ai-agents",
     "imda",
     "model-governance-framework",
@@ -25,7 +26,7 @@
   "interface": {
     "displayName": "IMDA AI Governance",
     "shortDescription": "Agentic AI governance checks for engineers.",
-    "longDescription": "Engineer-facing guidance for aligning agent designs, architectures, controls, tests and operations with Singapore IMDA's Model AI Governance Framework for Agentic AI.",
+    "longDescription": "Engineer-facing guidance for aligning agent designs, architectures, controls, tests and operations with Singapore IMDA's Model AI Governance Framework for Agentic AI, with the Generative AI framework as a supplement for the model, data and generated content.",
     "composerIcon": "./assets/icon.svg",
     "developerName": "AltByte",
     "category": "Developer Tools",

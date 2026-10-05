@@ -4,11 +4,15 @@ imda-ai-governance skill. Verify against the official IMDA publication.
 
 ALIGNMENT REVIEW — the output shape for checklists/design-review.md.
 An engineering view of how a design, architecture, guideline or system lines up with
-the MGF for Agentic AI. It is not a legal opinion, audit or certification; say so.
+the MGF for Agentic AI (primary) and, where it applies, the MGF for Generative AI
+(supplement). It is not a legal opinion, audit or certification; say so.
 
 Conventions:
-  [MGF §x.y]  the framework's own expectation, with section
-  [Practice]  this skill's suggested way to meet it — not an IMDA requirement
+  [MGF §x.y]          the agentic framework's own expectation, with section
+  [MGF-GenAI X, p.N]  the generative-AI framework's expectation, dimension and page
+  [Practice]          this skill's suggested way to meet it — not an IMDA requirement
+
+Item numbers (1.1, S.5, G.3 …) are those in checklists/design-review.md.
 -->
 
 # Alignment review — {{SYSTEM_OR_DOCUMENT_NAME}}
@@ -16,8 +20,8 @@ Conventions:
 | | |
 |---|---|
 | **Reviewed** | {{DATE}} by {{REVIEWER}} |
-| **Framework** | Model AI Governance Framework for Agentic AI v1.5 (IMDA, 20 May 2026, updated 5 June 2026) |
-| **Skill version** | imda-ai-governance {{SKILL_VERSION}} (framework notes last verified {{DATE}}) |
+| **Framework** | Model AI Governance Framework for Agentic AI v1.5 (IMDA, 20 May 2026, updated 5 June 2026); supplement: Model AI Governance Framework for Generative AI (IMDA / AI Verify Foundation, 2024) {{or "supplement not applied"}} |
+| **Skill version** | imda-ai-governance {{SKILL_VERSION — the version line in SKILL.md}} (framework notes last verified {{DATE}}) |
 | **Material reviewed** | {{LIST of docs, diagrams, repos / paths, configs, with versions or commits}} |
 | **Not reviewed** | {{e.g. contracts, runtime config, eval results}} |
 
@@ -33,6 +37,11 @@ Conventions:
 2. {{}}
 3. {{}}
 
+<!-- Generative system with no actions: replace this section with model and source, data
+     sources and retrieval, outputs and where they go, channels and users; mark the four
+     agentic dimension rows and the systemic row "not applicable — not agentic"; and add a
+     scorecard row for the new-genai-feature items (NG). -->
+
 ## System as understood `[MGF §1.1]`
 
 - **Agentic?** {{yes / no — why}}
@@ -41,7 +50,7 @@ Conventions:
 - **Action-space:** {{}}
 - **Autonomy and human involvement:** {{}}
 - **Value-chain role(s):** {{}}
-- **Risk tier:** {{assessed / provisional}} {{low / medium / high}} — driven by {{highest-impact action}}
+- **Risk tier:** {{assessed / provisional}} {{low / medium / high}} — driven by {{highest-impact action}} {{if you disagree with an assessed tier: "reviewer's provisional view: …, because …"}}
 
 ## Scorecard
 
@@ -51,18 +60,23 @@ Conventions:
 | 2. Human accountability `[MGF §2.2]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
 | 3. Technical controls and processes `[MGF §2.3]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
 | 4. End-user responsibility `[MGF §2.4]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
-| Systemic / multi-agent `[MGF §1.2.3]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| Systemic / multi-agent `[MGF §1.2.3]` (S.1–S.4 N/A for a single agent) | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| Generative-AI supplement `[MGF-GenAI]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+
+<!-- Count "Covered by n.n" items under N/A. -->
 
 ## Findings
 
-<!-- One block per finding, ordered High → Medium → Low. -->
+<!-- One block per finding, ordered High → Medium → Low. Merge findings that share a root cause.
+     More than five Low findings: put them as one-line bullets under a single "Minor gaps" finding. -->
 
 ### {{F1}} — {{ONE-LINE GAP}}
 
-- **Severity:** {{High / Medium / Low}}
-- **Framework:** `[MGF §{{x.y}}]` — {{short paraphrase of the expectation}}
+- **Severity:** {{High / Medium / Low, or conditional: "High unless …"}}
+- **Items:** {{checklist item numbers, e.g. 1.6, 2.5}}
+- **Framework:** `[MGF §{{x.y}}]` or `[MGF-GenAI {{dimension}}, p.{{n}}]` — {{short paraphrase of the expectation}}
 - **Evidence:** {{file:line, config key, diagram element, or quote}}
-- **Why it matters:** {{the harm type from MGF §1.2.2 it exposes, and how}}
+- **Why it matters:** {{the harm it exposes — for agents the risk type from MGF §1.2.2 — and how}}
 - **Recommendation:** {{smallest change that closes it}} {{[Practice] if this is the skill's suggestion}}
 
 ## What is already well aligned
@@ -72,6 +86,7 @@ Conventions:
 ## Open questions for the team
 
 - {{Things the material didn't answer that would change a finding.}}
+- {{If the project has no `.ai-governance.json`: suggest creating one with the role and tier recorded here.}}
 
 ## Appendix — item-by-item results
 
@@ -79,4 +94,4 @@ Conventions:
 
 | # | Item | Reference | Status | Evidence |
 |---|---|---|---|---|
-| 1.1 | {{checklist item}} | `[MGF §{{x.y}}]` | {{Aligned / Partly / Not aligned / N/A / Cannot determine}} | {{file:line, config, quote}} |
+| 1.1 | {{checklist item}} | `[MGF §{{x.y}}]` | {{Aligned / Partly / Not aligned / N/A / Cannot determine / Covered by n.n}} | {{file:line, config, quote}} |

@@ -1,0 +1,132 @@
+<!--
+Reference material only — not legal or regulatory advice. See DISCLAIMER.md in the
+imda-ai-governance skill. Verify against the official IMDA / AI Verify Foundation publication.
+
+SYSTEM CARD — the "food label" for a generative AI system: one per model-backed
+feature or system (a chat assistant, summariser, RAG Q&A bot, or the generative layer
+under an agent). Follows the seven disclosure areas of the Model AI Governance
+Framework for Generative AI (2024) [MGF-GenAI Trusted Development, p.14].
+
+Written for a team that DEPLOYS a model it may not have trained. "Data used" means the
+data YOU added (fine-tuning sets, RAG corpora, few-shot banks) plus what the model
+provider discloses about the base model. Where the provider discloses nothing, write
+"not disclosed by provider" — don't guess.
+
+PAIRS WITH AGENT_CARD.md: if this system is (part of) an agent, the agent card covers
+identity, tools, permissions, approvals and operations and links here; this card covers
+the model, its data and its generated content. Don't duplicate content between them.
+
+The framework calibrates disclosure against protecting proprietary information and
+expects more for higher-risk systems. Mark each section as INTERNAL or PUBLIC; a
+public version may summarise, but the internal version holds the evidence.
+
+SETUP
+  1. Copy next to the agent card (agentRegistry folder) or into the feature's docs,
+     e.g. docs/systems/<system-id>.md.
+  2. Replace every {{PLACEHOLDER}}. Delete guidance comments once filled.
+  3. Update on every model, prompt, fine-tune, corpus or filter change that passes
+     through checklists/change-review.md. Bump the card version.
+-->
+
+# System card — {{SYSTEM_NAME}}
+
+| | |
+|---|---|
+| **System id** | {{SYSTEM_ID}} |
+| **Card version / system version** | {{CARD_VERSION}} / {{SYSTEM_VERSION}} |
+| **Status** | {{pilot / production / deprecated}} |
+| **Risk tier** | {{low / medium / high}} — assessed {{DATE}} |
+| **Agentic?** | {{no — generative only / yes — agent card: LINK}} |
+| **Technical owner** | {{NAME / TEAM}} |
+| **Last reviewed** | {{DATE}} |
+| **Frameworks** | {{`sg-mgf-genai` / `sg-mgf-agentic` + `sg-mgf-genai`}} |
+| **Visibility** | {{internal only / public summary at LINK}} |
+
+## 0. Model and supply chain `[MGF-GenAI Accountability, p.7–8]`
+
+| | |
+|---|---|
+| **Model(s)** | {{PROVIDER / MODEL / PINNED_VERSION or weights hash}} |
+| **Model type** | {{closed via API / open-weights self-hosted / open-source}} |
+| **Source and integrity** | {{registry or platform; checksum / signature verified at load: yes / no}} |
+| **Adaptations by us** | {{none / fine-tune (checkpoint id) / adapter / RAG / few-shot}} |
+| **Provider documentation** | {{LINK to provider's model card / system card}} |
+| **Shared-responsibility split** | {{LINK or table — see layer 01}} |
+| **Indemnity / insurance** | {{IP indemnity: yes / no / conditions; output liability: …; our insurance: …}} |
+
+## 1. Data used `[MGF-GenAI Trusted Development, p.14]`, `[MGF-GenAI Data, p.9–11]`
+
+**Base model (as disclosed by the provider):** {{SUMMARY of training-data disclosure, cut-off date, or "not disclosed by provider"}}
+
+**Data we added:**
+
+| Dataset / corpus / index | Use (fine-tune / RAG / few-shot / eval) | Sources | Licence basis | Personal data and PETs | Version / refresh | Datasheet |
+|---|---|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{}} | {{none / categories — PET applied}} | {{}} | {{LINK}} |
+
+- **Deletion propagation:** {{how a source deletion reaches indexes, caches and fine-tune sets; max lag}}
+- **PDPA assessment (if personal data):** {{LINK — from the personal-data-protection skill or DPO}}
+
+## 2. Training and serving infrastructure `[MGF-GenAI Trusted Development, p.14]`
+
+- **Base-model training infrastructure:** {{as disclosed by provider / not disclosed}}
+- **Our fine-tuning compute:** {{hardware, GPU-hours, region — or "no fine-tuning"}}
+- **Serving:** {{provider API region / self-hosted — hardware, region}}
+- **Estimated environmental impact:** {{provider-reported figure; our fine-tune energy or emissions estimate; inference compute per 1,000 requests — and method}} `[MGF-GenAI AI for Public Good, p.30]`
+
+## 3. Evaluation results `[MGF-GenAI Trusted Development, p.14–15]`
+
+| Dimension | Suite / benchmark | Runs | Threshold | Result | Versions tested | Date |
+|---|---|---|---|---|---|---|
+| Robustness | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+| Factuality / faithfulness | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+| Bias | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+| Toxicity | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+| Data governance (PII leakage, memorisation, access boundaries) | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+| Sector-specific | {{}} | {{}} | {{}} | {{}} | {{}} | {{}} |
+
+- **Red team:** {{DATE, scope, LINK, open findings}}
+- **Safety re-check after fine-tuning:** {{checkpoint vs base results — LINK}}
+- **External / third-party testing:** {{none — reason / who, when, LINK}}
+
+## 4. Mitigations and safety measures `[MGF-GenAI Trusted Development, p.13–14]`
+
+| Risk | Mitigation | Type (grounding / input filter / output filter / safety fine-tune / structural / human review) | Where enforced | Test |
+|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{}} | {{}} |
+
+- **Grounding:** {{corpus, citation behaviour, behaviour when retrieval is empty}}
+- **Content provenance and labelling:** {{visible labels; C2PA-style manifests; watermarking — or n/a for text-only internal use}} `[MGF-GenAI Content Provenance, p.23–25]`
+
+## 5. Risks and limitations `[MGF-GenAI Trusted Development, p.14]`
+
+{{PLAIN-WORDS list of known failure modes and residual risks: e.g. may state outdated facts after the corpus refresh lag; weaker in languages X and Y; may produce plausible but uncited answers when retrieval is weak.}}
+
+- **Model-level threats considered:** {{poisoning / extraction / inversion / malicious weights / jailbreak — LINK to threat model}}
+- **Residual risk accepted by** **{{NAME, ROLE}}** on **{{DATE}}** for version **{{SYSTEM_VERSION}}**.
+
+## 6. Intended use `[MGF-GenAI Trusted Development, p.14]`
+
+- **Intended use and users:** {{}}
+- **Out of scope / must not be used for:** {{e.g. decisions about individuals without human review; medical or legal advice}}
+- **Languages and locales supported:** {{}}
+
+## 7. User data protection `[MGF-GenAI Trusted Development, p.14]`
+
+- **What user inputs and outputs are stored, where, for how long:** {{}}
+- **Sent to third parties (model provider, filters, telemetry):** {{who, and under which terms}}
+- **Used for training or fine-tuning:** {{never / opt-in / provider default — and setting that controls it}}
+- **User notice and consent:** {{LINK}}
+- **Access controls on retrieval:** {{how the system stops users retrieving content they can't see}}
+
+## 8. Reporting and operations `[MGF-GenAI Incident Reporting, p.17–18]`
+
+- **Vulnerability / safety reporting channel:** {{URL or address; disclosure window}}
+- **Severity thresholds for external reporting:** {{LINK}}
+- **Forensic retention:** {{what is kept to reproduce an output, and for how long}}
+
+## 9. Change history
+
+| Date | Version | Change (model / prompt / fine-tune / corpus / filter) | Category | Reviewed by | Link |
+|---|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{minor / material / critical / incident}} | {{}} | {{}} |

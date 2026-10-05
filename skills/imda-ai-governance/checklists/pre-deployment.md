@@ -44,6 +44,13 @@ Use before an agent's first production exposure, before each rollout stage widen
 - [ ] Agent disclosed at point of interaction on every surface in this stage.
 - [ ] Capability statement, data notice and escalation contact published.
 - [ ] For internal users: training delivered; feedback path live; manual procedure documented for critical processes.
+- [ ] Generated content that leaves the product (images, audio, video, published text) is labelled, with watermark or provenance metadata where appropriate `[MGF-GenAI Content Provenance, p.23–25]`.
+
+## 5a. Generative-AI supplement
+
+- [ ] [`SYSTEM_CARD.md`](../templates/SYSTEM_CARD.md.template) written: data used, evaluations, mitigations, risks and limits, intended use, user-data protection `[MGF-GenAI Trusted Development, p.14]`.
+- [ ] Model pinned and from a reputable source; fine-tuning, RAG and eval data documented ([layer 10](../layers/10-data-and-grounding.md)).
+- [ ] A channel exists for outsiders to report vulnerabilities or unsafe outputs, with an owner `[MGF-GenAI Incident Reporting, p.17]`.
 
 ## 6. Sign-off
 

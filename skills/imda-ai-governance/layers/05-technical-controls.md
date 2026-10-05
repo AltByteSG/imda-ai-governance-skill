@@ -88,3 +88,21 @@ The framework's case studies show model-based verification used well: reflection
 ## Fix data problems deterministically
 
 `[Practice]` When an agent errs because its sources are stale, duplicated or ambiguous, fix the source structure (versioning, expiry metadata, a curated index) rather than adding prompt instructions. The Cyber Sierra case study replaced "be careful about expired documents" with a context graph that only surfaces current documents.
+
+## GenAI baseline safety
+
+The model-level controls underneath every agent, and the main controls for a generative feature that takes no actions. The GenAI framework lists them as baseline safety practices `[MGF-GenAI Trusted Development, p.13]`. They are mostly rank 4 (model-based) in the table above, so they supplement — never replace — architectural and structural controls on actions.
+
+- **Ground to reduce hallucination.** RAG and few-shot examples are named for this `[MGF-GenAI Trusted Development, p.13]`. `[Practice]` Retrieve from a curated, versioned corpus ([layer 10](10-data-and-grounding.md)); return citations with answers; when retrieval finds nothing relevant, answer "I don't know" or escalate rather than generate from the base model; test faithfulness to sources ([layer 07](07-testing-and-evaluation.md#benchmarks-evaluation-dimensions-and-external-assurance)).
+- **Input and output filters** `[MGF-GenAI Trusted Development, p.13]`, `[MGF-GenAI Security, p.22]`. `[Practice]` Input: unsafe-prompt and injection classifiers, length limits, blocked topics for the use case. Output: harmful-content, PII and secret detectors, and schema validation for structured output. Log every filter decision; tune thresholds on your own eval set, not the vendor's defaults.
+- **Safety fine-tuning when you fine-tune.** Fine-tuning (including RLHF) is the framework's route to safer behaviour `[MGF-GenAI Trusted Development, p.13]`, and a task fine-tune can also erode the base model's safety behaviour. `[Practice]` Include refusal and safety examples in fine-tuning data, and re-run the safety suite on every fine-tuned checkpoint before use.
+
+## Model supply chain
+
+Deployers should download models from reputable platforms `[MGF-GenAI Accountability, p.8]`, and the framework calls for tools to identify malicious code within models `[MGF-GenAI Security, p.22]`. `[Practice]`:
+
+- **Pin the exact model version** — API model id with date or version, or the weights' commit hash. No floating "latest" aliases in production config.
+- **Verify integrity** — record and check checksums or signatures of weights, tokenisers and adapters at load time; fail closed on mismatch.
+- **Prefer safe formats** (e.g. safetensors) over formats that execute code on load (pickle-based); scan anything else before loading, in a sandbox.
+- **Allowlist sources and publishers**; mirror approved artefacts to an internal registry so production never pulls from the public internet.
+- **Track models like dependencies** — in the SBOM or an equivalent inventory, with licence and the [`SYSTEM_CARD.md`](../templates/SYSTEM_CARD.md.template) linked. A model change is a change-review trigger ([layer 08](08-monitoring-and-operations.md#change-management)).

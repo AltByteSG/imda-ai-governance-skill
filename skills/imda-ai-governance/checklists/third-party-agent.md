@@ -18,6 +18,7 @@ Use when the agent, or a component it depends on, is provided or operated by som
 - [ ] Model change policy — notice before model or behaviour changes.
 - [ ] Testing and evaluation evidence the vendor can share.
 - [ ] Incident notification commitments.
+- [ ] For a model provider: a system or model card covering data used, evaluations, safety measures, risks and limits, and intended use `[MGF-GenAI Trusted Development, p.14]`; for downloaded models, a reputable source and verifiable weights `[MGF-GenAI Accountability, p.8]`.
 
 ## 3. Technical security and control features `[MGF §2.2.1]`
 
@@ -34,6 +35,8 @@ Use when the agent, or a component it depends on, is provided or operated by som
 - [ ] Security arrangements.
 - [ ] Performance guarantees.
 - [ ] Data protection terms (and a data-processing agreement where personal data is involved — a statutory requirement under the PDPA in many cases, not just good practice).
+- [ ] Indemnity for third-party claims over outputs or training data (for example IP), and whether insurance covers residual harms `[MGF-GenAI Accountability, p.8]`.
+- [ ] A shared-responsibility split by control: what the provider handles (base-model safety, its infrastructure) and what you handle (your data, prompts, tools, deployment) `[MGF-GenAI Accountability, p.7]`.
 - [ ] Where gaps exist: reassess whether the deployment still meets risk tolerance.
 
 ## 5. Decide, and contain

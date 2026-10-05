@@ -55,3 +55,25 @@ Add from the threat model ([layer 02](02-use-case-and-risk.md#threat-modelling))
 - Re-run the regression suite on a schedule and on every change trigger ([layer 08](08-monitoring-and-operations.md#change-management)).
 - Turn production incidents and human overrides into new test cases — the feedback loop `[MGF §2.3.3, §2.4.3]`.
 - Treat a provider's silent model update as a change: re-run evals when the model behind an API changes, if you can detect it, and pin versions where you can.
+
+## Benchmarks, evaluation dimensions and external assurance
+
+The GenAI framework adds a model-level layer under the agent suites above. It expects **both benchmarking and red teaming** `[MGF-GenAI Trusted Development, p.14]`: benchmarks measure behaviour against a fixed set and are comparable across versions; red teaming looks for failures nobody wrote a benchmark for. `[Practice]` Run benchmarks on every model, prompt or fine-tune change; red-team on the cadence in [Red teaming](#red-teaming).
+
+Cover the framework's evaluation dimensions — robustness, factuality, propensity to bias, toxicity generation and data governance `[MGF-GenAI Trusted Development, p.15]` — with your own use-case data:
+
+| Dimension | Typical suite `[Practice]` |
+|---|---|
+| **Robustness** | Paraphrase, typo and language perturbations; jailbreak and prompt-injection sets |
+| **Factuality** | Faithfulness to retrieved sources; correct "I don't know" when retrieval is empty; citation accuracy |
+| **Bias** | Paired prompts varying only a protected attribute; outcome disparity on decisions about people |
+| **Toxicity** | Harmful-content generation under benign and adversarial prompts; output-filter catch rate |
+| **Data governance** | PII and secret leakage; memorisation of fine-tuning data; access-boundary tests on RAG ([access-boundary tests](#access-boundary-tests)) |
+
+Add sector-specific evaluations where the domain has them `[MGF-GenAI Trusted Development, p.15]`.
+
+- **Re-check safety after fine-tuning.** `[Practice]` Every fine-tuned checkpoint re-runs the toxicity, robustness and bias suites against the base model's results; a regression blocks release.
+- **External assurance, gated by tier.** The framework encourages third-party testing, initially against the same benchmarks used internally `[MGF-GenAI Testing and Assurance, p.20]`. `[Practice]` Low: internal testing. Medium: consider an independent internal team. High: consider third-party testing before general rollout, and record the decision either way.
+- **Singapore tooling.** `[Practice]` The AI Verify testing toolkit and Project Moonshot (LLM benchmarking and red teaming), both from IMDA and the AI Verify Foundation, are reasonable starting points for a repeatable suite; neither is a certification.
+
+Framework notes: [`frameworks/sg-mgf-genai/dimensions/03-trusted-development-and-deployment.md`](../frameworks/sg-mgf-genai/dimensions/03-trusted-development-and-deployment.md), [`05-testing-and-assurance.md`](../frameworks/sg-mgf-genai/dimensions/05-testing-and-assurance.md).

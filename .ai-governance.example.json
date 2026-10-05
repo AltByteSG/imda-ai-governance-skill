@@ -1,7 +1,8 @@
 {
   "aiGovernance": {
     "frameworks": [
-      "sg-mgf-agentic"
+      "sg-mgf-agentic",
+      "sg-mgf-genai"
     ],
     "role": [
       "system-provider",

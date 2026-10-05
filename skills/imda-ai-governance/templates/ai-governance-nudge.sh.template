@@ -81,6 +81,10 @@ case "$f" in
   # ─── Evaluations ────────────────────────────────────────────────
   */evals/*|*/evaluations/*|*/redteam/*)
     nudge "$skill_msg Layer: 07-testing-and-evaluation. Task, policy, tool-call, robustness, bounds and fail-closed suites; repeated runs; thresholds set before running." ;;
+
+  # ─── Training, fine-tuning, RAG and eval data (generative-AI supplement) ──
+  */datasets/*|*/fine_tuning/*|*/finetune/*|*/training_data/*|*/rag/*|*/retrieval/*|*/embeddings/*|*/vector_store/*|*/corpus/*)
+    nudge "$skill_msg Layer: 10-data-and-grounding. Source and licence recorded? Personal data handled? Quality checks? Untrusted content that could poison retrieval? Re-run evals after a data change." ;;
 esac
 
 exit 0
