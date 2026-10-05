@@ -58,7 +58,7 @@ Skill content lives under [`skills/imda-ai-governance/`](skills/imda-ai-governan
 
 ```bash
 claude plugin marketplace add AltByteSG/imda-ai-governance-skill
-claude plugin install imda-ai-governance@altbyte-plugins
+claude plugin install imda-ai-governance@imda-ai-governance-skill
 ```
 
 The repo carries a [`marketplace.json`](.claude-plugin/marketplace.json) so it works as a single-plugin marketplace. Verify with `claude plugin list`.
