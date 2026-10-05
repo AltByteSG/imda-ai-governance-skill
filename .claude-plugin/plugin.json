@@ -1,7 +1,7 @@
 {
   "name": "imda-ai-governance",
   "description": "Engineering reference for aligning agentic AI systems with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5, 2026) — organised by where in the system each expectation lands (risk and bounding, identity, controls, human oversight, testing, monitoring, user transparency), with design-review, release-gate and change-review checklists. Reference material only, not legal or regulatory advice; not affiliated with IMDA.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "AltByte",
     "url": "https://github.com/AltByteSG"

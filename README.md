@@ -79,7 +79,7 @@ For agentic AI governance (IMDA MGF for Agentic AI), follow
 ### Pin a specific upstream version
 
 ```bash
-cd <clone-path> && git checkout v0.1.0
+cd <clone-path> && git checkout v0.2.0
 ```
 
 ## Adapt to your project
