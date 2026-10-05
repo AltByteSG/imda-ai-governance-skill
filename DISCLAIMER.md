@@ -9,13 +9,14 @@ By installing, accessing, viewing, or otherwise using this skill, you acknowledg
 ## What this skill is
 
 - A working, engineer-facing interpretation of the Infocomm Media Development Authority's (IMDA) *Model AI Governance Framework for Agentic AI*, as it applies to designing, building, testing and operating agentic AI systems
+- A supplementary interpretation of IMDA and the AI Verify Foundation's *Model AI Governance Framework for Generative AI* (2024), applied to the model, data and generated content underneath an agent and to generative features that take no actions
 - A set of layered patterns, checklists and templates engineers can use when designing agents, reviewing designs, and preparing releases
 - A section-by-section map from the framework to those patterns
 
 ## What this skill is **not**
 
 - **Not affiliated with IMDA.** The maintainers are not affiliated with, endorsed by, or speaking for IMDA, the Cyber Security Agency of Singapore, GovTech, the AI Verify Foundation, or any other government body. Nothing here is an official interpretation.
-- **Not law.** The Model AI Governance Framework for Agentic AI is voluntary guidance. This skill does not create obligations, and alignment with it does not discharge obligations under statutes, regulations, regulator notices, or contracts that do bind you — for example the Personal Data Protection Act 2012, sector-specific rules, or customer agreements.
+- **Not law.** The Model AI Governance Frameworks for Agentic AI and for Generative AI are voluntary guidance. This skill does not create obligations, and alignment with it does not discharge obligations under statutes, regulations, regulator notices, or contracts that do bind you — for example the Personal Data Protection Act 2012, sector-specific rules, or customer agreements.
 - **Not authoritative.** Where this skill conflicts with the official framework, **the official framework wins.** The content is a summary written by engineers for engineers; it may be incomplete, inaccurate or out of date.
 - **Not an audit, assessment or certification.** An alignment review produced with this skill is an engineering opinion about a design. It is not an attestation that any system is safe, secure, fair, compliant, or "IMDA-aligned" in any official sense. Do not represent it as one.
 - **Not a security assessment.** The skill points to security practices but is no substitute for threat modelling, penetration testing and red teaming by qualified people.
@@ -40,12 +41,13 @@ You accept full responsibility for any decision you make in reliance on this con
 ## Authoritative sources
 
 - **Model AI Governance Framework for Agentic AI** — Infocomm Media Development Authority (IMDA): [www.imda.gov.sg](https://www.imda.gov.sg)
-- **Feedback channel published in the framework:** [go.gov.sg/mgfagentic-feedback](https://go.gov.sg/mgfagentic-feedback)
+- **Model AI Governance Framework for Generative AI** — IMDA and the AI Verify Foundation: [IMDA factsheet](https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/gen-ai-and-digital-foss-ai-governance-playbook); [PDF](https://aiverifyfoundation.sg/wp-content/uploads/2026/06/Model-AI-Governance-Framework-for-Generative-AI-19-June-2024.pdf)
+- **Feedback channel published in the agentic framework:** [go.gov.sg/mgfagentic-feedback](https://go.gov.sg/mgfagentic-feedback)
 - **Companion material** referenced by the framework is published by its respective owners (CSA, GovTech, AI Verify Foundation).
 
 ## Currency and accuracy
 
-[`skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) records the framework version reflected and when it was last verified. IMDA describes the framework as a living document. **Use the dates to judge how much trust to extend to the content; never assume currency.**
+[`skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) and [`skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md) record each framework version reflected and when it was last verified. The generative-AI notes were written from an extracted copy of the PDF; their page references are due a check against the original. IMDA describes the framework as a living document. **Use the dates to judge how much trust to extend to the content; never assume currency.**
 
 If you find content that is out of date or inconsistent with the framework, please open an issue or pull request — see [CONTRIBUTING.md](CONTRIBUTING.md). Reporting an issue creates no obligation on the maintainers to fix it within any time, or at all.
 
@@ -59,9 +61,9 @@ The MIT licence accompanying this repository ([LICENSE](LICENSE)) covers **only 
 
 Specifically:
 
-1. **The Model AI Governance Framework for Agentic AI is published by IMDA and remains IMDA's material**, subject to IMDA's own terms of use. The case studies within it were contributed by, and describe, the named organisations.
-2. **Quotations in this skill are short operative phrases, cited and attributed to the framework, reproduced for educational and engineering-reference purposes under fair-dealing principles** (in Singapore, the fair-use provisions of the Copyright Act 2021). The skill does not republish the framework in full, does not reproduce its diagrams, and does not substitute for the official text. Case-study material is summarised as engineering patterns, not reproduced.
-3. **Anyone wishing to redistribute quotations** beyond similar non-commercial educational or engineering-reference use, or to reproduce substantial portions of the framework, **must consult IMDA's terms** and obtain permission where required. The MIT licence on this repository does not — and cannot — grant such rights on IMDA's behalf.
+1. **The Model AI Governance Framework for Agentic AI is published by IMDA and remains IMDA's material**, and **the Model AI Governance Framework for Generative AI is published by IMDA and the AI Verify Foundation and remains their material**, each subject to its publisher's terms of use. The case studies within it were contributed by, and describe, the named organisations.
+2. **Quotations in this skill are short operative phrases, cited and attributed to the relevant framework, reproduced for educational and engineering-reference purposes under fair-dealing principles** (in Singapore, the fair-use provisions of the Copyright Act 2021). The skill does not republish either framework in full, does not reproduce its diagrams, and does not substitute for the official text. Case-study material is summarised as engineering patterns, not reproduced.
+3. **Anyone wishing to redistribute quotations** beyond similar non-commercial educational or engineering-reference use, or to reproduce substantial portions of either framework, **must consult the publisher's terms** and obtain permission where required. The MIT licence on this repository does not — and cannot — grant such rights on IMDA's behalf.
 4. **The maintainers make no representation** that quotations are reproduced under any specific licence or permission. The fair-dealing basis above is the maintainers' good-faith view, not a legal opinion or warranty.
 
 If you represent IMDA or another rights-holder and believe any content here exceeds fair dealing, please open an issue — see [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).

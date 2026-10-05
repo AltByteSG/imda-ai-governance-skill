@@ -48,7 +48,7 @@ The framework's position is that **deploying organisations and the humans overse
 
 ### Give end users enough to hold you accountable
 
-**Expectation:** users must get sufficient information to hold the organisation accountable and to understand their own responsibilities — detailed under §2.4.
+**Expectation:** users should get sufficient information to hold the organisation accountable and to understand their own responsibilities — detailed under §2.4.
 
 ## §2.2.2 — Design for meaningful human oversight
 

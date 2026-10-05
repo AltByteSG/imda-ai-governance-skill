@@ -71,7 +71,7 @@ For systems of agents, add the `[MGF §1.2.3]` risks to the register explicitly:
 
 ## Model-level threats
 
-Agent threat modelling above focuses on tools and taint. The model and its data have their own attack surface, which the GenAI framework names: prompt attacks, data poisoning, model inversion and extraction, and malicious code within models `[MGF-GenAI Security, p.22]`. `[Practice]` Add a row for each that applies to your threat model:
+Agent threat modelling above focuses on tools and taint. The model and its data have their own attack surface. The GenAI framework calls for input filters against unsafe prompts and for forensics able to identify malicious code within models, and points to MITRE ATLAS for threat modelling `[MGF-GenAI Security, p.22]`. `[Practice]` ATLAS also covers data poisoning, model inversion and extraction; add a row for each that applies to your threat model:
 
 | Threat | Applies when | Typical control |
 |---|---|---|

@@ -64,7 +64,7 @@ An index without a register entry is an unowned corpus — the data counterpart 
 
 ## Poisoning of RAG and fine-tuning data
 
-`[MGF-GenAI Security, p.22]` names data poisoning among new GenAI threats. A document that reaches the index is an untrusted source for every query that retrieves it. `[Practice]`:
+`[Practice]` Data poisoning is a standard GenAI threat, catalogued in MITRE ATLAS, which the framework points to for threat modelling `[MGF-GenAI Security, p.22]`. A document that reaches the index is an untrusted source for every query that retrieves it. `[Practice]`:
 
 - **Add each ingestion source to the threat model** as an untrusted source ([layer 02](02-use-case-and-risk.md#threat-modelling)); for an agent, trace whether retrieved text can reach a write tool.
 - **Restrict who can write to the corpus** — public wikis, shared drives, ticket bodies and user uploads are writable by many. Prefer curated sources; separate indexes by trust level.

@@ -8,7 +8,7 @@ This is the dimension that lands most on builders: baseline safety practices dur
 
 ## Development — baseline safety practices
 
-**Expectation:** baseline practices include fine-tuning such as RLHF; risk assessment in the *"context of the use case"*; *"input and output filters"*; and RAG and few-shot learning to reduce hallucinations `[MGF-GenAI Trusted Development and Deployment, p.13]`.
+**Expectation:** baseline practices include fine-tuning such as RLHF; risk assessment in the *"context of the use case"*; *"input and output filters"*; and RAG and few-shot learning to reduce hallucinations `[MGF-GenAI Trusted Development, p.13]`.
 
 **Engineering effect:**
 
@@ -21,7 +21,7 @@ This is the dimension that lands most on builders: baseline safety practices dur
 
 ## Disclosure — "food labels"
 
-**Expectation:** disclose in seven areas `[MGF-GenAI Trusted Development and Deployment, p.14]`:
+**Expectation:** disclose in seven areas `[MGF-GenAI Trusted Development, p.14]`:
 
 | Area | What an engineer fills in `[Practice]` |
 |---|---|
@@ -33,7 +33,7 @@ This is the dimension that lands most on builders: baseline safety practices dur
 | (f) Intended use | In-scope and out-of-scope uses |
 | (g) User data protection | What user input is stored, for how long, whether it is used for training |
 
-Calibrate disclosure against protecting proprietary information, give baseline transparency to all parties, and use *"model risk thresholds"* so that higher-risk systems get more oversight `[MGF-GenAI Trusted Development and Deployment, p.14]`.
+Calibrate disclosure against protecting proprietary information, give baseline transparency to all parties, and use *"model risk thresholds"* so that higher-risk systems get more oversight `[MGF-GenAI Trusted Development, p.14]`.
 
 **Engineering effect:** keep one [system card](../../../templates/SYSTEM_CARD.md.template) per generative system (or extend the agent card), versioned with the code. User-facing disclosure is covered by [layer 09](../../../layers/09-end-user-transparency.md) and, for agents, [agentic §2.4](../../sg-mgf-agentic/dimensions/04-end-user-responsibility.md).
 
@@ -41,7 +41,7 @@ Calibrate disclosure against protecting proprietary information, give baseline t
 
 ## Evaluation
 
-**Expectation:** use both benchmarking and red teaming; a baseline set of safety tests `[MGF-GenAI Trusted Development and Deployment, p.14]`; evaluations covering *"robustness, factuality, propensity to bias, toxicity generation and data governance"*, plus sector-specific evaluations where relevant `[MGF-GenAI Trusted Development and Deployment, p.15]`.
+**Expectation:** use both benchmarking and red teaming; a baseline set of safety tests `[MGF-GenAI Trusted Development, p.14]`; evaluations covering *"robustness, factuality, propensity to bias, toxicity generation and data governance"*, plus sector-specific evaluations where relevant `[MGF-GenAI Trusted Development, p.15]`.
 
 **Engineering effect:** an eval suite per system with one section per named area, run in CI on every model, prompt, filter or corpus change, and a red-team pass before first release and on material change. For agents this is the model-and-output layer beneath the workflow tests `[MGF §2.3.2]`. See [layer 07](../../../layers/07-testing-and-evaluation.md).
 

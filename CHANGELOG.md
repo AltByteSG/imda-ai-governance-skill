@@ -31,7 +31,7 @@ A blind review of a sample agent with 13 seeded gaps found all 13 with correct r
 - **Skill version is stated in SKILL.md and AGENTS.md**, so reviews can record it. The release check now fails if either disagrees with the manifests.
 - **Severity rubric.** Missing pre-deployment testing or logging on a medium- or high-tier system, and approvals that fail open, are now High. A "conditional" severity covers gaps that depend on material the reviewer couldn't see. Doc-versus-code mismatches are scored by the worse of the two.
 - **Numbered checklist items** in design review (1.1–4.6, S.1–S.5, G.0–G.9), used by the review template's findings and appendix.
-- **Citations fixed.** System-level approval enforcement now cites `[MGF §2.3.1]`; the bias item cites `[MGF §1.2.2, §2.3.2]`; conflicting objectives cites `[MGF §1.2.3]`. A new item S.5 covers speed and volume for every agent, not only multi-agent systems.
+- **Citations fixed.** System-level approval enforcement now cites `[MGF §2.3.1]`; the bias item cites `[MGF §1.2.2]`, with testing for it marked `[Practice]`; red teaming by the security team is described as the framework's illustration, not an expectation; conflicting objectives cites `[MGF §1.2.3]`. A new item S.5 covers speed and volume for every agent, not only multi-agent systems.
 - **Shorter reviews.** Merge findings that share a root cause; more than five Low findings collapse into one "Minor gaps" list.
 - **Disagreeing with an assessed tier.** Keep the team's tier, state yours beside it with the reason, and raise it as a finding.
 

@@ -20,7 +20,7 @@ An agent where any of these is "TBD" at launch has not allocated responsibility 
 
 ## Use-case approval and residual-risk acceptance
 
-`[MGF §2.2.1]` puts permitted use cases — **including limits on agent data access** — with key decision makers, and `[MGF §2.1.2]` expects residual risk to be evaluated and accepted. `[Practice]`:
+`[MGF §2.2.1]` illustrates putting permitted use cases — **including limits on agent data access** — with key decision makers, and `[MGF §2.1.2]` expects residual risk to be evaluated and accepted. `[Practice]`:
 
 - Record the approval: who, when, at which tier, with which data-access limits.
 - Record residual risk in plain words ("the agent may send an incorrectly worded reply to a customer; mitigated by X; accepted by Y on date Z").

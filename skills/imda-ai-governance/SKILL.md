@@ -51,7 +51,7 @@ Then suggest creating `.ai-governance.json` so future sessions and the changed-f
 
 `frameworks` lists the primary framework first. Use `["sg-mgf-agentic", "sg-mgf-genai"]` for agents and `["sg-mgf-genai"]` for generative features that take no actions. `riskTier` is one of `unassessed`, `low`, `medium`, `high` (see [layer 02](layers/02-use-case-and-risk.md#tiering)). `agentRegistry` is the folder holding one [`AGENT_CARD.md`](templates/AGENT_CARD.md.template) per agent. If the project cannot take that file, record the same facts in the project's `AGENTS.md`, `CLAUDE.md` or equivalent instruction file.
 
-Framework codes: `sg-mgf-agentic` (primary, populated), `sg-mgf-genai` (supplement, populated). Status of related Singapore frameworks lives in [`frameworks/_index.md`](frameworks/_index.md).
+Framework codes: `sg-mgf-agentic` (primary) and `sg-mgf-genai` (supplement). How they relate, and to the 2020 baseline, is in [`frameworks/_index.md`](frameworks/_index.md).
 
 ## Step 2 — Pick the right entry point
 

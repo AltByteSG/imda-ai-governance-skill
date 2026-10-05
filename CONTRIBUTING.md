@@ -26,7 +26,7 @@ In rough priority order:
 ### PR checklist
 
 - [ ] Consistent with [DISCLAIMER.md](DISCLAIMER.md) — reference material, not legal or regulatory advice; the framework is authoritative.
-- [ ] Framework statements carry `[MGF §x.y]`; skill recommendations carry `[Practice]`. Nothing the framework doesn't say is attributed to it.
+- [ ] Framework statements carry `[MGF §x.y]` (agentic) or `[MGF-GenAI <dimension>, p.N]` (generative); skill recommendations carry `[Practice]`. Nothing the framework doesn't say is attributed to it.
 - [ ] Quotations are short operative phrases with section references; no reproduction of framework diagrams or substantial passages.
 - [ ] If updating framework notes, the `Last verified` date is bumped.
 - [ ] Materially new content has a [CHANGELOG.md](CHANGELOG.md) entry under `Unreleased`.

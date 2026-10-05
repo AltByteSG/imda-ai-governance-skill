@@ -2,7 +2,7 @@
 
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
-The `frameworks/` folder mirrors the `jurisdictions/` folder of a statute-based skill: each populated framework has a `README.md` with version metadata, a `dimensions/` folder that maps the framework's expectations onto the universal layers, and a `framework-map.md` for reverse lookup by section number.
+Each framework folder has a `README.md` with version metadata, a `dimensions/` folder that maps the framework's expectations onto the universal layers, and a `framework-map.md` for reverse lookup by section number.
 
 | Code | Framework | Publisher | Status |
 |---|---|---|---|
@@ -17,9 +17,9 @@ Both frameworks build on IMDA's *Model AI Governance Framework* (2nd Edition, 20
 - **The system generates content but takes no actions** (a chat assistant without tools, a summariser, a RAG Q&A bot): the agentic framework is out of scope. Use `sg-mgf-genai` as the bar, starting from [`checklists/new-genai-feature.md`](../checklists/new-genai-feature.md). The 2020 framework's baseline also applies, as above.
 - **An agent** — the agentic framework is primary. `sg-mgf-genai` applies as a supplement to what sits under the agent: the model and where it came from, the data it was tuned or grounded on, disclosure, outside vulnerability reporting, and labelling of generated content. Once an assistant gets its first write-capable tool, the agentic framework takes over as the bar.
 
-## Related Singapore material the agentic MGF points to
+## Related material the frameworks point to
 
-The framework defers to these for depth. This skill references them but does not summarise them.
+The frameworks defer to these for depth (the agentic MGF to the first five, the generative-AI MGF to MITRE ATLAS; AI Verify and Moonshot are the AI Verify Foundation's own testing tools). This skill references them but does not summarise them.
 
 | Document | Publisher | What it adds |
 |---|---|---|

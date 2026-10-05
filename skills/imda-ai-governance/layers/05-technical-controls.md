@@ -78,7 +78,7 @@ Keep a **controls inventory** per agent (the agent card has a section for it): c
 
 - Per-run budgets: max steps, max tool calls, max tokens, max wall-clock, max spend.
 - Per-tool rate limits and circuit breakers that trip on repeated failure (and alert — see [layer 08](08-monitoring-and-operations.md)).
-- Policy engine at the tool boundary that evaluates each call against the agent's policy (who, what tool, what arguments, what tier) and returns allow / ask / deny. **Unknown actions default to deny or ask, never allow** `[MGF §2.2.2]`.
+- Policy engine at the tool boundary that evaluates each call against the agent's policy (who, what tool, what arguments, what tier) and returns allow / ask / deny. **Unknown actions default to deny** `[MGF §2.2.2]`; `[Practice]` or to asking a human, never to allow.
 - Re-escalate when a previously allowed pattern turns suspicious (the Tencent pattern): allowlists match intent, not just prefix.
 
 ## Output and reflection controls

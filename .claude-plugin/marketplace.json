@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "imda-ai-governance",
-      "description": "Engineering reference for aligning agentic AI systems with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5) — packaged as both a Claude Code skill and a Codex plugin. Tech-agnostic, organised by where in the system each expectation lands rather than by framework section. Reference material, not legal or regulatory advice.",
+      "description": "Engineering reference for aligning agentic AI systems with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5), with IMDA's Model AI Governance Framework for Generative AI (2024) as a supplement — packaged as both a Claude Code skill and a Codex plugin. Tech-agnostic, organised by where in the system each expectation lands rather than by framework section. Reference material, not legal or regulatory advice.",
       "category": "compliance",
       "source": {
         "source": "url",

@@ -74,8 +74,8 @@ Items are deliberately separate: an approval that is enforced in code (2.5, alig
 - **3.3** Runtime controls such as rate limits on tool use and input validation `[MGF §2.3.1]`; `[Practice]` per-run budgets.
 - **3.4** Test plan covers task execution, policy compliance, tool calling, robustness; whole workflows; multi-agent level; realistic environment; repeated runs across varied datasets `[MGF §2.3.2]`.
 - **3.5** Evaluation method suited to each part while still evaluating trajectories holistically `[MGF §2.3.2]`.
-- **3.6** Where the agent's actions affect people, tests or monitoring look for biased or unfair outcomes — a risk type the framework names `[MGF §1.2.2]` and testing should cover `[MGF §2.3.2]`.
-- **3.7** Regular red teaming and threat modelling by the cybersecurity function `[MGF §2.2.1]`; threat model regularly updated `[MGF §2.1.1]`.
+- **3.6** Where the agent's actions affect people, biased or unfair actions — a risk type the framework names `[MGF §1.2.2]` — are considered; `[Practice]` covered by tests or monitoring.
+- **3.7** Threat model regularly updated `[MGF §2.1.1]`; `[Practice]` regular red teaming, which the framework illustrates as a cybersecurity-team responsibility `[MGF §2.2.1]`.
 - **3.8** Gradual rollout plan by users, tools and systems `[MGF §2.3.3]`.
 - **3.9** Logging and monitoring across user-agent, agent-tool and reasoning layers; integrated with observability; problematic trajectories cannot be deleted `[MGF §2.3.3]`.
 - **3.10** Alert catalogue with an intervention per alert `[MGF §2.3.3]`.
@@ -112,7 +112,7 @@ The model, data and output layer under the agent. Many items overlap the agentic
 - **G.4** Disclosure exists for the system (a system card covering data, evaluations, mitigations, risks and limits, intended use, user-data protection) `[MGF-GenAI Trusted Development, p.14]` ([template](../templates/SYSTEM_CARD.md.template)).
 - **G.5** Evaluation includes benchmarks and red teaming across robustness, factuality, bias and toxicity `[MGF-GenAI Trusted Development, p.14–15]`.
 - **G.6** A route for outsiders to report vulnerabilities or unsafe behaviour, and a severity threshold for reporting incidents externally `[MGF-GenAI Incident Reporting, p.17]`.
-- **G.7** Model-level threats in the threat model: data / RAG poisoning, extraction, malicious code in downloaded models `[MGF-GenAI Security, p.22]`.
+- **G.7** Model-level threats in the threat model: unsafe prompts filtered, downloaded models checked for malicious code, MITRE ATLAS used as a threat reference `[MGF-GenAI Security, p.22]`; `[Practice]` data / RAG poisoning and extraction covered.
 - **G.8** Generated content published beyond the person it was made for (images, audio, video, public posts and documents) is labelled, and where appropriate carries watermarks or provenance metadata `[MGF-GenAI Content Provenance, p.23–25]`. Messages the system sends to a user are disclosure, scored under 4.1.
 - **G.9** *(generative-only systems; for agents this is 3.8–3.11)* Ongoing monitoring to detect malfunctions `[MGF-GenAI Incident Reporting, p.17]`; `[Practice]` logging of prompts, retrieved sources and outputs, and a staged launch.
 
@@ -134,9 +134,9 @@ For each item not aligned or partly aligned, write a finding:
 | **High** | An irreversible or high-stakes action lacks a structural control or approval; there is no way to stop the agent; the agent can exceed the delegating user's permissions; an injection path runs from untrusted input to a consequential tool; approvals fail open; or a **medium- or high-tier** system has no meaningful pre-deployment testing or no logging. For generative systems also: personal, confidential or regulated data can be retrieved or generated for people not entitled to it; unverified model artefacts are executed (pickle weights, remote code); untrusted content can steer output that is published under your name. |
 | **Medium** | An expectation is partly met, or met only by prompt or intent; measurement is missing; a control exists but has a bypass that needs effort; or an expectation is not met at all but the harm is recoverable (for example no disclosure to users, or no staged rollout on a low-tier system). |
 | **Low** | Documentation, naming or evidence gaps that don't hide a missing control. |
+| **Conditional** | When the gap depends on material you couldn't see, give the severity it would have if the missing material doesn't close it, and say so: "High unless `workflow.py` binds the amount". |
 
 Legal exposure the frameworks leave to law — copyright and licences, personal-data obligations — is scored by its engineering gap (no provenance record, no access control) and flagged for legal review; don't rule on the law.
-| **Conditional** | When the gap depends on material you couldn't see, give the severity it would have if the missing material doesn't close it, and say so: "High unless `workflow.py` binds the amount". |
 
 **Keep it readable.**
 

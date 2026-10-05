@@ -10,7 +10,7 @@
 | **Publisher** | Infocomm Media Development Authority (IMDA) and the AI Verify Foundation, Singapore |
 | **Legal status** | Voluntary guidance. Not legislation; no penalties attach to it directly |
 | **Source** | [Framework PDF (19 June 2024)](https://aiverifyfoundation.sg/wp-content/uploads/2026/06/Model-AI-Governance-Framework-for-Generative-AI-19-June-2024.pdf); [IMDA factsheet](https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/gen-ai-and-digital-foss-ai-governance-playbook) |
-| **Citation form** | The framework has no section numbers — cite as `[MGF-GenAI <Dimension>, p.N]`, e.g. `[MGF-GenAI Data, p.11]` |
+| **Citation form** | The framework has no section numbers — cite as `[MGF-GenAI <Dimension>, p.N]`, e.g. `[MGF-GenAI Data, p.11]`. "Trusted Development and Deployment" is shortened to `Trusted Development` |
 
 > **Source copyright:** the framework is published by IMDA and the AI Verify Foundation and remains their material. Quotations in this skill are short operative phrases reproduced with attribution for educational and engineering reference; they are **not** licensed under this repository's MIT licence. See [DISCLAIMER.md § Copyright in source materials](../../../../DISCLAIMER.md#copyright-in-source-materials).
 
@@ -19,7 +19,7 @@
 - **The agentic framework (`sg-mgf-agentic`) stays primary.** If the system plans and acts with tools, start there. Cite it as `[MGF §x.y]`; never mix the two citation forms.
 - **This framework covers the layer underneath an agent:** the model, the data it was trained, fine-tuned or grounded on, and the content it generates. Use it to check model selection, data and corpus governance, output filtering, model disclosure, evaluation and content provenance — the parts the agentic framework assumes are already in place.
 - **For generative systems that take no actions** (a chat assistant without tools, a summariser, a RAG Q&A bot) this is the **main** framework.
-- **It builds on the 2019 Model AI Governance Framework and its 2020 update** `[MGF-GenAI Trusted Development and Deployment, p.13]`, so those baseline practices still apply underneath both.
+- **It builds on the 2019 Model AI Governance Framework and its 2020 update** `[MGF-GenAI Trusted Development, p.13]`, so those baseline practices still apply underneath both.
 - Much of the framework is addressed to **policymakers, governments and the wider ecosystem**, not to builders. The dimension files say so in one line and give the engineering hook only where one exists.
 
 ## The nine dimensions
@@ -49,9 +49,9 @@ The reverse lookup (dimension / sub-heading / page → dimension file → layer)
 
 - **The unit of risk is the output and the data behind it.** Where the agentic framework asks "what can this do?", this one asks "what was it trained or grounded on, what can it say, and can anyone tell it was generated?"
 - **Responsibility follows control** `[MGF-GenAI Accountability, p.7]`. You own what you can change: your prompts, filters, fine-tunes, grounding corpus and deployment — not the base model's pre-training, but you do own the choice of model and where you got it.
-- **Disclose like a food label** `[MGF-GenAI Trusted Development and Deployment, p.14]`. Seven areas, from data used to user-data protection. In this skill that is the [system card](../../templates/SYSTEM_CARD.md.template).
-- **Evaluate with both benchmarks and red teaming** `[MGF-GenAI Trusted Development and Deployment, p.14]`, and keep evaluating after release.
-- **Filters on the way in and the way out** `[MGF-GenAI Trusted Development and Deployment, p.13; Security, p.22]` are baseline, not an extra.
+- **Disclose like a food label** `[MGF-GenAI Trusted Development, p.14]`. Seven areas, from data used to user-data protection. In this skill that is the [system card](../../templates/SYSTEM_CARD.md.template).
+- **Evaluate with both benchmarks and red teaming** `[MGF-GenAI Trusted Development, p.14]`, and keep evaluating after release.
+- **Filters on the way in and the way out** `[MGF-GenAI Trusted Development, p.13; Security, p.22]` are baseline, not an extra.
 
 ## Cross-references
 

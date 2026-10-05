@@ -46,7 +46,7 @@ Add from the threat model ([layer 02](02-use-case-and-risk.md#threat-modelling))
 
 ## Red teaming
 
-`[MGF §2.2.1]` gives cybersecurity teams responsibility for regular red teaming. `[Practice]` For high-tier agents, red-team before first production exposure and after material changes, covering injection through every untrusted source, privilege escalation through delegation, memory poisoning, and malicious or compromised MCP servers. GovTech red-teamed its MCP guardrails before widening rollout.
+`[MGF §2.2.1]` illustrates regular red teaming as a cybersecurity-team responsibility (an illustration, not a prescription). `[Practice]` For high-tier agents, red-team before first production exposure and after material changes, covering injection through every untrusted source, privilege escalation through delegation, memory poisoning, and malicious or compromised MCP servers. GovTech red-teamed its MCP guardrails before widening rollout.
 
 ## After deployment
 
