@@ -1,0 +1,153 @@
+<!--
+Reference material only — not legal or regulatory advice. See DISCLAIMER.md in the
+imda-ai-governance skill. Verify against the official IMDA publication.
+
+AGENT CARD — one per agent. The record a reviewer, auditor or on-call engineer reads
+first. Mirrors the evidence the MGF for Agentic AI (v1.5) expects.
+
+SETUP
+  1. Copy to your project's agent registry folder (the `agentRegistry` path in
+     .ai-governance.json, e.g. docs/agents/<agent-id>.md).
+  2. Replace every {{PLACEHOLDER}}. Delete guidance comments once filled.
+  3. Update on every change that passes through checklists/change-review.md.
+     Bump the card version with the agent version.
+-->
+
+# Agent card — {{AGENT_NAME}}
+
+| | |
+|---|---|
+| **Agent id** | {{AGENT_ID}} |
+| **Card version / agent version** | {{CARD_VERSION}} / {{AGENT_VERSION}} |
+| **Status** | {{pilot / production / deprecated}} |
+| **Risk tier** | {{low / medium / high}} — assessed {{DATE}} |
+| **Last reviewed** | {{DATE}} |
+| **Framework** | MGF for Agentic AI v1.5 (`sg-mgf-agentic`) |
+
+## 1. Purpose and scope `[MGF §2.1.1]`
+
+- **Goal:** {{ONE_OR_TWO_SENTENCES}}
+- **Users:** {{WHO_USES_IT — internal / external, roles}}
+- **Why an agent and not a deterministic workflow:** {{REASON}}
+- **Out of scope (it must not):** {{LIST}}
+
+## 2. Ownership `[MGF §2.2.1]`
+
+| Role | Name / team | Contact |
+|---|---|---|
+| Use-case owner | {{}} | {{}} |
+| Technical owner | {{}} | {{}} |
+| Risk / security reviewer | {{}} | {{}} |
+| Approver queue(s) and required expertise | {{}} | {{}} |
+| User escalation contact | {{}} | {{}} |
+
+**Value-chain roles we hold:** {{system provider / deployer / platform provider / …}}
+**External dependencies:** {{model provider, agent platform, MCP servers, SaaS — each with link to its third-party assessment}}
+
+## 3. Components `[MGF §1.1.1]`
+
+| Component | This agent |
+|---|---|
+| Model | {{PROVIDER / MODEL / PINNED_VERSION}} |
+| Instructions | {{PATH to versioned prompt(s)}} |
+| Memory | {{none / session / long-term — scope, retention, who can write to it}} |
+| Planning | {{fixed workflow at PATH / bounded planning / open planning}} |
+| Tools | see section 5 |
+| Protocols | {{MCP servers via GATEWAY / A2A peers / commerce protocol}} |
+| Controls | see section 6 |
+| Logging and monitoring | {{TRACE_BACKEND, DASHBOARD_LINK}} |
+| Multi-agent pattern | {{none / sequential / supervisor / swarm — peers}} |
+
+## 4. Action-space and autonomy `[MGF §1.1.3]`
+
+- **Systems reached:** {{sandbox / internal: … / external: …}}
+- **Computer-use or browser control:** {{no / yes — environment}}
+- **Autonomy:** {{SOP-driven / judgement-driven}}
+- **Human involvement:** {{per action — see approval matrix}}
+
+## 5. Tools and permissions `[MGF §2.1.2]`
+
+| Tool | System | Read / write | Scope / credential | Limits | Approval level |
+|---|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{}} | {{}} | {{none / sampled / approve / approve + justification / forbidden}} |
+
+- **Identity:** {{AGENT_IDENTITY — how it authenticates}}; registered in {{REGISTRY}}
+- **Acts as:** {{itself / on behalf of user — how the user identity is propagated}}
+- **Effective permissions bounded by delegating user:** {{how enforced}}
+- **Credential lifetime:** {{}}
+
+## 6. Risk assessment `[MGF §2.1.1]`
+
+| Factor | Rating | Reason |
+|---|---|---|
+| Domain error tolerance | {{}} | {{}} |
+| Sensitive data access / persistent memory | {{}} | {{}} |
+| External system access | {{}} | {{}} |
+| Action scope | {{}} | {{}} |
+| Reversibility | {{}} | {{}} |
+| Autonomy | {{}} | {{}} |
+| Task complexity | {{}} | {{}} |
+| Untrusted input exposure | {{}} | {{}} |
+| Third-party provision | {{}} | {{}} |
+| System complexity | {{}} | {{}} |
+
+**Highest-impact action (sets the tier):** {{}}
+
+**Threat model:** {{LINK}} — untrusted sources: {{LIST}}; consequential sinks: {{LIST}}; how each path is broken or guarded: {{}}
+
+### Controls inventory `[MGF §2.3.1]`
+
+| Risk | Control | Type (architectural / structural / approval / model-based / prompt / runtime) | Where enforced | Test |
+|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{}} | {{}} |
+
+### Residual risk `[MGF §2.1.2]`
+
+{{PLAIN-WORDS description of what can still go wrong after controls}}
+
+Accepted by **{{NAME, ROLE}}** on **{{DATE}}** for version **{{AGENT_VERSION}}** at rollout stage **{{STAGE}}**.
+
+## 7. Human oversight `[MGF §2.2.2]`
+
+- **Approval matrix:** see section 5; dynamic triggers: {{atypical-behaviour rules; user-defined limits}}
+- **Fail-closed behaviour:** {{what happens when approval service is down / action has no policy}}
+- **Oversight metrics:** override rate {{}}, median time to decision {{}} — {{DASHBOARD_LINK}}
+
+## 8. Testing `[MGF §2.3.2]`
+
+| Suite | Runs per scenario | Threshold | Last result | Versions tested |
+|---|---|---|---|---|
+| Task execution | {{}} | {{}} | {{}} | {{}} |
+| Policy compliance | {{}} | {{}} | {{}} | {{}} |
+| Tool calling | {{}} | {{}} | {{}} | {{}} |
+| Robustness | {{}} | {{}} | {{}} | {{}} |
+| Bounds / fail-closed | {{}} | {{}} | {{}} | {{}} |
+| Injection | {{}} | {{}} | {{}} | {{}} |
+| Access boundaries / fairness / multi-agent | {{}} | {{}} | {{}} | {{}} |
+
+Red team: {{DATE, LINK, open findings}}
+
+## 9. Operations `[MGF §2.3.3]`
+
+- **Rollout stage:** {{}} — next-stage exit criteria: {{}}
+- **Alerts and interventions:** {{LINK to alert catalogue}}
+- **Kill switch:** {{how, who}} — last exercised {{DATE}}
+- **Fallback when agent is off:** {{}}
+- **Audit cadence:** {{}}
+- **Log retention / immutability:** {{}}
+
+## 10. Users `[MGF §2.4]`
+
+- **Disclosure at point of interaction:** {{surfaces covered}}
+- **Capability statement:** {{LINK}}
+- **Data notice / consent:** {{LINK}}
+- **Escalation path:** {{}}
+- **Training (internal users):** {{LINK}}
+- **Feedback path:** {{}}
+- **Manual procedure for critical processes:** {{LINK}}
+
+## 11. Change and incident history `[MGF §2.3.3]`
+
+| Date | Version | Change / incident | Category | Reviewed by | Link |
+|---|---|---|---|---|---|
+| {{}} | {{}} | {{}} | {{minor / material / critical / incident}} | {{}} | {{}} |

@@ -1,0 +1,19 @@
+{
+  "name": "altbyte-plugins",
+  "description": "AltByte's open-source Claude Code / Cowork plugins.",
+  "owner": {
+    "name": "AltByte"
+  },
+  "plugins": [
+    {
+      "name": "imda-ai-governance",
+      "description": "Engineering reference for aligning agentic AI systems with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5) — packaged as both a Claude Code skill and a Codex plugin. Tech-agnostic, organised by where in the system each expectation lands rather than by framework section. Reference material, not legal or regulatory advice.",
+      "category": "compliance",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/AltByteSG/imda-ai-governance-skill.git"
+      },
+      "homepage": "https://github.com/AltByteSG/imda-ai-governance-skill"
+    }
+  ]
+}

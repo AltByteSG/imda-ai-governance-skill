@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">IMDA AI Governance</title>
+  <desc id="desc">A bounded box around a connected agent node with a checkpoint — engineering reference for agentic AI governance.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F766E"/>
+      <stop offset="100%" stop-color="#134E4A"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="40" fill="url(#bg)"/>
+  <rect x="44" y="44" width="168" height="168" rx="20" fill="none" stroke="#F4F4F5" stroke-width="10" stroke-dasharray="18 12"/>
+  <circle cx="128" cy="112" r="26" fill="#F4F4F5"/>
+  <line x1="128" y1="138" x2="128" y2="168" stroke="#F4F4F5" stroke-width="10" stroke-linecap="round"/>
+  <line x1="102" y1="112" x2="76" y2="112" stroke="#F4F4F5" stroke-width="10" stroke-linecap="round"/>
+  <line x1="154" y1="112" x2="180" y2="112" stroke="#F4F4F5" stroke-width="10" stroke-linecap="round"/>
+  <path d="M110 178 L124 192 L150 166" stroke="#F4F4F5" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

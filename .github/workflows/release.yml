@@ -1,0 +1,120 @@
+name: Release
+
+# Publishing is manual and deliberate: framework content should not ship because
+# a commit landed. Dispatch this once the manifests and CHANGELOG are updated.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, without the leading v (e.g. 0.1.1)"
+        required: true
+        type: string
+      existing_tag:
+        description: "Release a tag that already exists (backfill a missing Release page)"
+        required: false
+        type: boolean
+        default: false
+      draft:
+        description: "Create as a draft to review before publishing"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Test
+        run: |
+          python3 tests/test_ai_governance_check.py
+          python3 tests/test_release_notes.py
+
+      # A tag is permanent and consumers pin to it, so every inconsistency is
+      # caught before anything is created.
+      # For an existing tag the manifests are checked against that tag's own tree,
+      # not the current branch, which has usually moved on to a later version.
+      # Resolved once here: every later step reads MANIFEST_REF_ARG, so the two
+      # invocations of release_notes.py cannot drift apart.
+      - name: Resolve manifest ref
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.existing_tag }}" = "true" ]; then
+            echo "MANIFEST_REF_ARG=--manifest-ref v${{ inputs.version }}" >> "$GITHUB_ENV"
+          else
+            echo "MANIFEST_REF_ARG=" >> "$GITHUB_ENV"
+          fi
+
+      - name: Validate version against manifests and CHANGELOG
+        run: |
+          set -euo pipefail
+          # shellcheck disable=SC2086
+          python3 scripts/release_notes.py "${{ inputs.version }}" --check-only $MANIFEST_REF_ARG
+
+      - name: Check tag and release state
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="v${{ inputs.version }}"
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            if [ "${{ inputs.existing_tag }}" != "true" ]; then
+              echo "::error::tag $tag already exists; pass existing_tag to release it, or pick a new version"
+              exit 1
+            fi
+          elif [ "${{ inputs.existing_tag }}" = "true" ]; then
+            echo "::error::existing_tag was requested but $tag does not exist"
+            exit 1
+          fi
+          # A Release page is never silently replaced, in either mode.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "::error::a release for $tag already exists"
+            exit 1
+          fi
+
+      - name: Generate release notes
+        run: |
+          set -euo pipefail
+          # shellcheck disable=SC2086
+          python3 scripts/release_notes.py "${{ inputs.version }}" $MANIFEST_REF_ARG > release-notes.md
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag="v${{ inputs.version }}"
+          # An existing tag is released as-is; gh must not retarget it.
+          target=()
+          if [ "${{ inputs.existing_tag }}" != "true" ]; then
+            target=(--target "${{ github.sha }}")
+          fi
+          gh release create "$tag" \
+            "${target[@]}" \
+            --title "$tag" \
+            --notes-file release-notes.md \
+            ${{ inputs.draft && '--draft' || '' }}
+
+      - name: Summary
+        run: |
+          {
+            echo "### Released v${{ inputs.version }}"
+            echo
+            echo "<${{ github.server_url }}/${{ github.repository }}/releases/tag/v${{ inputs.version }}>"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,74 @@
+#!/bin/sh
+# Reference material only — not legal or regulatory advice. See ../DISCLAIMER.md.
+# Verify against the official IMDA publication.
+
+# Agentic AI governance nudge — fired by .claude/settings.json PostToolUse hook on
+# Edit/Write/MultiEdit. If the edited file matches an agent-related path, emit a
+# stderr line that lands in the conversation, prompting Claude to consult the
+# `imda-ai-governance` skill before finalising.
+#
+# Non-blocking: never exits non-zero. False negatives are preferred to false
+# positives that train Claude to ignore the channel.
+#
+# SETUP (Claude Code only — no Codex CLI equivalent at time of writing):
+#
+#   1. Copy this file to your project:
+#        cp templates/ai-governance-nudge.sh.template .claude/hooks/ai-governance-nudge.sh
+#        chmod +x .claude/hooks/ai-governance-nudge.sh
+#
+#   2. Customise the path patterns below to match where your repo keeps agent
+#      code, tools, prompts, policies and evals (the defaults are illustrative).
+#
+#   3. Wire it into .claude/settings.json:
+#        {
+#          "hooks": {
+#            "PostToolUse": [
+#              {
+#                "matcher": "Edit|Write|MultiEdit",
+#                "hooks": [
+#                  {
+#                    "type": "command",
+#                    "command": "\"$(git rev-parse --show-toplevel)/.claude/hooks/ai-governance-nudge.sh\" || true"
+#                  }
+#                ]
+#              }
+#            ]
+#          }
+#        }
+
+f="${TOOL_INPUT_file_path:-}"
+[ -z "$f" ] && exit 0
+
+nudge() {
+  printf '[ai-gov-nudge] %s\n' "$1" >&2
+}
+
+skill_msg='Touched an agent-related path — consult skill `imda-ai-governance` (SKILL.md) before finalising. Changes to prompts, tools, models or autonomy are change-review triggers (checklists/change-review.md).'
+
+case "$f" in
+  # ─── MCP configuration ──────────────────────────────────────────
+  */.mcp.json|*/mcp.json|*/mcp/*|*/mcp_servers/*)
+    nudge "$skill_msg Layer: 05-technical-controls. Is the server allowlisted, pinned, routed through the gateway, and least-privilege?" ;;
+
+  # ─── Tool / action definitions ──────────────────────────────────
+  */tools/*|*/actions/*|*/toolkits/*)
+    nudge "$skill_msg Layer: 05-technical-controls + 06-human-oversight. Strict schema? Read/write split? Placed in the approval matrix? Enforced at the resource, not the prompt?" ;;
+
+  # ─── Prompts and instructions ───────────────────────────────────
+  */prompts/*|*/system_prompts/*|*/instructions/*)
+    nudge "$skill_msg Layer: 08-monitoring-and-operations (change management). Prompt changes need regression evals; do not rely on prompt text for limits on high-risk actions." ;;
+
+  # ─── Approval, guardrail and policy logic ───────────────────────
+  */approvals/*|*/guardrails/*|*/policies/*|*/hitl/*)
+    nudge "$skill_msg Layer: 06-human-oversight. Approval bound to exact arguments? Fails closed when the approver service is down or the action has no policy? Removing or loosening a checkpoint is a critical change." ;;
+
+  # ─── Agent and orchestration code ───────────────────────────────
+  */agents/*|*/agent/*|*/orchestrator/*|*/orchestration/*|*/graphs/*|*/crews/*)
+    nudge "$skill_msg Layers: 03-architecture-and-bounding + 04-identity-and-authorisation. Iteration caps, validation between steps, own identity, scoped credentials, kill switch." ;;
+
+  # ─── Evaluations ────────────────────────────────────────────────
+  */evals/*|*/evaluations/*|*/redteam/*)
+    nudge "$skill_msg Layer: 07-testing-and-evaluation. Task, policy, tool-call, robustness, bounds and fail-closed suites; repeated runs; thresholds set before running." ;;
+esac
+
+exit 0

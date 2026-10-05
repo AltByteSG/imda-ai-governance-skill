@@ -1,0 +1,41 @@
+{
+  "name": "imda-ai-governance",
+  "version": "0.1.0",
+  "description": "Agentic AI governance guidance for engineers designing, reviewing or changing AI agents — aligned with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5).",
+  "author": {
+    "name": "AltByte",
+    "url": "https://github.com/AltByteSG"
+  },
+  "homepage": "https://github.com/AltByteSG/imda-ai-governance-skill",
+  "repository": "https://github.com/AltByteSG/imda-ai-governance-skill",
+  "license": "MIT",
+  "keywords": [
+    "ai-governance",
+    "agentic-ai",
+    "ai-agents",
+    "imda",
+    "model-governance-framework",
+    "singapore",
+    "mcp",
+    "human-in-the-loop",
+    "responsible-ai",
+    "compliance"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "IMDA AI Governance",
+    "shortDescription": "Agentic AI governance checks for engineers.",
+    "longDescription": "Engineer-facing guidance for aligning agent designs, architectures, controls, tests and operations with Singapore IMDA's Model AI Governance Framework for Agentic AI.",
+    "composerIcon": "./assets/icon.svg",
+    "developerName": "AltByte",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Set up agentic AI governance for this project.",
+      "Review this agent design against the IMDA agentic AI framework.",
+      "Check my changes to this agent for governance gaps."
+    ]
+  }
+}

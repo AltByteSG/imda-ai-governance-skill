@@ -1,0 +1,73 @@
+<!--
+Reference material only — not legal or regulatory advice. See DISCLAIMER.md in the
+imda-ai-governance skill. Verify against the official IMDA publication.
+
+ALIGNMENT REVIEW — the output shape for checklists/design-review.md.
+An engineering view of how a design, architecture, guideline or system lines up with
+the MGF for Agentic AI. It is not a legal opinion, audit or certification; say so.
+
+Conventions:
+  [MGF §x.y]  the framework's own expectation, with section
+  [Practice]  this skill's suggested way to meet it — not an IMDA requirement
+-->
+
+# Alignment review — {{SYSTEM_OR_DOCUMENT_NAME}}
+
+| | |
+|---|---|
+| **Reviewed** | {{DATE}} by {{REVIEWER}} |
+| **Framework** | Model AI Governance Framework for Agentic AI v1.5 (IMDA, 20 May 2026, updated 5 June 2026) |
+| **Material reviewed** | {{LIST of docs, diagrams, repos / paths, configs, with versions or commits}} |
+| **Not reviewed** | {{e.g. contracts, runtime config, eval results}} |
+
+> This review assesses engineering alignment with voluntary guidance. It is not legal advice, an audit, or a certification, and it is not endorsed by IMDA.
+
+## Verdict
+
+{{ONE PARAGRAPH: overall alignment, the tier the system appears to be, and whether it is fit to proceed to the next stage.}}
+
+**Fix first:**
+
+1. {{}}
+2. {{}}
+3. {{}}
+
+## System as understood `[MGF §1.1]`
+
+- **Agentic?** {{yes / no — why}}
+- **Components:** model {{}}; instructions {{}}; memory {{}}; planning {{}}; tools {{}}; protocols {{}}; controls {{}}; logging {{}}
+- **Multi-agent pattern:** {{}}
+- **Action-space:** {{}}
+- **Autonomy and human involvement:** {{}}
+- **Value-chain role(s):** {{}}
+- **Risk tier:** {{assessed / provisional}} {{low / medium / high}} — driven by {{highest-impact action}}
+
+## Scorecard
+
+| Dimension | Aligned | Partly | Not aligned | N/A | Cannot determine |
+|---|---|---|---|---|---|
+| 1. Assess and bound `[MGF §2.1]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| 2. Human accountability `[MGF §2.2]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| 3. Technical controls and processes `[MGF §2.3]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| 4. End-user responsibility `[MGF §2.4]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+| Systemic / multi-agent `[MGF §1.2.3]` | {{n}} | {{n}} | {{n}} | {{n}} | {{n}} |
+
+## Findings
+
+<!-- One block per finding, ordered High → Medium → Low. -->
+
+### {{F1}} — {{ONE-LINE GAP}}
+
+- **Severity:** {{High / Medium / Low}}
+- **Framework:** `[MGF §{{x.y}}]` — {{short paraphrase of the expectation}}
+- **Evidence:** {{file:line, config key, diagram element, or quote}}
+- **Why it matters:** {{the harm type from MGF §1.2.2 it exposes, and how}}
+- **Recommendation:** {{smallest change that closes it}} {{[Practice] if this is the skill's suggestion}}
+
+## What is already well aligned
+
+- {{Strengths with evidence — keep these so they aren't lost in the next change.}}
+
+## Open questions for the team
+
+- {{Things the material didn't answer that would change a finding.}}

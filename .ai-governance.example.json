@@ -1,0 +1,14 @@
+{
+  "aiGovernance": {
+    "frameworks": [
+      "sg-mgf-agentic"
+    ],
+    "role": [
+      "system-provider",
+      "deployer"
+    ],
+    "riskTier": "medium",
+    "agentRegistry": "docs/agents/",
+    "reviewPolicy": "warn"
+  }
+}

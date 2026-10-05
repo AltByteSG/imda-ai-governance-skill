@@ -1,0 +1,192 @@
+# imda-ai-governance-skill
+
+> ⚠ **Engineering reference material — not legal or regulatory advice.** This skill helps engineers align agentic AI systems with Singapore IMDA's *Model AI Governance Framework for Agentic AI*. It is **not** authoritative guidance, **not** an audit or certification, and **not affiliated with or endorsed by IMDA**. The framework itself is voluntary. Always verify against the official IMDA publication and involve your risk, security and compliance owners. See [DISCLAIMER.md](DISCLAIMER.md).
+>
+> **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, layered patterns, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md § Copyright in source materials](DISCLAIMER.md#copyright-in-source-materials).
+
+An agentic-AI governance reference for engineers — packaged as both a [Claude Code skill](https://docs.claude.com/en/docs/claude-code/skills) and a Codex plugin, with `AGENTS.md` routing for Cursor and Copilot — organised by where in the system each expectation lands rather than by framework section number.
+
+**Status:** Model AI Governance Framework for Agentic AI **v1.5** (IMDA, published 20 May 2026, updated 5 June 2026) populated. Repo ships dual plugin manifests — [`.claude-plugin/`](.claude-plugin/) (Claude Code / Cowork via `/plugin install`) and [`.codex-plugin/`](.codex-plugin/) (Codex) — plus [`AGENTS.md`](AGENTS.md) routing for Cursor / Copilot.
+
+**Audience:** engineers, architects and tech leads building or deploying AI agents — agentic features, coding assistants, workflow automation, customer-facing agents, multi-agent systems, computer-use agents — who need their design, architecture, internal guidelines and implementation to line up with the framework. Tech-agnostic: works whatever the model provider, agent framework (LangGraph, CrewAI, an agent SDK, your own loop), cloud or language.
+
+## What it covers
+
+| Framework | Publisher | Status |
+|---|---|---|
+| Model AI Governance Framework for Agentic AI, v1.5 | IMDA (Singapore) | ✅ Populated |
+| Model AI Governance Framework for Generative AI (2024) | IMDA / AI Verify Foundation | Not populated |
+| Model AI Governance Framework, 2nd Edition (2020) | IMDA / PDPC | Not populated |
+
+**Not in scope:** binding law. Alignment with this voluntary framework does not discharge obligations under the PDPA, sector rules (e.g. MAS), or contracts. For personal data, pair this skill with a data-protection reference such as [`personal-data-protection-skill`](https://github.com/AltByteSG/personal-data-protection-skill). Other jurisdictions' AI rules (EU AI Act, etc.) are out of scope.
+
+## Why this exists
+
+The framework is written for organisations. Engineers need answers like *"I'm giving this agent a refund tool — what has to be true before it ships?"* or *"Is this architecture doc aligned?"*, not a four-dimension overview. This skill bridges the two:
+
+- **Layered guidance** by where in the system the expectation lands — accountability, risk, architecture and bounds, identity, controls, human oversight, testing, operations, user transparency.
+- **Framework notes** per dimension, each expectation paired with the **evidence** a reviewer should ask to see.
+- **Entry-point checklists** for alignment reviews, new agents, new tools and MCP servers, third-party agents, the release gate, change review and incidents.
+- **Templates**: a per-agent **Agent Card** and an **Alignment Review** report.
+- **A section map** for citing `[MGF §x.y]` in PR descriptions and design reviews.
+- A strict separation between what the framework says (`[MGF §x.y]`) and what the skill recommends (`[Practice]`), so reviews don't overstate the framework.
+
+## Use cases
+
+### 1. Architecture review before build — a customer-support agent that can issue refunds
+
+A team's design doc describes a support agent with tools to read orders, read the customer's email history, send replies and issue refunds up to $500. The doc says "the agent is instructed never to refund more than the order value." Running [`checklists/design-review.md`](skills/imda-ai-governance/checklists/design-review.md) produces:
+
+- **High:** the refund limit is prompt-only on an irreversible action — move it into the tool as a hard ceiling `[MGF §2.1.2, §2.3.1]`; refunds above a threshold need human approval `[MGF §2.2.2]`.
+- **High:** the agent reads untrusted email content and holds a refund tool in the same context — an injection path from customer email to money movement `[MGF §2.1.1]`. Split reader and actor, or gate refunds on approval.
+- **Medium:** the agent uses a shared service account; no per-agent identity or user-capacity in logs `[MGF §2.1.2]`.
+- **Medium:** no disclosure at the point of interaction and no human escalation path for customers `[MGF §2.4.2]`.
+
+### 2. Internal coding-assistant rollout with MCP
+
+A platform team wants to roll an agentic coding assistant out to 400 engineers with a dozen community MCP servers enabled. The skill steers them to the framework's gradual-rollout pattern `[MGF §2.3.3]`: a pilot with trained users, built-in tools only and low-risk repos; an MCP allowlist behind a gateway with pinned versions and logged traffic `[MGF §2.3.1]`; approval defaults tiered by action (read free, edits per session, shell and network gated) `[MGF §2.2.2]`; and oversight metrics so they can tell when approvals have become rubber stamps.
+
+### 3. Swapping the model under a production agent
+
+A provider releases a new model and an engineer opens a PR changing one line. The changed-file tripwire flags it; [`checklists/change-review.md`](skills/imda-ai-governance/checklists/change-review.md) classifies a model change as **material** `[MGF §2.3.3]`: re-run the policy, tool-calling and bounds suites at release-gate thresholds, refresh the agent card, and roll out in stages rather than flipping it for everyone.
+
+## Install
+
+Skill content lives under [`skills/imda-ai-governance/`](skills/imda-ai-governance/), with plugin manifests in [`.claude-plugin/`](.claude-plugin/) and [`.codex-plugin/`](.codex-plugin/).
+
+### Claude Code / Claude Cowork — via this repo's marketplace
+
+```bash
+claude plugin marketplace add AltByteSG/imda-ai-governance-skill
+claude plugin install imda-ai-governance@altbyte-plugins
+```
+
+The repo carries a [`marketplace.json`](.claude-plugin/marketplace.json) so it works as a single-plugin marketplace. Verify with `claude plugin list`.
+
+### Codex / Cursor / Copilot
+
+```bash
+git clone https://github.com/AltByteSG/imda-ai-governance-skill.git ~/.tools/imda-ai-governance-skill
+```
+
+Then add a line to your project's `AGENTS.md` / `.cursorrules` / `.github/copilot-instructions.md`:
+
+```markdown
+For agentic AI governance (IMDA MGF for Agentic AI), follow
+~/.tools/imda-ai-governance-skill/AGENTS.md
+```
+
+### Pin a specific upstream version
+
+```bash
+cd <clone-path> && git checkout v0.1.0
+```
+
+## Adapt to your project
+
+Templates ship in [`skills/imda-ai-governance/templates/`](skills/imda-ai-governance/templates/). Setup instructions are in each file's header.
+
+- **[`AGENT_CARD.md.template`](skills/imda-ai-governance/templates/AGENT_CARD.md.template)** — *any agent.* One per agent, kept in the folder named by `agentRegistry`. Holds ownership, components, action-space and autonomy, tools and permissions, risk assessment, controls inventory, residual-risk acceptance, approval matrix, test results, operations and change history — the evidence the framework expects.
+- **[`ALIGNMENT_REVIEW.md.template`](skills/imda-ai-governance/templates/ALIGNMENT_REVIEW.md.template)** — *any agent.* The output shape for a design or architecture review.
+- **[`ai-governance-nudge.sh.template`](skills/imda-ai-governance/templates/ai-governance-nudge.sh.template)** — **Claude Code only.** A `PostToolUse` hook that nudges Claude into the skill when it edits agent code, tools, prompts, policies, MCP config or evals.
+
+### Project config
+
+Save as `.ai-governance.json` in the consuming project (see [`.ai-governance.example.json`](.ai-governance.example.json)):
+
+```json
+{
+  "aiGovernance": {
+    "frameworks": ["sg-mgf-agentic"],
+    "role": ["system-provider", "deployer"],
+    "riskTier": "medium",
+    "agentRegistry": "docs/agents/",
+    "reviewPolicy": "warn"
+  }
+}
+```
+
+- `frameworks` — `sg-mgf-agentic`. Unknown codes are rejected by the checker so a typo can't silently yield zero coverage.
+- `role` — your value-chain role(s): `model-developer`, `tooling-provider`, `platform-provider`, `system-provider`, `deployer`. Read by the agent, not the script.
+- `riskTier` — `unassessed`, `low`, `medium`, `high`. For multi-agent systems, the highest tier; per-agent tiers live in agent cards.
+- `agentRegistry` — where agent cards live.
+- `reviewPolicy` — `warn` or `block-on-sensitive-change`.
+
+### Guardrail: pre-commit / CI changed-file check
+
+Use the skill as the reasoning layer and [`scripts/ai-governance-check-changed-files.py`](scripts/ai-governance-check-changed-files.py) as a deterministic tripwire. The script does not judge alignment; it only flags changes that probably touch an agent — agent and orchestration code, tool definitions, MCP config, prompts, approval and guardrail logic, evals, agent-framework imports — so someone runs the change-review checklist.
+
+Copy the script into the consuming project, then wire it into pre-commit:
+
+```yaml
+repos:
+  - repo: local
+    hooks:
+      - id: ai-governance-check
+        name: Agentic AI governance changed-file check
+        entry: python3 scripts/ai-governance-check-changed-files.py --staged
+        language: system
+        pass_filenames: false
+```
+
+Or CI, against the pull-request diff:
+
+```yaml
+name: AI Governance Check
+
+on:
+  pull_request:
+
+jobs:
+  ai-governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run agentic AI changed-file check
+        run: |
+          python3 scripts/ai-governance-check-changed-files.py \
+            --base origin/${{ github.base_ref }} \
+            --head HEAD \
+            --review-policy block-on-sensitive-change
+```
+
+Suggested flow:
+
+1. Engineer edits an agent.
+2. Pre-commit warns that agent-related files changed.
+3. Engineer asks their coding agent to run the change review with this skill and records the category on the agent card.
+4. CI blocks unreviewed agent changes unless the team's agreed acknowledgement is present (e.g. a PR label or an `AI-Governance-Reviewed: yes` trailer).
+
+## Versioning
+
+Releases are tagged; see [CHANGELOG.md](CHANGELOG.md). [`frameworks/sg-mgf-agentic/README.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) records which framework version the content reflects and when it was last verified. IMDA describes the framework as a living document; when it publishes a new version, the skill is updated and a new minor version released.
+
+## Sources
+
+### Singapore — Model AI Governance Framework for Agentic AI
+
+- **Publisher:** Infocomm Media Development Authority (IMDA) — [www.imda.gov.sg](https://www.imda.gov.sg) (search *"Model AI Governance Framework for Agentic AI"*)
+- **Version reflected:** 1.5, published 20 May 2026, updated 5 June 2026
+- **Feedback and case-study submissions:** [go.gov.sg/mgfagentic-feedback](https://go.gov.sg/mgfagentic-feedback)
+- **Referenced companion material:** CSA *Draft Addendum on Securing Agentic AI*; GovTech *Agentic Risk & Capability Framework*; IMDA *Starter Kit for Testing of LLM-based Applications for Safety and Reliability*; IMDA OpenClaw case study (May 2026)
+
+## Disclaimer
+
+See [DISCLAIMER.md](DISCLAIMER.md). **This skill is reference material, not legal or regulatory advice, and is not endorsed by IMDA.**
+
+## Privacy
+
+See [PRIVACY.md](PRIVACY.md). **This project collects no data.**
+
+## Contributing
+
+Contributions welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Particularly valued: updates when IMDA publishes a new version; stack-specific examples for the layer files (kept as labelled examples, not coupled to the core text); and incident patterns that generalise.
+
+## Licence
+
+[MIT](LICENSE) — covers the original commentary, structure and templates only, not the framework text. Attribution appreciated but not required.
