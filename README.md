@@ -16,7 +16,8 @@ An agentic-AI governance reference for engineers — packaged as both a [Claude 
 |---|---|---|
 | Model AI Governance Framework for Agentic AI, v1.5 | IMDA (Singapore) | ✅ Populated |
 | Model AI Governance Framework for Generative AI (2024) | IMDA / AI Verify Foundation | ✅ Populated as a supplement |
-| Model AI Governance Framework, 2nd Edition (2020) | IMDA / PDPC | Not populated |
+
+Both frameworks build on IMDA's *Model AI Governance Framework* (2nd Edition, 2020), whose baseline practices — internal governance, human involvement in AI-augmented decisions, operations management, stakeholder communication — still apply underneath. This skill doesn't restate it: the agentic and generative-AI material covers those themes in more concrete form.
 
 **Not in scope:** binding law. Alignment with this voluntary framework does not discharge obligations under the PDPA, sector rules (e.g. MAS), or contracts. For personal data, pair this skill with a data-protection reference such as [`personal-data-protection-skill`](https://github.com/AltByteSG/personal-data-protection-skill). Other jurisdictions' AI rules (EU AI Act, etc.) are out of scope.
 

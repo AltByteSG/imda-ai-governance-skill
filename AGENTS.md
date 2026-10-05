@@ -42,7 +42,8 @@ Then suggest creating `.ai-governance.json`:
 |---|---|---|
 | `sg-mgf-agentic` | Model AI Governance Framework for Agentic AI, v1.5 (IMDA, 20 May 2026, updated 5 June 2026) | ✅ populated |
 | `sg-mgf-genai` | Model AI Governance Framework for Generative AI (IMDA / AI Verify Foundation, 2024) — supplement | ✅ populated |
-| `sg-mgf-2020` | Model AI Governance Framework, 2nd Edition (2020) | not populated |
+
+Both frameworks build on IMDA's *Model AI Governance Framework* (2nd Edition, 2020), whose baseline practices — internal governance, human involvement in AI-augmented decisions, operations management, stakeholder communication — still apply underneath. This skill doesn't restate it: the agentic and generative-AI material covers those themes in more concrete form.
 
 See [`skills/imda-ai-governance/frameworks/_index.md`](skills/imda-ai-governance/frameworks/_index.md).
 

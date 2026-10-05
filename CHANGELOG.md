@@ -20,6 +20,7 @@ Adds IMDA's **Model AI Governance Framework for Generative AI** (IMDA / AI Verif
 - [`templates/SYSTEM_CARD.md.template`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template): the framework's disclosure "food label", for teams deploying models they may not have trained. Agent cards link to it.
 - Checklists [`new-genai-feature.md`](skills/imda-ai-governance/checklists/new-genai-feature.md) (generative features that take no actions; redirects to `new-agent.md` if the feature is agentic) and [`new-dataset-or-corpus.md`](skills/imda-ai-governance/checklists/new-dataset-or-corpus.md).
 - Design review gains a short generative-AI supplement (items G.0–G.9) and a scorecard row. For generative systems that take no actions, the supplement plus the `new-genai-feature.md` items (cited as NG n.n) are the bar, with generative-specific High triggers in the severity rubric. Pre-deployment, change-review, third-party and incident checklists gain the matching items.
+- The placeholder for the Model AI Governance Framework (2nd Edition, 2020) is removed from the framework tables. Both frameworks build on it and already cover its themes for engineers, so it is now a one-line baseline note instead of a planned framework.
 - `.ai-governance.json` accepts `sg-mgf-genai`. Agents list it after `sg-mgf-agentic`; generative features without actions list it alone.
 
 ### Changed — from the end-to-end test
