@@ -1,6 +1,6 @@
 # Layer 02 — Use Case Suitability and Risk Assessment
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Decide whether to build an agent at all, how risky it is, and how risky it is allowed to be. Framework basis: `[MGF §1.2]`, `[MGF §2.1.1]`.
 

@@ -1,6 +1,6 @@
 # Layer 01 — Accountability and Ownership
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 The non-technical scaffolding an engineer needs to know exists, because the rest of the build depends on it: who approved the use case, who owns the agent, who accepted the residual risk, and what the vendors are on the hook for. Framework basis: `[MGF §2.1.2]` (residual risk), `[MGF §2.2.1]`.
 

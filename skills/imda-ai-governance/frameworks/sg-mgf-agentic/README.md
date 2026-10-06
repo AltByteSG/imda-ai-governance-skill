@@ -1,6 +1,6 @@
 # Singapore MGF for Agentic AI — Framework Notes
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 | | |
 |---|---|
@@ -13,7 +13,7 @@
 | **Feedback channel** | [go.gov.sg/mgfagentic-feedback](https://go.gov.sg/mgfagentic-feedback) |
 | **Pending changes** | The framework describes itself as a living document. Check IMDA for a newer version before citing a section number |
 
-> **Source copyright:** the framework is published by IMDA and remains IMDA's material. Quotations in this skill are short operative phrases reproduced with attribution for educational and engineering reference; they are **not** licensed under this repository's MIT licence. Case studies in the framework belong to the organisations that contributed them. See [DISCLAIMER.md § Copyright in source materials](../../../../DISCLAIMER.md#copyright-in-source-materials).
+> **Source copyright:** the framework is published by IMDA and remains IMDA's material. Quotations in this skill are short operative phrases reproduced with attribution for educational and engineering reference; they are **not** licensed under this repository's MIT licence. Case studies in the framework belong to the organisations that contributed them. See [DISCLAIMER.md § Copyright in source materials](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md#copyright-in-source-materials).
 
 ## What v1.5 changed (and why reviewers should care)
 

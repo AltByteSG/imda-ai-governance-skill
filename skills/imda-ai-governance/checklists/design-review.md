@@ -1,6 +1,6 @@
 # Checklist — Alignment Review of a Design, Architecture or Guideline
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use when asked whether something that already exists — a design doc, architecture diagram, ADR, RFC, internal engineering guideline, agent configuration, PR, or a running system — is aligned with the MGF for Agentic AI, and with the MGF for Generative AI where it applies. The output is a findings report in the shape of [`ALIGNMENT_REVIEW.md.template`](../templates/ALIGNMENT_REVIEW.md.template).
 
@@ -9,6 +9,15 @@ Use when asked whether something that already exists — a design doc, architect
 **For a generative system that takes no actions**, skip the agentic dimensions. The bar is G.0–G.9 plus the items in [`new-genai-feature.md`](new-genai-feature.md), cited with an **NG** prefix (NG 3.2) so they can't be confused with this file's numbers. Where an NG item and a G item ask the same thing, score the NG item and mark the G item *Covered by NG n.n*.
 
 Item numbers (1.1, S.5, G.3, NG 3.2) are stable: use them in the review's appendix and when citing an item in a finding.
+
+## Contents
+
+- How to run the review
+  - 1\. Gather the material and say what you reviewed
+  - 2\. Describe the system in the framework's terms
+  - 3\. Walk the dimensions
+  - 4\. Write findings, not a checklist dump
+  - 5\. Be explicit about limits
 
 ## How to run the review
 

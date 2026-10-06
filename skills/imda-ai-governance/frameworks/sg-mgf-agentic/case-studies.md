@@ -1,6 +1,6 @@
 # Case Studies — Engineering Takeaways
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 The framework illustrates each dimension with case studies contributed by organisations. They are examples of how one organisation applied the framework, **not** requirements, and the descriptions belong to the contributors. This file records only the transferable engineering pattern from each, so a reviewer can point to precedent when proposing a design. Read the originals in the framework for context.
 

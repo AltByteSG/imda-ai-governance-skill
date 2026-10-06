@@ -1,6 +1,6 @@
 # Layer 07 — Testing and Evaluation
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 How to show, before launch and after every material change, that the agent does the task, follows policy, uses tools correctly, and stays inside its bounds. Framework basis: `[MGF §2.3.2]`, with continuous testing in `[MGF §2.3.3]`. The framework builds on IMDA's *Starter Kit for Testing of LLM-based Applications for Safety and Reliability* for baseline LLM testing.
 

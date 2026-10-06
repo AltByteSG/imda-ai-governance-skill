@@ -1,6 +1,6 @@
 # Frameworks — Index
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Each framework folder has a `README.md` with version metadata, a `dimensions/` folder that maps the framework's expectations onto the universal layers, and a `framework-map.md` for reverse lookup by section number.
 
@@ -33,4 +33,4 @@ The frameworks defer to these for depth (the agentic MGF to the first five, the 
 
 ## Adding a framework
 
-A new framework folder needs the same shape as `sg-mgf-agentic/`: `README.md` with version and verification metadata, `dimensions/` mapping each part of the framework to the layers, and `framework-map.md` for reverse lookup. Layer files stay framework-agnostic; framework-specific expectations go in the framework folder. See [CONTRIBUTING.md](../../../CONTRIBUTING.md).
+A new framework folder needs the same shape as `sg-mgf-agentic/`: `README.md` with version and verification metadata, `dimensions/` mapping each part of the framework to the layers, and `framework-map.md` for reverse lookup. Layer files stay framework-agnostic; framework-specific expectations go in the framework folder. See [CONTRIBUTING.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/CONTRIBUTING.md).

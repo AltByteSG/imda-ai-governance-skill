@@ -1,6 +1,6 @@
 # Layer 09 — End-User Transparency and Enablement
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 What users see and learn, so they can use the agent responsibly and hold the organisation accountable. Framework basis: `[MGF §2.4]`, `[MGF §2.2.1]` (users' responsibilities).
 

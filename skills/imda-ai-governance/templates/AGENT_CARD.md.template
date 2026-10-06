@@ -28,6 +28,20 @@ SETUP
 <!-- System-level disclosure (data used, evaluations, risks and limits, intended use) lives in the
      system's SYSTEM_CARD.md (templates/SYSTEM_CARD.md.template); link it here rather than repeating it. -->
 
+## Contents
+
+- 1\. Purpose and scope [MGF §2.1.1]
+- 2\. Ownership [MGF §2.2.1]
+- 3\. Components [MGF §1.1.1]
+- 4\. Action-space and autonomy [MGF §1.1.3]
+- 5\. Tools and permissions [MGF §2.1.2]
+- 6\. Risk assessment [MGF §2.1.1]
+- 7\. Human oversight [MGF §2.2.2]
+- 8\. Testing [MGF §2.3.2]
+- 9\. Operations [MGF §2.3.3]
+- 10\. Users [MGF §2.4]
+- 11\. Change and incident history [MGF §2.3.3]
+
 ## 1. Purpose and scope `[MGF §2.1.1]`
 
 - **Goal:** {{ONE_OR_TWO_SENTENCES}}

@@ -1,6 +1,6 @@
 # Layer 10 — Data and Grounding
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 The data underneath the model: fine-tuning sets, RAG corpora and their indexes, few-shot example banks, and evaluation datasets. An agent's behaviour is bounded by its tools ([layer 03](03-architecture-and-bounding.md)); its *answers* are bounded by this data. Framework basis: the GenAI framework's Data dimension `[MGF-GenAI Data, p.9–11]` and, for disclosure, `[MGF-GenAI Trusted Development, p.14]`. For an agent, this layer supplements the agentic layers; it does not replace any of them. Framework notes: [`frameworks/sg-mgf-genai/dimensions/02-data.md`](../frameworks/sg-mgf-genai/dimensions/02-data.md).
 

@@ -1,6 +1,6 @@
 {
   "name": "imda-ai-governance",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Agentic AI governance guidance for engineers designing, reviewing or changing AI agents — aligned with Singapore IMDA's Model AI Governance Framework for Agentic AI (v1.5), with IMDA's Model AI Governance Framework for Generative AI (2024) as a supplement.",
   "author": {
     "name": "AltByte",

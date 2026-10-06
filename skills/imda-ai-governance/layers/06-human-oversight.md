@@ -1,6 +1,6 @@
 # Layer 06 — Human Oversight
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Where humans approve, what they see when they do, and how you know the approvals still mean something. Framework basis: `[MGF §1.1.3]`, `[MGF §2.2.2]`.
 

@@ -1,6 +1,6 @@
 # Checklist — Change Review for a Deployed Agent
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use for any change to a deployed agent. In complex agent systems small modifications can cascade `[MGF §2.3.3]`; the framework expects defined change triggers and review depth scaled to risk.
 

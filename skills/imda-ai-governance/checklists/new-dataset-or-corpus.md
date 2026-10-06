@@ -1,6 +1,6 @@
 # Checklist — Adding a Fine-Tuning Set, RAG Corpus or Index, or Evaluation Set
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use whenever you add, or materially change, data that shapes what a model says: a fine-tuning or adapter dataset, a RAG corpus and its index, a few-shot example bank, or an evaluation set. Layer: [layer 10](../layers/10-data-and-grounding.md). Framework basis: `[MGF-GenAI Data, p.9–11]` — see [`frameworks/sg-mgf-genai/dimensions/02-data.md`](../frameworks/sg-mgf-genai/dimensions/02-data.md).
 

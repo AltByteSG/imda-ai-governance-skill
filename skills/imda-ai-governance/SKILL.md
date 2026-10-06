@@ -5,7 +5,7 @@ description: Engineering reference for aligning agentic AI systems with Singapor
 
 # IMDA AI Governance — Layered Reference for Agentic Systems
 
-**Skill version:** 0.3.0 · **Primary framework:** MGF for Agentic AI v1.5 · **Supplement:** MGF for Generative AI (2024)
+**Skill version:** 0.3.1 · **Primary framework:** MGF for Agentic AI v1.5 · **Supplement:** MGF for Generative AI (2024)
 
 > # ⚠ Reference material, not legal or regulatory advice
 >
@@ -13,9 +13,9 @@ description: Engineering reference for aligning agentic AI systems with Singapor
 >
 > **The Model AI Governance Framework (MGF) for Agentic AI is voluntary guidance.** It describes emerging good practice; most of it is phrased as what organisations *"should consider"*. This skill does not turn it into law, and alignment with it does not discharge obligations under statutes that *do* bind you (the PDPA, sector rules such as MAS notices, contract terms). Always (a) verify any section reference or quotation against the official IMDA publication, and (b) involve your organisation's risk, security, legal and compliance owners before treating a design as approved.
 >
-> **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md](../../DISCLAIMER.md), including [§ Copyright in source materials](../../DISCLAIMER.md#copyright-in-source-materials).
+> **Source-text posture:** this skill **does not reproduce or republish the framework**. It provides engineer-facing interpretation, short attributed quotations of operative phrases, and section references, with a pointer to the official source. See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md), including [§ Copyright in source materials](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md#copyright-in-source-materials).
 >
-> By using this skill you accept the full disclaimer in [DISCLAIMER.md](../../DISCLAIMER.md), including the "use at your own risk" terms and the maintainers' zero liability for any decision taken in reliance on this content.
+> By using this skill you accept the full disclaimer in [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md), including the "use at your own risk" terms and the maintainers' zero liability for any decision taken in reliance on this content.
 
 This skill helps engineers make sure that what they design and build — architecture, agent design, permissions, approval flows, tests, monitoring, rollout plans, user-facing disclosures, internal guidelines — lines up with IMDA's MGF for Agentic AI. The agentic framework is the primary bar. IMDA's earlier MGF for Generative AI is applied as a supplement for what sits under the agent: the model, the data it was tuned or grounded on, and the content it generates. It is organised by **where in the system the expectation lands**, not by framework section number, so an engineer can work from the thing in front of them (a tool definition, an approval dialog, a deploy plan) rather than from the PDF.
 
@@ -89,7 +89,18 @@ Framework codes: `sg-mgf-agentic` (primary) and `sg-mgf-genai` (supplement). How
 | [09 End-user transparency](layers/09-end-user-transparency.md) | Agent disclosure, capability statements, escalation contacts, training, tradecraft retention, labelling and provenance of generated content |
 | [10 Data and grounding](layers/10-data-and-grounding.md) | Training, fine-tuning, RAG and evaluation data: provenance, licence, personal data, quality, poisoning, documentation |
 
-Layer files say **how** to build it. What the agentic framework expects, section by section, lives in [`frameworks/sg-mgf-agentic/dimensions/`](frameworks/sg-mgf-agentic/dimensions/); use [`framework-map.md`](frameworks/sg-mgf-agentic/framework-map.md) to cite a section in a PR description or review. The generative-AI supplement is in [`frameworks/sg-mgf-genai/`](frameworks/sg-mgf-genai/README.md). Disclosure for the system as a whole goes in a [`SYSTEM_CARD.md`](templates/SYSTEM_CARD.md.template) alongside each agent's card.
+Layer files say **how** to build it. What the agentic framework expects, section by section, lives in the dimension files listed below; use [`framework-map.md`](frameworks/sg-mgf-agentic/framework-map.md) to cite a section in a PR description or review. The generative-AI supplement is in [`frameworks/sg-mgf-genai/`](frameworks/sg-mgf-genai/README.md). Disclosure for the system as a whole goes in a [`SYSTEM_CARD.md`](templates/SYSTEM_CARD.md.template) alongside each agent's card.
+
+### Framework files
+
+Open these directly rather than following links from one file to the next:
+
+| Framework | Start here | Section lookup | Dimensions |
+|---|---|---|---|
+| `sg-mgf-agentic` (primary) | [README](frameworks/sg-mgf-agentic/README.md) · [case studies](frameworks/sg-mgf-agentic/case-studies.md) | [framework-map](frameworks/sg-mgf-agentic/framework-map.md) | [00 foundations](frameworks/sg-mgf-agentic/dimensions/00-foundations.md) · [01 assess and bound](frameworks/sg-mgf-agentic/dimensions/01-assess-and-bound.md) · [02 human accountability](frameworks/sg-mgf-agentic/dimensions/02-human-accountability.md) · [03 technical controls](frameworks/sg-mgf-agentic/dimensions/03-technical-controls.md) · [04 end user responsibility](frameworks/sg-mgf-agentic/dimensions/04-end-user-responsibility.md) |
+| `sg-mgf-genai` (supplement) | [README](frameworks/sg-mgf-genai/README.md) | [framework-map](frameworks/sg-mgf-genai/framework-map.md) | [01 accountability](frameworks/sg-mgf-genai/dimensions/01-accountability.md) · [02 data](frameworks/sg-mgf-genai/dimensions/02-data.md) · [03 trusted development and deployment](frameworks/sg-mgf-genai/dimensions/03-trusted-development-and-deployment.md) · [04 incident reporting](frameworks/sg-mgf-genai/dimensions/04-incident-reporting.md) · [05 testing and assurance](frameworks/sg-mgf-genai/dimensions/05-testing-and-assurance.md) · [06 security](frameworks/sg-mgf-genai/dimensions/06-security.md) · [07 content provenance](frameworks/sg-mgf-genai/dimensions/07-content-provenance.md) · [08 safety and alignment rnd](frameworks/sg-mgf-genai/dimensions/08-safety-and-alignment-rnd.md) · [09 ai for public good](frameworks/sg-mgf-genai/dimensions/09-ai-for-public-good.md) |
+
+Templates: [`AGENT_CARD.md`](templates/AGENT_CARD.md.template), [`SYSTEM_CARD.md`](templates/SYSTEM_CARD.md.template), [`ALIGNMENT_REVIEW.md`](templates/ALIGNMENT_REVIEW.md.template), and [`ai-governance-nudge.sh`](templates/ai-governance-nudge.sh.template) (changed-file reminder hook).
 
 ## Load-bearing principles (commit to memory)
 
@@ -129,4 +140,4 @@ When reviewing, **report against what exists, not what the author meant**. A des
 
 ## Framework version
 
-[`frameworks/sg-mgf-agentic/README.md`](frameworks/sg-mgf-agentic/README.md) and [`frameworks/sg-mgf-genai/README.md`](frameworks/sg-mgf-genai/README.md) record which version of each framework the content reflects, when it was last verified, and what to watch for. The framework calls itself a living document and is updated as practice develops; check IMDA for a newer version before relying on a section number. See the upstream [CHANGELOG.md](../../CHANGELOG.md) and pin to a tag if you need stability.
+[`frameworks/sg-mgf-agentic/README.md`](frameworks/sg-mgf-agentic/README.md) and [`frameworks/sg-mgf-genai/README.md`](frameworks/sg-mgf-genai/README.md) record which version of each framework the content reflects, when it was last verified, and what to watch for. The framework calls itself a living document and is updated as practice develops; check IMDA for a newer version before relying on a section number. See the upstream [CHANGELOG.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/CHANGELOG.md) and pin to a tag if you need stability.

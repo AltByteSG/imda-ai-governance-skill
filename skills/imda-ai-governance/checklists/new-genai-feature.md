@@ -1,6 +1,6 @@
 # Checklist — New Generative AI Feature (No Tools or Actions)
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use for a generative feature that produces content but takes no actions: a chat assistant without tools, a summariser, a RAG Q&A bot, a drafting or content-generation feature. The output is a filled-in [`SYSTEM_CARD.md`](../templates/SYSTEM_CARD.md.template). Framework basis: the Model AI Governance Framework for Generative AI (`sg-mgf-genai`) — see [`frameworks/sg-mgf-genai/README.md`](../frameworks/sg-mgf-genai/README.md).
 

@@ -1,6 +1,6 @@
 # Checklist — Adding a Tool, API, MCP Server, Data Source or Computer-Use Access
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use whenever an agent gains a new capability. A new tool changes the agent's action-space `[MGF §1.1.3]`, so it is also a change-review trigger — run [`change-review.md`](change-review.md) alongside this for deployed agents.
 

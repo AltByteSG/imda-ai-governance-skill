@@ -1,6 +1,6 @@
 # Layer 04 — Agent Identity and Authorisation
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Who the agent is, whom it acts for, and what it is allowed to touch — enforced by the systems it calls, not by its instructions. Framework basis: `[MGF §2.1.2]` (agent identity, authorisation), `[MGF §1.2.3]` (agent sprawl). The framework acknowledges this is an evolving space with gaps in today's identity systems; the practices below are the interim baseline it describes.
 

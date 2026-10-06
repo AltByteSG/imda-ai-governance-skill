@@ -42,6 +42,19 @@ SETUP
 | **Frameworks** | {{`sg-mgf-genai` / `sg-mgf-agentic` + `sg-mgf-genai`}} |
 | **Visibility** | {{internal only / public summary at LINK}} |
 
+## Contents
+
+- 0\. Model and supply chain [MGF-GenAI Accountability, p.7–8]
+- 1\. Data used [MGF-GenAI Trusted Development, p.14], [MGF-GenAI Data, p.9–11]
+- 2\. Training and serving infrastructure [MGF-GenAI Trusted Development, p.14]
+- 3\. Evaluation results [MGF-GenAI Trusted Development, p.14–15]
+- 4\. Mitigations and safety measures [MGF-GenAI Trusted Development, p.13–14]
+- 5\. Risks and limitations [MGF-GenAI Trusted Development, p.14]
+- 6\. Intended use [MGF-GenAI Trusted Development, p.14]
+- 7\. User data protection [MGF-GenAI Trusted Development, p.14]
+- 8\. Reporting and operations [MGF-GenAI Incident Reporting, p.17–18]
+- 9\. Change history
+
 ## 0. Model and supply chain `[MGF-GenAI Accountability, p.7–8]`
 
 | | |

@@ -1,8 +1,24 @@
 # Layer 08 — Monitoring, Rollout and Operations
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Running the agent safely once it's live: staged rollout, logging, alerting, intervention, incident handling and change management. Framework basis: `[MGF §2.2.2]` (automated monitoring), `[MGF §2.3]`, `[MGF §2.3.3]`.
+
+## Contents
+
+- Gradual rollout
+- What to log
+- Make the trail tamper-evident
+- Alerts, and the intervention each one triggers
+- Kill switch, termination and fallback
+- Periodic audit
+- Feedback loops
+- Change management
+- Incidents
+- Vulnerability and safety reporting channel
+- Severity thresholds for external reporting
+- Forensic retention
+- Compute and energy per feature
 
 ## Gradual rollout
 

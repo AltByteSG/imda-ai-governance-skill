@@ -1,6 +1,6 @@
 # Checklist — Designing a New Agent or Agentic Feature
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use when starting a new agent, or when an existing feature gains its first ability to take actions. The output is a filled-in [`AGENT_CARD.md`](../templates/AGENT_CARD.md.template) and a design that will pass [`design-review.md`](design-review.md).
 

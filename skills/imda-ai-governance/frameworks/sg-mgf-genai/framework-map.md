@@ -1,6 +1,6 @@
 # Singapore MGF for Generative AI — Dimension ↔ Layer Cross-Reference
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../DISCLAIMER.md). Verify against the official IMDA and AI Verify Foundation publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA and AI Verify Foundation publication and involve your risk and compliance owners.
 
 Reverse lookup. The framework has no section numbers, so cite by dimension and page: `[MGF-GenAI <Dimension>, p.N]`. Page numbers are those of the PDF dated 19 June 2024, taken from an extracted summary — spot-check before citing in an audit response. "Agentic" points to the overlapping dimension file of the primary framework, where one exists.
 

@@ -1,6 +1,6 @@
 # Singapore MGF for Generative AI — Framework Notes
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 | | |
 |---|---|
@@ -12,7 +12,7 @@
 | **Source** | [Framework PDF (19 June 2024)](https://aiverifyfoundation.sg/wp-content/uploads/2026/06/Model-AI-Governance-Framework-for-Generative-AI-19-June-2024.pdf); [IMDA factsheet](https://www.imda.gov.sg/resources/press-releases-factsheets-and-speeches/factsheets/2024/gen-ai-and-digital-foss-ai-governance-playbook) |
 | **Citation form** | The framework has no section numbers — cite as `[MGF-GenAI <Dimension>, p.N]`, e.g. `[MGF-GenAI Data, p.11]`. "Trusted Development and Deployment" is shortened to `Trusted Development` |
 
-> **Source copyright:** the framework is published by IMDA and the AI Verify Foundation and remains their material. Quotations in this skill are short operative phrases reproduced with attribution for educational and engineering reference; they are **not** licensed under this repository's MIT licence. See [DISCLAIMER.md § Copyright in source materials](../../../../DISCLAIMER.md#copyright-in-source-materials).
+> **Source copyright:** the framework is published by IMDA and the AI Verify Foundation and remains their material. Quotations in this skill are short operative phrases reproduced with attribution for educational and engineering reference; they are **not** licensed under this repository's MIT licence. See [DISCLAIMER.md § Copyright in source materials](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md#copyright-in-source-materials).
 
 ## How this relates to the agentic framework
 

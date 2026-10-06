@@ -1,6 +1,6 @@
 # Layer 03 — Architecture and Bounding
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 System-level decisions that set the ceiling on what an agent can do, whatever the model decides. Framework basis: `[MGF §1.1]`, `[MGF §2.1.2]`, `[MGF §2.3.1]`.
 

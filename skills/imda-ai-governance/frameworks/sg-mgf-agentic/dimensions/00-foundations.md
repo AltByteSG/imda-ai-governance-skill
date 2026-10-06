@@ -1,6 +1,6 @@
 # §1 — Foundations: What the Framework Means by an Agent, and Its Risks
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Section 1 sets no expectations of its own, but every later section depends on its vocabulary. Use it to describe the system under review in the framework's terms before checking anything else; a review that can't name the agent's components, action-space and autonomy can't assess the rest.
 

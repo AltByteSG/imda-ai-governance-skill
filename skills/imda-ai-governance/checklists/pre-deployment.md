@@ -1,6 +1,6 @@
 # Checklist — Pre-Deployment Release Gate
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use before an agent's first production exposure, before each rollout stage widens, and before releasing a material or critical change. Framework basis: `[MGF §2.3.2]`, `[MGF §2.3.3]`. Items marked **(M+)** apply at medium tier and above; **(H)** at high tier.
 

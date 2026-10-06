@@ -1,6 +1,6 @@
 # Checklist — Agent Incident
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use when an agent took, or tried to take, an action outside its intended scope: an erroneous, unauthorised or biased action, a data exposure or wrongful modification, or disruption to a connected system `[MGF §1.2.2]` — including near-misses that a control caught.
 

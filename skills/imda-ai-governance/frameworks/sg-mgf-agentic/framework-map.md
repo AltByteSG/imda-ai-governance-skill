@@ -1,6 +1,6 @@
 # Singapore MGF for Agentic AI — Section ↔ Layer Cross-Reference
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Reverse lookup. Use when citing a section in a PR description, design review, or audit response. For day-to-day work, use the layer files and dimension files instead. Section numbers are those of v1.5 (20 May 2026, updated 5 June 2026).
 

@@ -8,6 +8,22 @@ Each release records the framework version reflected in the content. When IMDA p
 
 — No unreleased changes.
 
+## [0.3.1] — 2026-10-06
+
+No framework content changed. This release brings the skill in line with Anthropic's current Agent Skills guidance.
+
+### Changed — links work wherever the skill folder is installed
+
+Links from inside `skills/imda-ai-governance/` to files outside it (`DISCLAIMER.md`, `CHANGELOG.md` and similar) used relative `../../` paths. Those resolve in a git checkout or a Claude Code plugin install, but not when only the skill folder is uploaded, as claude.ai and the Claude API skills endpoint do. They now point to the files on GitHub.
+
+### Changed — every reference file is one hop from SKILL.md
+
+Anthropic's skill-authoring guidance asks for reference files to be linked directly from `SKILL.md`, because Claude may read nested files only partially. `SKILL.md` and `AGENTS.md` now carry a table that links each framework's README, framework map and dimension files, plus the templates. The link to the `dimensions/` folder is gone.
+
+### Changed — contents lists on long files
+
+Every reference file over 100 lines (the design-review checklist, layers 05 and 08, and the agent and system card templates) now opens with a contents list, so a partial read still shows the file's full scope.
+
 ## [0.3.0] — 2026-10-05
 
 Adds IMDA's **Model AI Governance Framework for Generative AI** (IMDA / AI Verify Foundation, final version announced 30 May 2024) as a **supplement** to the agentic framework, and applies the fixes from the first end-to-end test of the skill. The agentic framework (v1.5) remains the primary bar and its content is unchanged.

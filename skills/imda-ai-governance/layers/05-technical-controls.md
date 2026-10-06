@@ -1,8 +1,21 @@
 # Layer 05 — Technical Controls
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 The controls that sit around the model at design time and run time. Framework basis: `[MGF §2.1.2]`, `[MGF §2.3.1]`. For comprehensive catalogues the framework points to CSA's *Draft Addendum on Securing Agentic AI* and GovTech's *Agentic Risk & Capability Framework*.
+
+## Contents
+
+- Pick the strongest control type the risk allows
+- Planning controls
+- Tool controls
+- Protocol and MCP controls
+- Multi-agent controls
+- Runtime controls
+- Output and reflection controls
+- Fix data problems deterministically
+- GenAI baseline safety
+- Model supply chain
 
 ## Pick the strongest control type the risk allows
 

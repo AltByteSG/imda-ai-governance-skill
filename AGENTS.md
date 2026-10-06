@@ -1,6 +1,6 @@
 # AGENTS.md — IMDA AI Governance Skill (Agentic AI)
 
-**Skill version:** 0.3.0 · **Primary framework:** MGF for Agentic AI v1.5 · **Supplement:** MGF for Generative AI (2024)
+**Skill version:** 0.3.1 · **Primary framework:** MGF for Agentic AI v1.5 · **Supplement:** MGF for Generative AI (2024)
 
 > ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](DISCLAIMER.md). Not affiliated with or endorsed by IMDA. The Model AI Governance Framework for Agentic AI is voluntary guidance; verify against the official IMDA publication and involve your risk and compliance owners.
 >
@@ -83,7 +83,18 @@ See [`skills/imda-ai-governance/frameworks/_index.md`](skills/imda-ai-governance
 | [09 End-user transparency](skills/imda-ai-governance/layers/09-end-user-transparency.md) | Agent disclosure, capability statements, escalation, training, tradecraft retention, labelling generated content |
 | [10 Data and grounding](skills/imda-ai-governance/layers/10-data-and-grounding.md) | Training, fine-tuning, RAG and eval data: provenance, licence, personal data, quality, poisoning, documentation |
 
-Framework expectations by section live in [`frameworks/sg-mgf-agentic/dimensions/`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/); reverse lookup in [`framework-map.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/framework-map.md). The generative-AI supplement is in [`frameworks/sg-mgf-genai/`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md); system-level disclosure goes in a [`SYSTEM_CARD.md`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template).
+Framework expectations by section live in the dimension files listed below; reverse lookup in [`framework-map.md`](skills/imda-ai-governance/frameworks/sg-mgf-agentic/framework-map.md). The generative-AI supplement is in [`frameworks/sg-mgf-genai/`](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md); system-level disclosure goes in a [`SYSTEM_CARD.md`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template).
+
+### Framework files
+
+Open these directly rather than following links from one file to the next:
+
+| Framework | Start here | Section lookup | Dimensions |
+|---|---|---|---|
+| `sg-mgf-agentic` (primary) | [README](skills/imda-ai-governance/frameworks/sg-mgf-agentic/README.md) · [case studies](skills/imda-ai-governance/frameworks/sg-mgf-agentic/case-studies.md) | [framework-map](skills/imda-ai-governance/frameworks/sg-mgf-agentic/framework-map.md) | [00 foundations](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/00-foundations.md) · [01 assess and bound](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/01-assess-and-bound.md) · [02 human accountability](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/02-human-accountability.md) · [03 technical controls](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/03-technical-controls.md) · [04 end user responsibility](skills/imda-ai-governance/frameworks/sg-mgf-agentic/dimensions/04-end-user-responsibility.md) |
+| `sg-mgf-genai` (supplement) | [README](skills/imda-ai-governance/frameworks/sg-mgf-genai/README.md) | [framework-map](skills/imda-ai-governance/frameworks/sg-mgf-genai/framework-map.md) | [01 accountability](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/01-accountability.md) · [02 data](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/02-data.md) · [03 trusted development and deployment](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/03-trusted-development-and-deployment.md) · [04 incident reporting](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/04-incident-reporting.md) · [05 testing and assurance](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/05-testing-and-assurance.md) · [06 security](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/06-security.md) · [07 content provenance](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/07-content-provenance.md) · [08 safety and alignment rnd](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/08-safety-and-alignment-rnd.md) · [09 ai for public good](skills/imda-ai-governance/frameworks/sg-mgf-genai/dimensions/09-ai-for-public-good.md) |
+
+Templates: [`AGENT_CARD.md`](skills/imda-ai-governance/templates/AGENT_CARD.md.template), [`SYSTEM_CARD.md`](skills/imda-ai-governance/templates/SYSTEM_CARD.md.template), [`ALIGNMENT_REVIEW.md`](skills/imda-ai-governance/templates/ALIGNMENT_REVIEW.md.template), and [`ai-governance-nudge.sh`](skills/imda-ai-governance/templates/ai-governance-nudge.sh.template) (changed-file reminder hook).
 
 ## Load-bearing principles
 

@@ -1,6 +1,6 @@
 # Checklist — Adopting a Third-Party Agent, Agent Platform or Embedded SaaS Agent
 
-> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](../../../DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
+> ⚠ **Reference material only — not legal or regulatory advice.** See [DISCLAIMER.md](https://github.com/AltByteSG/imda-ai-governance-skill/blob/main/DISCLAIMER.md). Verify against the official IMDA publication and involve your risk and compliance owners.
 
 Use when the agent, or a component it depends on, is provided or operated by someone else: an agent platform, a vendor's agent, agentic features switched on inside a SaaS product, a hosted MCP server, or a model API. The framework treats external provision as raising likelihood of harm because visibility and control are limited `[MGF §2.1.1]`, and expects obligations and opacity to be addressed `[MGF §2.2.1]`.
 
